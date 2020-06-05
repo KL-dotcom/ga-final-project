@@ -1,0 +1,20 @@
+[
+{
+  "model": "categories.category",
+  "pk": 1,
+  "fields": {
+    "label": "Tech",
+    "talk": [],
+    "user": []
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 2,
+  "fields": {
+    "label": "Art",
+    "talk": [],
+    "user": []
+  }
+}
+]

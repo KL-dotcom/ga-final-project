@@ -1,0 +1,14 @@
+[
+{
+  "model": "polls.poll",
+  "pk": 1,
+  "fields": {
+    "question": "How much do you like talks?",
+    "option_a": "Not at all",
+    "option_b": "Usually I like talks",
+    "option_c": "I love talks",
+    "option_d": "Mostly don't like them",
+    "talk": 1
+  }
+}
+]
