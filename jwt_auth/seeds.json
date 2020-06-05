@@ -1,0 +1,25 @@
+[
+  {
+    "model": "jwt_auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$DuAHk6CdsIfH$pYTRFA0bREAJ/qRX6QdPFUB1CIgl/cy9drIkHplQ8SA=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-06-05T14:57:56.230Z",
+      "email": "admin@email.com",
+      "username": "admin",
+      "groups": [],
+      "user_permissions": [],
+      "profile_pic": "",
+      "gender": "female",
+      "age": "27",
+      "ethinicity": "british",
+      "industry": "student"
+    }
+  }
+]

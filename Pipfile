@@ -10,6 +10,8 @@ django = "*"
 psycopg2-binary = "*"
 pylint = "*"
 autopep8 = "*"
+djangorestframework = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"
