@@ -1,0 +1,24 @@
+*{
+  margin:0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .navbar {
+    text-align: right;
+    color: white;
+    height:30px;
+    background-color: blue;
+  }
+
+
+.footer {
+  display: flex;
+  position:fixed;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  bottom:0;
+  width:100%;
+  padding:20px 0px;
+  background-color: green;
+}
