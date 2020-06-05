@@ -10,6 +10,10 @@ import Footer from './components/common/Footer'
 import Profile from './components/user/Profile'
 import EventShow from './components/events/EventShow'
 import EventIndex from './components/events/EventIndex'
+import EventNew from './components/events/EventNew'
+import EventEdit from './components/events/EventEdit'
+import ErrorPage from './components/common/Error'
+
 
 const App = () => {
   return (
@@ -20,11 +24,15 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route path="/events/new" component={EventNew} />
+            <Route path="/events/:id/edit" component={EventEdit} />
             <Route path="/events/:id" component={EventShow} />
             <Route path="/events" component={EventIndex} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/profile" component={Profile} />
+            <Route path="/*" component={ErrorPage} />
+
           </Switch>
           <Footer />
         </BrowserRouter>

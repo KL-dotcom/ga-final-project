@@ -13,7 +13,6 @@ function useFetch(request, params = null) {
     const getData = async () => {
       try {
         const { data } = await request(params)
-        console.log(data)
         setState({ data, loading: false, error: null })
       } catch (err) {
         setState({ error: true , loading: false, data: null })
