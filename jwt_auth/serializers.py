@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 
+from categories.serializers import CategorySerializer
 
 User = get_user_model()
 
@@ -30,3 +31,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+# class PopulatedUserSerializer(UserSerializer):
+#     categories = CategorySerializer(many=True)
+
+#     def update(self, instace, validated_data):
+#         instance.categories = validated_data['categories']
+#         instance.save()
+#         return instance

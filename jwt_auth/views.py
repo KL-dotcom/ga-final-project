@@ -2,14 +2,15 @@
 from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied, NotFound
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework import status
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, PopulatedUserSerializer
 
 User = get_user_model()
 
@@ -21,10 +22,12 @@ class RegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Registration Successful'})
-        return Response(serializer.errors, status=422)
+        return Response(serializer.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class LoginView(APIView):
+
+    permission_classes = (IsAuthenticated, )
 
     def get_user(self, email):
         try:
@@ -46,9 +49,24 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
 
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get_profile(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise NotFound()
 
     def get(self, request):
-        user = User.objects.get(pk=request.user.id)
-        serialized_user = UserSerializer(user)
+        user = self.get_profile(pk=request.user.id)
+        serialized_user = PopulatedUserSerializer(user)
         return Response(serialized_user.data)
+
+    def put(self, request):
+        user_to_update = self.get_profile(pk=request.user.id)
+        updated_user = PopulatedUserSerializer(
+            user_to_update, data=request.data, partial=True)
+        if updated_user.is_valid():
+            updated_user.save()
+            return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_user.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
