@@ -5,6 +5,7 @@ from rest_framework.status import HTTP_200_OK
 
 from .models import Category
 from .serializers import CategorySerializer
+from jwt_auth.serializers import UserSerializer
 
 
 class CategoryListView(APIView):
@@ -15,4 +16,5 @@ class CategoryListView(APIView):
         return Response(serialized_categories.data, status=HTTP_200_OK)
 
 
-# class Populated
+class PopulatedGenreSerializer(CategorySerializer):
+    users = UserSerializer(many=True)

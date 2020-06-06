@@ -8,6 +8,7 @@ User = get_user_model()
 class Ticket(models.Model):
     image = models.CharField(max_length=100)
     # this is for the qr code
+    
     user = models.ForeignKey(
         User,
         related_name='tickets',
@@ -20,5 +21,5 @@ class Ticket(models.Model):
     )
 
 
-def __str__(self):
-    return f'{self.image}'
+    def __str__(self):
+        return f'{self.user} has a ticket to {self.talk}'
