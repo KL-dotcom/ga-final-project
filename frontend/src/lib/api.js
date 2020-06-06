@@ -35,3 +35,7 @@ export const registerUser = data => {
 export const loginUser = data => {
   return axios.post(`${baseUrl}/login`, data)
 }
+
+export const getOwnProfile = () => {
+  return axios.get(`${baseUrl}/profile`, withHeaders())
+}

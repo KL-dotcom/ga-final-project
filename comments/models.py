@@ -22,6 +22,5 @@ class Comment(models.Model):
         on_delete=models.CASCADE
     )
 
-
-# def __str__(self):
-#     return f'{self.image}'
+    def __str__(self):
+      return f'{self.talk} commented on by {self.user}'

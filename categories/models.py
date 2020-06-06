@@ -19,3 +19,6 @@ class Category(models.Model):
         related_name='categories',
         blank=True
     )
+
+    def __str__(self):
+      return f'{self.label}'

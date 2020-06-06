@@ -15,3 +15,6 @@ class Poll(models.Model):
         related_name='polls',
         on_delete=models.CASCADE
     )
+    
+    def __str__(self):
+      return f'{self.question}'

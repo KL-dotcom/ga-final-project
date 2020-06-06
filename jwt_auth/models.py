@@ -11,3 +11,6 @@ class User(AbstractUser):
     ethinicity = models.CharField(max_length=50, blank=True)
     industry = models.CharField(max_length=50, blank=True)
     # interests = connected to categories
+    
+    def __str__(self):
+      return f'{self.username}'
