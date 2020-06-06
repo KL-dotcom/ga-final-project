@@ -1,4 +1,4 @@
-# pylint: disable=arguments-differ
+# pylint: disable=arguments-differ, no-self-use, no-member
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 # import django.contrib.auth.password_validation as validations
@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 
 from categories.serializers import CategorySerializer
+from categories.models import Category
 
 User = get_user_model()
 
@@ -33,10 +34,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class PopulatedUserSerializer(UserSerializer):
-#     categories = CategorySerializer(many=True)
+class PopulatedUserSerializer(UserSerializer):
+    categories = CategorySerializer(many=True)
 
-#     def update(self, instace, validated_data):
-#         instance.categories = validated_data['categories']
-#         instance.save()
-#         return instance
+    def update(self, instance, validated_data):
+        category_label = [cdata['label']
+                          for cdata in validated_data['categories']]
+        validated_data.pop('categories', None)
+        categories = Category.objects.filter(label__in=category_label)
+        super().update(instance, validated_data)
+        instance.categories.set(categories)
+        return instance

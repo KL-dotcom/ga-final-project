@@ -11,6 +11,7 @@ import jwt
 
 
 from .serializers import UserSerializer, PopulatedUserSerializer
+from categories.models import Category
 
 User = get_user_model()
 
@@ -26,8 +27,6 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-
-    permission_classes = (IsAuthenticated, )
 
     def get_user(self, email):
         try:
@@ -66,6 +65,7 @@ class ProfileView(APIView):
         user_to_update = self.get_profile(pk=request.user.id)
         updated_user = PopulatedUserSerializer(
             user_to_update, data=request.data, partial=True)
+
         if updated_user.is_valid():
             updated_user.save()
             return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)

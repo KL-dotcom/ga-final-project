@@ -13,18 +13,28 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username')
 
+
 class TalkSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Talk
-    fields = '__all__'
+    class Meta:
+        model = Talk
+        fields = '__all__'
+
 
 class CategorySerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Category
-    fields = '__all__'
-
+    class Meta:
+        model = Category
+        fields = '__all__'
 
 
 class PopulatedTalkSerializer(TalkSerializer):
-  host = UserSerializer()
-  categories = CategorySerializer(many=True)
+    host = UserSerializer()
+    categories = CategorySerializer(many=True)
+
+    def update(self, instance, validated_data):
+        category_label = [cdata['label']
+                          for cdata in validated_data['categories']]
+        validated_data.pop('categories', None)
+        categories = Category.objects.filter(label__in=category_label)
+        super().update(instance, validated_data)
+        instance.categories.set(categories)
+        return instance

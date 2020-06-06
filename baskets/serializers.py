@@ -5,17 +5,18 @@ from .models import Basket
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'name')
+        fields = '__all__'
+
 
 class BasketSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Basket
-    fields = '__all__'
-    
+    class Meta:
+        model = Basket
+        fields = '__all__'
+
 
 class PopulatedBasketSerializer(BasketSerializer):
-  user = UserSerializer()
-  
+    user = UserSerializer()
