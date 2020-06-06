@@ -34,5 +34,5 @@ class Basket(models.Model):
     )
 
 
-def __str__(self):
-    return f'{self.image}'
+    def __str__(self):
+        return f'{self.user} - {self.total_price}'

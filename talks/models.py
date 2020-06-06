@@ -9,6 +9,10 @@ class Talk(models.Model):
     name = models.CharField(max_length=40, unique=True)
     date_time = models.DateTimeField()
     # time = models.
+    # category = models.ManyToManyField(
+    #   'categories.Catergory',
+    #   related_name='talks'
+    # )
     location = models.CharField(max_length=300)
     about = models.CharField(max_length=1000)
     image = ArrayField(models.CharField(max_length=500))
