@@ -32,36 +32,38 @@ class Login extends React.Component {
   render() {
     const { formData, error } = this.state
     return (      
-      <div className="container">
-        <div className="title">Log In</div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form" style={{ height: '300px' }}>
-            <div className="error-msg">
-              {error && <small>{error}</small>}
-            </div>
+      <div className="body">
+        <div className="container">
+          <div className="title">Log In</div>
+          <form onSubmit={this.handleSubmit}>
+            <div className="form" style={{ height: '300px' }}>
+              <div className="error-msg">
+                {error && <small>{error}</small>}
+              </div>
 
-            <div className="form-item">
-              <label> Email </label>
-              <input type="email"
-                name="email"
-                onChange={this.handleChange}
-                value={formData.email}
-                className={error ? 'error' : ''}
-              />
-            </div>
-            <div className="form-item">
-              <label> Password </label>
-              <input type="password"
-                name="password"
-                onChange={this.handleChange}
-                value={formData.password}
-                className={error ? 'error' : ''}
-              />
-            </div>
+              <div className="form-item">
+                <label> Email </label>
+                <input type="email"
+                  name="email"
+                  onChange={this.handleChange}
+                  value={formData.email}
+                  className={error ? 'error' : ''}
+                />
+              </div>
+              <div className="form-item">
+                <label> Password </label>
+                <input type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  value={formData.password}
+                  className={error ? 'error' : ''}
+                />
+              </div>
 
-            <button type='submit' className="submit-btn">Login</button>
-          </div>
-        </form>
+              <button type='submit' className="submit-btn">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

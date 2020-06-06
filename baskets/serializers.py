@@ -3,13 +3,15 @@ from django.contrib.auth import get_user_model
 
 from .models import Basket
 
+from talks.serializers import BasketTalkSerializer
+
 User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id', 'username')
 
 
 class BasketSerializer(serializers.ModelSerializer):
@@ -20,3 +22,4 @@ class BasketSerializer(serializers.ModelSerializer):
 
 class PopulatedBasketSerializer(BasketSerializer):
     user = UserSerializer()
+    talk = BasketTalkSerializer()

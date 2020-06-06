@@ -10,7 +10,6 @@ from .serializers import CommentSerializer, PopulatedCommentSerializer
 
 
 class CommentListView(APIView):
-
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get(self, _request):
@@ -20,7 +19,6 @@ class CommentListView(APIView):
 
     def post(self, request):
         request.data['user'] = request.user.id
-
         new_comment = CommentSerializer(data=request.data)
         if new_comment.is_valid():
             new_comment.save()

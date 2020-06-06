@@ -12,7 +12,7 @@ function Error () {
   }
 
   return (
-    <div>
+    <div className="body">
       <div className="header-right">
         <button onClick={goBack} className="back-button" type="button">Back</button>
       </div>

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
 from .models import UserImage
-# from .models import TalkImage
+from .models import TalkImage
 User = get_user_model()
 
 #--------------- user image serializers: ---------------
@@ -28,10 +28,10 @@ class PopulatedUserImageSerializer(UserImageSerializer):
 
 # ----------------------- talk image serializers: -------
 
-# class TalkImageSerializer(serializers.ModelSerializer):
-#   class Meta:
-#     model = TalkImage
-#     fields = '__all__'
+class TalkImageSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = TalkImage
+    fields = '__all__'
 
 # class PopulatedTalkImageSerializer(TalkImageSerializer):
 #   # will need to import talk serializer here?

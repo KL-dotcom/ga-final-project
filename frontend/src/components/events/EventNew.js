@@ -23,7 +23,7 @@ function EventNew() {
   }, createEvent, null, onSubmitSuccess)
 
   return (
-    <div>
+    <div className="body">
       <h1>Create new event</h1>
       <EventForm
         data={formData}

@@ -22,7 +22,7 @@ function EventShow() {
   if (!event) return null
 
   return (
-    <div>
+    <div className="body">
       <h2>{event.name}</h2>
       <Link to={`/events/${eventId}/edit`} className="link">Edit</Link>
       <button onClick={handleDelete}>Delete event</button>

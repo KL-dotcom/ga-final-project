@@ -42,97 +42,99 @@ class Register extends React.Component {
   render() {
     const { formData, errors } = this.state
     return (
-      <div className="section">
-        <div className="container">
-          <div className="title">Register</div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form">
-              <div className="form-item">
-                <label> Username </label>
-                <input type="text"
-                  name="username"
-                  onChange={this.handleChange}
+      <div className="body">
+        <div className="section">
+          <div className="container">
+            <div className="title">Register</div>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form">
+                <div className="form-item">
+                  <label> Username </label>
+                  <input type="text"
+                    name="username"
+                    onChange={this.handleChange}
 
-                />
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.username && <small>{errors.username}</small>}
+                </div>
+
+
+                <div className="form-item">
+                  <label> Name </label>
+                  <input type="text"
+                    name="name"
+                    onChange={this.handleChange}
+                    value={formData.name}
+                    className={errors.name ? 'error' : ''}
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.name && <small>{errors.name}</small>}
+                </div>
+
+
+                <div className="form-item">
+                  <label> Email: </label>
+                  <input type="email"
+                    name="email"
+                    onChange={this.handleChange}
+                    value={formData.email}
+                    className={errors.email ? 'error' : ''}
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.email && <small>{errors.email}</small>}
+                </div>
+
+
+                <div className="form-item">
+                  <label> Home Base: </label>
+                  <input type="text"
+                    name="homeBase"
+                    onChange={this.handleChange}
+                    value={formData.homeBase}
+                    className={errors.homeBase ? 'error' : ''}
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.homeBase && <small>{errors.homeBase}</small>}
+                </div>
+
+
+                <div className="form-item">
+                  <label> Password: </label>
+                  <input type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={formData.password}
+                    className={errors.password ? 'error' : ''}
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.password && <small>{errors.password}</small>}
+                </div>
+
+
+                <div className="form-item">
+                  <label> Confirm Password: </label>
+                  <input type="password"
+                    name="passwordConfirmation"
+                    onChange={this.handleChange}
+                    value={formData.passwordConfirmation}
+                    className={errors.passwordConfirmation ? 'error' : ''}
+                  />
+                </div>
+                <div className="error-msg">
+                  {errors.passwordConfirmation && <small>{errors.passwordConfirmation}</small>}
+
+                </div>
+
+                <button type='submit' className="submit-btn">Register</button>
               </div>
-              <div className="error-msg">
-                {errors.username && <small>{errors.username}</small>}
-              </div>
-
-
-              <div className="form-item">
-                <label> Name </label>
-                <input type="text"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={formData.name}
-                  className={errors.name ? 'error' : ''}
-                />
-              </div>
-              <div className="error-msg">
-                {errors.name && <small>{errors.name}</small>}
-              </div>
-
-
-              <div className="form-item">
-                <label> Email: </label>
-                <input type="email"
-                  name="email"
-                  onChange={this.handleChange}
-                  value={formData.email}
-                  className={errors.email ? 'error' : ''}
-                />
-              </div>
-              <div className="error-msg">
-                {errors.email && <small>{errors.email}</small>}
-              </div>
-
-
-              <div className="form-item">
-                <label> Home Base: </label>
-                <input type="text"
-                  name="homeBase"
-                  onChange={this.handleChange}
-                  value={formData.homeBase}
-                  className={errors.homeBase ? 'error' : ''}
-                />
-              </div>
-              <div className="error-msg">
-                {errors.homeBase && <small>{errors.homeBase}</small>}
-              </div>
-
-
-              <div className="form-item">
-                <label> Password: </label>
-                <input type="password"
-                  name="password"
-                  onChange={this.handleChange}
-                  value={formData.password}
-                  className={errors.password ? 'error' : ''}
-                />
-              </div>
-              <div className="error-msg">
-                {errors.password && <small>{errors.password}</small>}
-              </div>
-
-
-              <div className="form-item">
-                <label> Confirm Password: </label>
-                <input type="password"
-                  name="passwordConfirmation"
-                  onChange={this.handleChange}
-                  value={formData.passwordConfirmation}
-                  className={errors.passwordConfirmation ? 'error' : ''}
-                />
-              </div>
-              <div className="error-msg">
-                {errors.passwordConfirmation && <small>{errors.passwordConfirmation}</small>}
-
-              </div>
-
-              <button type='submit' className="submit-btn">Register</button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     )

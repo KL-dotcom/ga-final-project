@@ -20,6 +20,12 @@ class TalkSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class BasketTalkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Talk
+        fields = ('name', )
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
