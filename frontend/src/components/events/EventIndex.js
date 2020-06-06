@@ -8,16 +8,26 @@ import EventCard from './EventCard'
 
 function EventIndex() {
   const { data: events, error } = useFetch(getAllEvents)
-  
+ 
+
+  const handleSearch = e => {
+    const searchVal = e.target.value
+    console.log(searchVal)
+    // setIndexData(...indexData, searchVal)
+  }
+
+
   if (error) {
     return <Redirect to="/notfound" />
   }
   
   if (!events) return null
   return (
-    <div className="body">
+    <div className="body-index">
       <div className="filter-container">
         <div className="filters">
+          <input className="input" type="text" onChange={handleSearch} placeholder="Search..." />
+
           <div className="filter-item">Filter item 1</div>
           <div className="filter-item">Filter item 2</div>
           <div className="filter-item">Filter item 3</div>
@@ -34,7 +44,7 @@ function EventIndex() {
           <div className="filter-item">Filter item 14</div>
         </div>
       </div>
-      <div className="container">
+      <div className="container-index">
         {events.map(event => (
           <EventCard key={event._id} {...event} />
         ))

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ name, _id , image , origin }) {
+function EventCard({ name, _id , image , origin , tastingNotes }) {
   return (
     <Link to={`/events/${_id}`}>
       <div className="event-card">
@@ -11,6 +11,7 @@ function EventCard({ name, _id , image , origin }) {
         <div className="card-right">
           <h4>{name}</h4>
           <div>{origin}</div>
+          <div>{tastingNotes}</div>
         </div>
       </div>
     </Link>
