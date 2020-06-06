@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from talks.models import Talk
 
-
 User = get_user_model()
 
 
@@ -23,4 +22,4 @@ class Comment(models.Model):
     )
 
     def __str__(self):
-      return f'{self.talk} commented on by {self.user}'
+        return f'{self.talk} commented on by {self.user}'
