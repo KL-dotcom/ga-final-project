@@ -12,6 +12,7 @@ import EventShow from './components/events/EventShow'
 import EventIndex from './components/events/EventIndex'
 import EventNew from './components/events/EventNew'
 import EventEdit from './components/events/EventEdit'
+import EventAttending from './components/events/EventAttending'
 import ErrorPage from './components/common/Error'
 
 
@@ -22,6 +23,8 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path="/events/new" component={EventNew} />
+        <Route path="/events/attending" component={EventAttending} /> 
+        {/* Add ID to the line above */}
         <Route path="/events/:id/edit" component={EventEdit} />
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EventForm({ data, errors, handleChange, handleSubmit , submitText }) {
+function EventForm({ data, handleChange, handleSubmit , submitText }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -10,7 +10,6 @@ function EventForm({ data, errors, handleChange, handleSubmit , submitText }) {
           placeholder="Event Name"
           onChange={handleChange}
           value={data.name}
-          // error={errors.name}
         />
 
         <button buttontext={submitText}/>

@@ -3,7 +3,7 @@ import React from 'react'
 
 const ProfilePage = () => {
   return (
-    <div>
+    <div className="body">
       <div>Profile page, checking in</div>
     </div>
 
