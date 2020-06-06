@@ -33,10 +33,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class PopulatedUserSerializer(UserSerializer):
-#     categories = CategorySerializer(many=True)
+class PopulatedUserSerializer(UserSerializer):
+    categories = CategorySerializer(many=True)
 
-#     def update(self, instace, validated_data):
-#         instance.categories = validated_data['categories']
-#         instance.save()
-#         return instance
+    def update(self, instace, validated_data):
+        instance.categories = validated_data['categories']
+        instance.save()
+        return instance

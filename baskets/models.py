@@ -35,4 +35,4 @@ class Basket(models.Model):
 
 
     def __str__(self):
-        return f'{self.user} - {self.total_price}'
+        return f'{self.user} - {self.total_price} going to {self.talk}'
