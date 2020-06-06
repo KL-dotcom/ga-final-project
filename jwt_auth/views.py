@@ -22,3 +22,33 @@ class RegisterView(APIView):
             serializer.save()
             return Response({'message': 'Registration Successful'})
         return Response(serializer.errors, status=422)
+
+
+class LoginView(APIView):
+
+    def get_user(self, email):
+        try:
+            return User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise PermissionDenied({'message': 'Invalid Credentilais'})
+
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+        user = self.get_user(email)
+        if not user.check_password(password):
+            raise PermissionDenied({'message': 'Invalid Credentails'})
+        dt = datetime.now() + timedelta(days=7)
+        token = jwt.encode({'sub': user.id, 'exp': int(
+            dt.strftime('%s'))}, settings.SECRET_KEY, algorithm='HS256')
+        return Response({'token': token, 'message': f'Welcome back {user.username}'})
+
+
+class ProfileView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        user = User.objects.get(pk=request.user.id)
+        serialized_user = UserSerializer(user)
+        return Response(serialized_user.data)

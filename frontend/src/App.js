@@ -17,27 +17,21 @@ import ErrorPage from './components/common/Error'
 
 const App = () => {
   return (
-    <div className="background-image">
-      <div className="background">
-
-        <BrowserRouter>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path="/events/new" component={EventNew} />
-            <Route path="/events/:id/edit" component={EventEdit} />
-            <Route path="/events/:id" component={EventShow} />
-            <Route path="/events" component={EventIndex} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/*" component={ErrorPage} />
-
-          </Switch>
-          <Footer />
-        </BrowserRouter>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path="/events/new" component={EventNew} />
+        <Route path="/events/:id/edit" component={EventEdit} />
+        <Route path="/events/:id" component={EventShow} />
+        <Route path="/events" component={EventIndex} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/*" component={ErrorPage} />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   )
 }
 
