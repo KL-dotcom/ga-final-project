@@ -11,7 +11,7 @@ function EventCard({ name, _id , image , origin , tastingNotes }) {
         <div className="card-right">
           <div className="name">{name}</div>
           <div className="location">{origin}</div>
-          <div className="description">{tastingNotes}</div>
+          {/* <div className="description">{tastingNotes}</div> */}
         </div>
       </div>
     </Link>

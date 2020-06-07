@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { getSingleEvent , deleteEvent } from '../../lib/api'
+import { getSingleEvent , getAllEvents , deleteEvent } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
+import EventCard from './EventCard'
+
 
 function EventShow() {
   const { id: eventId } = useParams()
   const { data: event } = useFetch(getSingleEvent, eventId)
+  const { data: events } = useFetch(getAllEvents)
   const history = useHistory()
-
 
   const handleDelete = async () => {
     try {
@@ -18,6 +20,16 @@ function EventShow() {
     }
   }
 
+  const filterOrigin = () => {
+    if (!events) return null
+    const regexp = new RegExp(event.origin, 'i')
+    let filtered = events.filter(event => (
+      (regexp.test(event.origin))))
+    filtered = [filtered[0],filtered[1],filtered[2]]
+    return filtered
+  }
+
+
   const addToBasket = e => {
     console.log(e.target.value)
   }
@@ -26,7 +38,8 @@ function EventShow() {
     console.log(e.target.value)
   }
 
-  if (!event) return null
+  
+  if (!event || !events) return null
 
   return (
     <div className="body">
@@ -39,20 +52,41 @@ function EventShow() {
           </div>
           <div className="title-wording">
             <div className="title">{event.name}</div>
-            <div className="title">Hosted by: Captain Jack</div>
-            <div className="title">Location: Tortuga</div>
-            <button><Link to={`/events/${eventId}/edit`} className="link">Edit</Link></button>
-            <button onClick={handleDelete}>Delete event</button>
+            <div className="host">Hosted by: Captain Jack</div>
+            <div className="location">Location: Tortuga</div>
+            <div className="price">Price: £50</div>
+            <div className="owner-buttons">
+              <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link>
+              <button onClick={handleDelete}>Delete event</button>
+            </div>
           </div>
-
         </div>
+        <div className="interest-buttons">
+          <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button>
+          <button onClick={addToBasket} value="Basket" >Add to basket</button>
+        </div>
+        <div className="description">
+          <div className="title-wording">
+            <strong>About this event:</strong><br></br>
+            {event.tastingNotes}
+          </div>
+        </div>
+        <div className="tags">
+          <strong>Tags:</strong><br></br>
+        </div>
+        <div className="similar-events">
+          <strong>Similar Events:</strong><br></br>
+          <div className="similar-events-cards">
 
-
-
-
-
-        <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button>
-        <button onClick={addToBasket} value="Basket" >Add to basket</button>
+            {filterOrigin().map(event => 
+            // <div key={event._id} >{event.name}</div>
+              <EventCard key={event._id} className="card" {...event} />
+            )}
+          </div>
+        </div>
+        <div className="recently-viewed">
+          <strong>Recently viewed:</strong><br></br>
+        </div>
       </div>
     </div>
 
