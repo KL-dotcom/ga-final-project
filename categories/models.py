@@ -7,10 +7,10 @@ User = get_user_model()
 class Category(models.Model):
     category = models.CharField(max_length=50)
     
-    talk = models.ForeignKey(
+    talk = models.ManyToManyField(
         Talk,
         related_name='categories',
-        on_delete=models.CASCADE
+        # on_delete=models.CASCADE
     )
     
     def __str__(self):
