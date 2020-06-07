@@ -32,7 +32,7 @@ class PollDetailView(APIView):
     def get_poll(self, pk):
         try:
             return Poll.objects.get(pk=pk)
-        except Poll.DoesNoteExist:
+        except Poll.DoesNotExist:
             raise NotFound()
 
     def is_poll_owner(self, poll, user):
@@ -54,3 +54,8 @@ class PollDetailView(APIView):
             return Response(updated_poll.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_poll.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
+    def delete(self, request, pk):
+        poll_to_delete = self.get_poll(pk)
+        self.is_poll_owner(poll_to_delete, request.user)
+        poll_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

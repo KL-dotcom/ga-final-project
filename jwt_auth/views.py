@@ -28,11 +28,8 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
 
-<<<<<<< HEAD
-=======
     # permission_classes = (IsAuthenticated, )
 
->>>>>>> development
     def get_user(self, email):
         try:
             return User.objects.get(email=email)
