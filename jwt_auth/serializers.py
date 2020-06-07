@@ -4,12 +4,19 @@ from django.contrib.auth import get_user_model
 # import django.contrib.auth.password_validation as validations
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
+from django.apps import apps
 
-from categories.serializers import CategorySerializer
-from categories.models import Category
+# from categories.serializers import CategorySerializer
+# from categories.models import Category
+Category = apps.get_model('categories', 'Category')
 
 User = get_user_model()
 
+
+class CategoryUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('category',)
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -35,7 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class PopulatedUserSerializer(UserSerializer):
-    categories = CategorySerializer(many=True)
+    categories = CategoryUserSerializer(many=True)
 
     def update(self, instance, validated_data):
         category_label = [cdata['label']
