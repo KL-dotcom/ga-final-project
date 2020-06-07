@@ -20,5 +20,5 @@ class TicketSerializer(serializers.ModelSerializer):
     fields = '__all__'
 
 class PopulatedTicketSerializer(TicketSerializer):
-  # owner = UserSerializer()
+  user = UserSerializer()
   talk = TalkSerializer()

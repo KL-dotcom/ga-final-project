@@ -21,11 +21,10 @@ class TalkSerializer(serializers.ModelSerializer):
         model = Talk
         fields = '__all__'
 
-
-class BasketTalkSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Talk
-        fields = ('name', )
+# class BasketTalkSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Talk
+#         fields = ('name', )
 
 
 class CategorySerializer(serializers.ModelSerializer):
