@@ -6,7 +6,11 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     email = models.CharField(max_length=50, unique=True)
     username = models.CharField(max_length=30, unique=True)
-    profile_pic = models.CharField(max_length=500, blank=True)
+    user_image = models.ManyToManyField(
+      'images.UserImage',
+      related_name='User',
+      blank=True
+    )
     gender = models.CharField(max_length=15, blank=True)
     age = models.IntegerField(blank=True, null=True)
     ethinicity = models.CharField(max_length=50, blank=True)

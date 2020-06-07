@@ -15,7 +15,11 @@ class Talk(models.Model):
     )
     location = models.CharField(max_length=300)
     about = models.CharField(max_length=1000)
-    image = ArrayField(models.CharField(max_length=500))
+    image = models.ManyToManyField(
+      'images.TalkImage',
+      related_name='Talk',
+      blank=True
+    )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     host = models.ForeignKey(
         User,
