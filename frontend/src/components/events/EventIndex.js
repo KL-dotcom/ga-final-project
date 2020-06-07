@@ -8,14 +8,11 @@ import EventCard from './EventCard'
 
 function EventIndex() {
   const { data: events, error } = useFetch(getAllEvents)
- 
 
   const handleSearch = e => {
     const searchVal = e.target.value
     console.log(searchVal)
-    // setIndexData(...indexData, searchVal)
   }
-
 
   if (error) {
     return <Redirect to="/notfound" />
@@ -27,21 +24,10 @@ function EventIndex() {
       <div className="filter-container">
         <div className="filters">
           <input className="input" type="text" onChange={handleSearch} placeholder="Search..." />
-
-          <div className="filter-item">Filter item 1</div>
-          <div className="filter-item">Filter item 2</div>
-          <div className="filter-item">Filter item 3</div>
-          <div className="filter-item">Filter item 4</div>
-          <div className="filter-item">Filter item 5</div>
-          <div className="filter-item">Filter item 6</div>
-          <div className="filter-item">Filter item 7</div>
-          <div className="filter-item">Filter item 8</div>
-          <div className="filter-item">Filter item 9</div>
-          <div className="filter-item">Filter item 10</div>
-          <div className="filter-item">Filter item 11</div>
-          <div className="filter-item">Filter item 12</div>
-          <div className="filter-item">Filter item 13</div>
-          <div className="filter-item">Filter item 14</div>
+          <div className="filter-item">Location</div>
+          <div className="filter-item">Category</div>
+          <div className="filter-item">Price</div>
+          <div className="filter-item">Host</div>
         </div>
       </div>
       <div className="container-index">

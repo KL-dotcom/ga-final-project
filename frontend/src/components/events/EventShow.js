@@ -18,16 +18,44 @@ function EventShow() {
     }
   }
 
+  const addToBasket = e => {
+    console.log(e.target.value)
+  }
+
+  const addToWishlist = e => {
+    console.log(e.target.value)
+  }
 
   if (!event) return null
 
   return (
     <div className="body">
-      <h2>{event.name}</h2>
-      <Link to={`/events/${eventId}/edit`} className="link">Edit</Link>
-      <button onClick={handleDelete}>Delete event</button>
+      <div className="container">
 
+        <div className="title-container">
+          
+          <div className="title-image">
+            <img src={event.image} alt={event.name} loading="lazy" width="500" className="image"/>
+          </div>
+          <div className="title-wording">
+            <div className="title">{event.name}</div>
+            <div className="title">Hosted by: Captain Jack</div>
+            <div className="title">Location: Tortuga</div>
+            <button><Link to={`/events/${eventId}/edit`} className="link">Edit</Link></button>
+            <button onClick={handleDelete}>Delete event</button>
+          </div>
+
+        </div>
+
+
+
+
+
+        <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button>
+        <button onClick={addToBasket} value="Basket" >Add to basket</button>
+      </div>
     </div>
+
   )
 }
 
