@@ -4,6 +4,7 @@ from django.apps import apps
 
 from polls.serializers import PollSerializer
 from .models import Talk
+Poll = apps.get_model('polls', 'Poll')
 Category = apps.get_model('categories', 'Category')
 
 
@@ -21,6 +22,7 @@ class TalkSerializer(serializers.ModelSerializer):
         model = Talk
         fields = '__all__'
 
+
 class CategoryTalkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Talk
@@ -34,15 +36,29 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PopulatedTalkSerializer(TalkSerializer):
-    host = UserSerializer()
+    # host = UserSerializer()
     categories = CategorySerializer(many=True)
     polls = PollSerializer(many=True)
 
     def update(self, instance, validated_data):
-        category_label = [cdata['label']
-                          for cdata in validated_data['categories']]
+        # category_label = [cdata['label']
+        #                   for cdata in validated_data['categories']]
+        # validated_data.pop('categories', None)
+        # categories = Category.objects.filter(label__in=category_label)
+        #     super().update(instance, validated_data)
+        #     instance.categories.set(categories)
+        #     return instance
+        category_category = [cdata['category']
+                             for cdata in validated_data['categories']]
+        categories = Category.objects.filter(category__in=category_category)
         validated_data.pop('categories', None)
-        categories = Category.objects.filter(label__in=category_label)
+
+        # poll_id = [cdata['talk'] for cdata in validated_data['polls']]
+        # polls = Poll.objects.filter(id__in=poll_id)
+
+        validated_data.pop('polls', None)
         super().update(instance, validated_data)
         instance.categories.set(categories)
+        # instance.polls.set(polls)
+
         return instance

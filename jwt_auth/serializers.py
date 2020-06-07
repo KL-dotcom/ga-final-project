@@ -37,11 +37,28 @@ class UserSerializer(serializers.ModelSerializer):
 class PopulatedUserSerializer(UserSerializer):
     categories = CategorySerializer(many=True)
 
+    # def update(self, instance, validated_data):
+    #     category_label = [cdata['label']
+    #                       for cdata in validated_data['categories']]
+    #     validated_data.pop('categories', None)
+    #     categories = Category.objects.filter(label__in=category_label)
+    #     super().update(instance, validated_data)
+    #     instance.categories.set(categories)
+    #     return instance
+
     def update(self, instance, validated_data):
-        category_label = [cdata['label']
-                          for cdata in validated_data['categories']]
+        # category_label = [cdata['label']
+        #                   for cdata in validated_data['categories']]
+        # validated_data.pop('categories', None)
+        # categories = Category.objects.filter(label__in=category_label)
+        # super().update(instance, validated_data)
+        # instance.categories.set(categories)
+        # return instance
+
+        category_category = [cdata['category']
+                             for cdata in validated_data['categories']]
         validated_data.pop('categories', None)
-        categories = Category.objects.filter(label__in=category_label)
+        categories = Category.objects.filter(category__in=category_category)
         super().update(instance, validated_data)
         instance.categories.set(categories)
         return instance

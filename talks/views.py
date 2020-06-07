@@ -55,7 +55,7 @@ class TalkDetailView(APIView):
         self.is_talk_host(talk_to_update, request.user)
         request.data['host'] = request.user.id
         updated_talk = PopulatedTalkSerializer(
-            talk_to_update, data=request.data, partial=True),
+            talk_to_update, data=request.data, partial=True)
         if updated_talk.is_valid():
             updated_talk.save()
             return Response(updated_talk.data, status=status.HTTP_202_ACCEPTED)
