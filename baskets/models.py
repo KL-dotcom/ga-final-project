@@ -16,23 +16,11 @@ class Basket(models.Model):
         related_name='baskets',
         on_delete=models.CASCADE
     )
-
-    # talk = ArrayField(
-    #     ArrayField(
-    #         models.ForeignKey(
-    #             Talk,
-    #             related_name='baskets',
-    #             on_delete=models.CASCADE
-    #         ), size=3
-    #     ),
-    #     size=3
-    # )
-
-    talk = models.ManyToManyField(
-        'talks.Talk',
-        related_name='baskets'
+    talk = models.ForeignKey(
+        Talk,
+        related_name='baskets',
+        on_delete=models.CASCADE
     )
-
-
+    
     def __str__(self):
-        return f'{self.user} - {self.total_price} going to {self.talk}'
+        return f'{self.user} going to {self.talk}'

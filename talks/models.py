@@ -8,11 +8,11 @@ User = get_user_model()
 class Talk(models.Model):
     name = models.CharField(max_length=40, unique=True)
     date_time = models.DateTimeField()
-    # time = models.
-    # category = models.ManyToManyField(
-    #   'categories.Catergory',
-    #   related_name='talks'
-    # )
+    category = models.ManyToManyField(
+      'categories.Category',
+      related_name='Talk',
+      blank=True
+    )
     location = models.CharField(max_length=300)
     about = models.CharField(max_length=1000)
     image = ArrayField(models.CharField(max_length=500))
@@ -22,10 +22,6 @@ class Talk(models.Model):
         related_name='talks',
         on_delete=models.CASCADE
     )
-    # genres = models.ManyToManyField(
-    #     'genres.Genre',
-    #     related_name='songs'
-    # )
 
     def __str__(self):
         return f'{self.name} hosted at {self.location}'
