@@ -2,8 +2,10 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.apps import apps
 
+from polls.serializers import PollSerializer
 from .models import Talk
 Category = apps.get_model('categories', 'Category')
+
 
 User = get_user_model()
 
@@ -35,6 +37,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class PopulatedTalkSerializer(TalkSerializer):
     host = UserSerializer()
     categories = CategorySerializer(many=True)
+    polls = PollSerializer(many=True)
 
     def update(self, instance, validated_data):
         category_label = [cdata['label']
