@@ -19,7 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/', include('jwt_auth.urls')),
-    path('api/', include('images.urls')),
+    path('api/tickets/', include('tickets.urls')),
+    path('api/images/', include('images.urls')),
     path('api/categories/', include('categories.urls')),
     path('api/polls/', include('polls.urls')),
     path('api/basket/', include('baskets.urls')),
@@ -27,5 +28,5 @@ urlpatterns = [
     path('api/comments/', include('comments.urls')),
     path('api/talks/', include('talks.urls')),
     path('api/talks/', include('images.urls')),
-    path('api/profile/tickets/', include('tickets.urls')),
+  
 ]

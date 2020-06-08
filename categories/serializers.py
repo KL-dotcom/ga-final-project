@@ -1,14 +1,8 @@
 from rest_framework import serializers
 from .models import Category
 
-from django.apps import apps
-Talk =  apps.get_model('talks', 'Talk')
 
-class CategoryTalkSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Talk
-        fields = ('name',)
-
+from talks.serializers import PopulatedTalkSerializer
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,5 +12,5 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PopulatedCategorySerializer(CategorySerializer):
-        talk = CategoryTalkSerializer(many=True)
+        talks = PopulatedTalkSerializer(many=True)
     # if many=True and there is only one in the category it will create an error - object Talk is not iterable. be aware

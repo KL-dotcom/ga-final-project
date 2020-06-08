@@ -8,22 +8,19 @@ User = get_user_model()
 class Talk(models.Model):
     name = models.CharField(max_length=40, unique=True)
     date_time = models.DateTimeField()
-    category = models.ManyToManyField(
+    
+    categories = models.ManyToManyField(
       'categories.Category',
-      related_name='Talk',
+      related_name='talks',
       blank=True
     )
+    
     location = models.CharField(max_length=300)
     about = models.CharField(max_length=1000)
-    image = models.ManyToManyField(
-      'images.TalkImage',
-      related_name='Talk',
-      blank=True
-    )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     host = models.ForeignKey(
         User,
-        related_name='talks',
+        related_name='hosted_talks',
         on_delete=models.CASCADE
     )
 

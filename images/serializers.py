@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from talks.serializers import TalkSerializer
+# from talks.serializers import TalkSerializer
 from .models import UserImage
 from .models import TalkImage
 User = get_user_model()

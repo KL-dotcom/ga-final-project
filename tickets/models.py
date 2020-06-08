@@ -11,12 +11,13 @@ class Ticket(models.Model):
     
     user = models.ForeignKey(
         User,
-        related_name='tickets',
+        related_name='users_tickets',
         on_delete=models.CASCADE
     )
-    talk = models.ForeignKey(
+    
+    talk = models.OneToOneField(
         Talk,
-        related_name='tickets',
+        related_name='talks_tickets',
         on_delete=models.CASCADE
     )
 
