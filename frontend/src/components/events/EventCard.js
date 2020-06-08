@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ name, _id , image , origin , tastingNotes }) {
+function EventCard({ name, id , image , origin , tastingNotes }) {
+
   return (
-    <Link className="link" to={`/events/${_id}`}>
+    <Link className="link" to={`/events/${id}`}>
       <div className="event-card">
         <div className="card-left">
           <img src={image} alt={name} loading="lazy" width="150" height="150" />

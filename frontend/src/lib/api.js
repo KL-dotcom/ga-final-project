@@ -2,30 +2,30 @@ import axios from 'axios'
 import { getToken } from './auth'
 
 
-const baseUrl = 'https://cheesebored.herokuapp.com'
+const baseUrl = '/api'
 
 const withHeaders = () => {
   return { headers: { Authorization: `Bearer ${getToken()}` } }
 }
 
 export const getAllEvents = () => {
-  return axios.get(`${baseUrl}/cheeses`)
+  return axios.get(`${baseUrl}/talks`)
 }
 
 export const getSingleEvent = id => {
-  return axios.get(`${baseUrl}/cheeses/${id}`)
+  return axios.get(`${baseUrl}/talks/${id}`)
 }
 
 export const createEvent = data => {
-  return axios.post(`${baseUrl}/cheeses`, data, withHeaders())
+  return axios.post(`${baseUrl}/talks`, data, withHeaders())
 }
 
 export const editEvent = (data, id) => {
-  return axios.put(`${baseUrl}/cheeses/${id}`, data, withHeaders())
+  return axios.put(`${baseUrl}/talks/${id}`, data, withHeaders())
 }
 
 export const deleteEvent = id => {
-  return axios.delete(`${baseUrl}/cheeses/${id}`, withHeaders())
+  return axios.delete(`${baseUrl}/talks/${id}`, withHeaders())
 }
 
 export const registerUser = data => {

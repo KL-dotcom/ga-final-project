@@ -10,7 +10,7 @@ class Register extends React.Component {
       name: '',
       email: '',
       password: '',
-      passwordConfirmation: ''
+      password_confirmation: ''
     },
     errors: {}
   }
@@ -122,14 +122,14 @@ class Register extends React.Component {
                   <div className="form-item">
                     <label> Confirm Password: </label>
                     <input type="password"
-                      name="passwordConfirmation"
+                      name="password_confirmation"
                       onChange={this.handleChange}
-                      value={formData.passwordConfirmation}
-                      className={errors.passwordConfirmation ? 'error' : ''}
+                      value={formData.password_confirmation}
+                      className={errors.password_confirmation ? 'error' : ''}
                     />
                   </div>
                   <div className="error-msg">
-                    {errors.passwordConfirmation && <small>{errors.passwordConfirmation}</small>}
+                    {errors.password_confirmation && <small>{errors.password_confirmation}</small>}
 
                   </div>
 

@@ -37,7 +37,6 @@ function EventShow() {
   const addToWishlist = e => {
     console.log(e.target.value)
   }
-
   
   if (!event || !events) return null
 
@@ -80,7 +79,7 @@ function EventShow() {
 
             {filterOrigin().map(event => 
             // <div key={event._id} >{event.name}</div>
-              <EventCard key={event._id} className="card" {...event} />
+              <EventCard key={event.id} className="card" {...event} />
             )}
           </div>
         </div>
