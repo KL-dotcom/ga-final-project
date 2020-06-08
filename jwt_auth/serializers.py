@@ -40,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PopulatedUserSerializer(UserSerializer):
     interests = CategorySerializer(many=True)
     profile_images = ImageSerializerUser(many=True)
-    basket = BasketSerializer(many=True)
+    users_basket = BasketSerializer(many=True)
     ticket = TicketSerializer(many=True)
 
     # def update(self, instance, validated_data):

@@ -40,3 +40,7 @@ export const loginUser = data => {
 export const getOwnProfile = () => {
   return axios.get(`${baseUrl}/profile`, withHeaders())
 }
+
+export const getCategories = () => {
+  return axios.get(`${baseUrl}/categories/`)
+}
