@@ -10,20 +10,13 @@ from .serializers import PopulatedBasketSerializer, BasketSerializer
 
 
 # this shows all baskets, but we only want to retireve vakster connected to the user. detail view. just had this one for testing purposes.
-# class BasketListView(APIView):
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
+class BasketListView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
-<<<<<<< HEAD
     def get(self, _request):
         baskets = Basket.objects.all()
         serialized_baskets = PopulatedBasketSerializer(baskets, many=True)
         return Response(serialized_baskets.data, status=status.HTTP_200_OK)
-=======
-#     def get(self, _request):
-#         baskets = Basket.objects.all()
-#         serialized_baskets = BasketSerializer(baskets, many=True)
-#         return Response(serialized_baskets.data, status=status.HTTP_200_OK)
->>>>>>> development
 
     def post(self, request):
         request.data['user'] = request.user.id

@@ -14,6 +14,7 @@ import EventNew from './components/events/EventNew'
 import EventEdit from './components/events/EventEdit'
 import EventAttending from './components/events/EventAttending'
 import ErrorPage from './components/common/Error'
+import Basket from './components/user/Baskets'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path="/events/new" component={EventNew} />
-        <Route path="/events/attending" component={EventAttending} /> 
+        <Route path="/events/attending" component={EventAttending} />
         {/* Add ID to the line above */}
         <Route path="/events/:id/edit" component={EventEdit} />
         <Route path="/events/:id" component={EventShow} />
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
+        <Route path="/basket" component={Basket} />
         <Route path="/*" component={ErrorPage} />
       </Switch>
       <Footer />
