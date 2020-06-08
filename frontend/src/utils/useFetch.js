@@ -2,8 +2,8 @@ import React from 'react'
 
 const initialState = {
   data: null,
-  loading: true,
-  error: null
+  error: null,
+  loading: true
 }
 
 function useFetch(request, params = null) {

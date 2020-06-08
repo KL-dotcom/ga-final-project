@@ -1,6 +1,7 @@
 import React from 'react'
 
-function EventForm({ data, handleChange, handleSubmit , submitText }) {
+
+function EventForm({ data, handleChange, handleSubmit , errors , submitText }) {
   return (
     <div className="event-form">
       <form onSubmit={handleSubmit}>
@@ -11,10 +12,11 @@ function EventForm({ data, handleChange, handleSubmit , submitText }) {
             placeholder="Event Name"
             onChange={handleChange}
             value={data.name}
+            error={errors.name}
           />
         </div>
 
-        <div className="form-item">
+        {/* <div className="form-item">
           <input
             name="categories"
             label="Categories"
@@ -22,15 +24,16 @@ function EventForm({ data, handleChange, handleSubmit , submitText }) {
             onChange={handleChange}
             value={data.categories}
           />
-        </div>
+        </div> */}
           
         <div className="form-item">
           <input
-            name="Location"
+            name="location"
             label="Location"
             placeholder="Location"
             onChange={handleChange}
             value={data.location}
+            error={errors.location}
           />
         </div>
         
@@ -41,6 +44,18 @@ function EventForm({ data, handleChange, handleSubmit , submitText }) {
             placeholder="Price"
             onChange={handleChange}
             value={data.price}
+            error={errors.price}
+          />
+        </div>
+        
+        <div className="form-item">
+          <input
+            name="date_time"
+            label="date_time"
+            placeholder="Date time"
+            onChange={handleChange}
+            value={data.date_time}
+            error={errors.date_time}
           />
         </div>
 
@@ -51,16 +66,18 @@ function EventForm({ data, handleChange, handleSubmit , submitText }) {
             placeholder="About"
             onChange={handleChange}
             value={data.about}
+            error={errors.about}
           />
         </div>
 
         <div className="form-item">
           <input
-            name="images"
-            label="Images"
-            placeholder="Images"
+            name="talk_images"
+            label="talk_images"
+            placeholder="Image"
             onChange={handleChange}
             value={data.talk_images}
+            error={errors.talk_images}
           />
         </div>
 

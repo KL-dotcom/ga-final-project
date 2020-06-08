@@ -19,9 +19,7 @@ function EventEdit() {
 
   const { formData, handleChange, setFormData, formErrors, handleSubmit } = useForm({
     name: '',
-    origin: '',
-    image: '',
-    tastingNotes: ''
+    image: ''
   }, editEvent, eventId, onSubmitSuccess) 
 
   React.useEffect(() => {

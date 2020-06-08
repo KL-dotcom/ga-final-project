@@ -18,9 +18,12 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
 
     try {
       const response = await submitFn(formData, submitParams)
+      console.log(response)
       onSubmitSuccess(response)
     } catch (err) {
-      setFormErrors(err.response.data.errors)
+
+      console.log(err.response)
+      // setFormErrors(err.response.data.errors)
     }
   }
   

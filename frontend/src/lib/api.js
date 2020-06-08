@@ -17,7 +17,8 @@ export const getSingleEvent = id => {
 }
 
 export const createEvent = data => {
-  return axios.post(`${baseUrl}/talks`, data, withHeaders())
+  console.log(data)
+  return axios.post(`${baseUrl}/talks/`, data, withHeaders())
 }
 
 export const editEvent = (data, id) => {

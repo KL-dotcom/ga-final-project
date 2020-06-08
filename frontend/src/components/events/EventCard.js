@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ name, id , image , origin , tastingNotes }) {
+function EventCard({ name, id , image , location , about }) {
 
   return (
     <Link className="link" to={`/events/${id}`}>
@@ -11,8 +11,8 @@ function EventCard({ name, id , image , origin , tastingNotes }) {
         </div>
         <div className="card-right">
           <div className="name">{name}</div>
-          <div className="location">{origin}</div>
-          {/* <div className="description">{tastingNotes}</div> */}
+          <div className="location">{location}</div>
+          {/* <div className="description">{about}</div> */}
         </div>
       </div>
     </Link>

@@ -17,9 +17,7 @@ function EventNew() {
 
   const { formData, handleChange, formErrors, handleSubmit } = useForm({
     name: '',
-    origin: '',
-    image: '',
-    tastingNotes: ''
+    image: ''
   }, createEvent, null, onSubmitSuccess)
 
   return (
@@ -27,14 +25,14 @@ function EventNew() {
       <h1>Create new event</h1>
       <div className="form">
 
-      <EventForm
-        data={formData}
-        errors={formErrors}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        submitText="Make my Event!"
+        <EventForm
+          data={formData}
+          errors={formErrors}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          submitText="Make my Event!"
         />
-        </div>
+      </div>
     </div>
 
   )

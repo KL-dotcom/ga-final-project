@@ -18,7 +18,7 @@ class Basket(models.Model):
     )
     talk = models.ManyToManyField(
         'talks.Talk',
-        related_name='baskets',
+        related_name='basket',
         # on_delete=models.CASCADE
     )
 

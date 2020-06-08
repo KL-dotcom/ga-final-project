@@ -2,12 +2,13 @@ import React from 'react'
 import { getAllEvents } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 import { Redirect } from 'react-router-dom'
+import Spinner from '../common/Spinner'
 
 import EventCard from './EventCard'
 
 
 function EventIndex() {
-  const { data: events, error } = useFetch(getAllEvents)
+  const { data: events, loading, error } = useFetch(getAllEvents)
   const [filteredEvents , setFilteredEvents] = React.useState('')
   const [searchVal , setSetSearchVal] = React.useState(events)
 
@@ -23,7 +24,7 @@ function EventIndex() {
     setFilteredEvents(filtered)
     console.log(filtered)
   }
-  
+  console.log(loading)
   
   const handleSearch = e => {
     const search = e.target.value
@@ -48,7 +49,10 @@ function EventIndex() {
           <div className="filter-item">Price</div>
           <div className="filter-item">Host</div>
         </div>
-      </div>
+      </div>         
+        {loading ?
+          <Spinner />
+          :
       <div className="container-index">
         {filteredEvents ? 
           filteredEvents.map(event => (
@@ -59,6 +63,7 @@ function EventIndex() {
           ))
         }
       </div>
+}
     </div>
   )
 }
