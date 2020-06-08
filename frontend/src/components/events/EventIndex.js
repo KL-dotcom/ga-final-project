@@ -52,10 +52,10 @@ function EventIndex() {
       <div className="container-index">
         {filteredEvents ? 
           filteredEvents.map(event => (
-            <EventCard key={event._id} {...event} />
+            <EventCard key={event.id} {...event} />
           )) :
           events.map(event => (
-            <EventCard key={event._id} {...event} />
+            <EventCard key={event.id} {...event} />
           ))
         }
       </div>
