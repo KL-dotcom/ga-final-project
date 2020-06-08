@@ -13,12 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username')
         
 
-
 class BasketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Basket
         fields = '__all__'
-
 
 class PopulatedBasketSerializer(BasketSerializer):
     user = UserSerializer()
