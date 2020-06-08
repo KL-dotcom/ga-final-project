@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 import { getOwnProfile } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 
-function ProfilePage() {
+function ProfileEdit() {
 
   const { data: profile } = useFetch(getOwnProfile)
   console.log(profile)
@@ -11,7 +13,8 @@ function ProfilePage() {
   return (
     <div className="body">
       <div>{profile.username}</div>
-      <button>Edit my profile</button>
+      <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link>
+
     </div>
 
   )
@@ -19,4 +22,4 @@ function ProfilePage() {
 
 
 
-export default ProfilePage
+export default ProfileEdit

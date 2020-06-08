@@ -170,6 +170,22 @@
   }
 
 
+.body{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  .form{
+    background-color: blue;
+
+  .event-form{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+  }
+}
+}
+
 .body-index{
   display: flex;
   flex-direction: row;

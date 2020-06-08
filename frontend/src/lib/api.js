@@ -21,7 +21,8 @@ export const createEvent = data => {
 }
 
 export const editEvent = (data, id) => {
-  return axios.put(`${baseUrl}/talks/${id}`, data, withHeaders())
+  console.log(data)
+  return axios.put(`${baseUrl}/talks/${id}/`, data, withHeaders())
 }
 
 export const deleteEvent = id => {
