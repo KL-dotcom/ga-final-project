@@ -65,7 +65,7 @@ class ProfileView(APIView):
 
     def put(self, request):
         user_to_update = self.get_profile(pk=request.user.id)
-        updated_user = PopulatedUserSerializer(
+        updated_user = UserSerializer(
             user_to_update, data=request.data, partial=True)
 
         if updated_user.is_valid():

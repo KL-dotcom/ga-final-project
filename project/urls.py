@@ -27,6 +27,6 @@ urlpatterns = [
     path('api/categories/', include('categories.urls')),
     path('api/comments/', include('comments.urls')),
     path('api/talks/', include('talks.urls')),
-    path('api/talks/', include('images.urls')),
-  
+    path('api/images/', include('images.urls')),
+
 ]

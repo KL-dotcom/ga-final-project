@@ -6,7 +6,21 @@ from .models import UserImage
 from .models import TalkImage
 User = get_user_model()
 
-#--------------- user image serializers: ---------------
+# --------------- user image serializers: ---------------
+
+
+class ImageSerializerUser(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserImage
+        fields = '__all__'
+
+
+class ImageSerializerTalk(serializers.ModelSerializer):
+
+    class Meta:
+        model = TalkImage
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,23 +30,23 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserImageSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = UserImage
-    fields = '__all__'
+    class Meta:
+        model = UserImage
+        fields = '__all__'
 
 
 # class PopulatedUserImageSerializer(UserImageSerializer):
 #   class Meta:
 #     user = UserSerializer()
-    
 
 
 # ----------------------- talk image serializers: -------
 
 class TalkImageSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = TalkImage
-    fields = '__all__'
+    class Meta:
+        model = TalkImage
+        fields = '__all__'
+
 
 class PopulatedTalkImageSerializer(TalkImageSerializer):
-  talk = TalkImageSerializer()
+    talk = TalkImageSerializer()

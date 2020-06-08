@@ -3,18 +3,14 @@
     "model": "categories.category",
     "pk": 1,
     "fields": {
-      "category": "Tech",
-      "talk": [],
-      "user": []
+      "name": "Tech"
     }
   },
   {
     "model": "categories.category",
     "pk": 2,
     "fields": {
-      "category": "Art",
-      "talk": [],
-      "user": []
+      "name": "Art"
     }
   }
 ]

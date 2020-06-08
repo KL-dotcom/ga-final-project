@@ -1,13 +1,17 @@
+
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.apps import apps
 
 from polls.serializers import PollSerializer
+from images.serializers import ImageSerializerTalk
+from comments.serializers import CommentSerializer
+from tickets.serializers import TicketSerializer
+
 from .models import Talk
 Poll = apps.get_model('polls', 'Poll')
 Category = apps.get_model('categories', 'Category')
 
-from images.serializers import TalkImageSerializer
 
 User = get_user_model()
 
@@ -34,7 +38,9 @@ class PopulatedTalkSerializer(TalkSerializer):
     host = UserSerializer()
     categories = CategorySerializer(many=True)
     polls = PollSerializer(many=True)
-    talk_images = TalkImageSerializer(many=True)
+    talk_images = ImageSerializerTalk(many=True)
+    comments = CommentSerializer(many=True)
+    ticket = TicketSerializer(many=True)
 
     # def update(self, instance, validated_data):
     #     # category_label = [cdata['label']
