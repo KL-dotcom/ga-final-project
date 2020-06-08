@@ -1,20 +1,28 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { getOwnProfile } from '../../lib/api'
+
+import { getOwnProfile, getCategories } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 
 
-function ProfilePage() {
+
+
+function ProfileEdit() {
 
   const { data: profile } = useFetch(getOwnProfile)
-  
-
+  const { data: categories } = useFetch(getCategories)
+  console.log(categories)
   if (!profile) return null
-  console.log(profile)
   return (
     <div className="body">
 
-      <div style={{ marginTop: "10px"}}>
+      <form className="body">
+      <input
+      className="input"
+      name={profile.username}> </input>
+
+      {/* <div style={{ marginTop: "10px"}}>
       <img style={{ borderRadius: "50%", border: "7px solid purple", padding: "8px" }} src={profile.profile_images[0].image} alt={profile.name} loading="lazy" width="200" className="image"/>
       
       </div>
@@ -25,9 +33,14 @@ function ProfilePage() {
       <p>{profile.age}</p>
       <p>{profile.gender}</p>
       <p>{profile.industry}</p> 
-      Talk interests:{profile.interests.map(interest => <p key={interest.name}>{interest.name}</p>)}
+      Talk interests:{profile.interests.map(interest => <p key={interest.name}>{interest.name}</p>)} */}
       
-      <button>Edit my profile</button>
+      <button>Finish Editting</button>
+
+      </form>
+      
+      {/* <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link> */}
+
     </div>
 
   )
@@ -35,4 +48,4 @@ function ProfilePage() {
 
 
 
-export default ProfilePage
+export default ProfileEdit

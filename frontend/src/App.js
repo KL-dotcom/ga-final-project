@@ -8,6 +8,7 @@ import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
 import Footer from './components/common/Footer'
 import Profile from './components/user/Profile'
+import ProfileEdit from'./components/user/ProfileEdit'
 import EventShow from './components/events/EventShow'
 import EventIndex from './components/events/EventIndex'
 import EventNew from './components/events/EventNew'
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/events" component={EventIndex} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/profile/edit" component={ProfileEdit} />
         <Route path="/profile" component={Profile} />
         <Route path="/basket" component={Basket} />
         <Route path="/*" component={ErrorPage} />

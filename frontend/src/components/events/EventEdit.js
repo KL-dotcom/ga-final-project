@@ -36,17 +36,17 @@ function EventEdit() {
 
   return (
     <div className="body">
-
-
-      <EventForm
-        data={formData}
-        errors={formErrors}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        submitText="Edit my Event!"
-      />
+      <h1>Edit your event</h1>
+      <div className="form">
+        <EventForm
+          data={formData}
+          errors={formErrors}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          submitText="Edit my Event!"
+        />
+      </div>
     </div>
-      
   )
 }
 

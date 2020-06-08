@@ -10,6 +10,7 @@ function EventShow() {
   const { data: event } = useFetch(getSingleEvent, eventId)
   const { data: events } = useFetch(getAllEvents)
   const history = useHistory()
+  // const eventImage = event.talk_images
 
   const handleDelete = async () => {
     try {
@@ -37,7 +38,7 @@ function EventShow() {
   const addToWishlist = e => {
     console.log(e.target.value)
   }
-  
+  console.log(event)
   if (!event || !events) return null
 
   return (
@@ -47,13 +48,13 @@ function EventShow() {
         <div className="title-container">
           
           <div className="title-image">
-            <img src={event.image} alt={event.name} loading="lazy" width="500" className="image"/>
+            <img src={event.talk_images[0].image} alt={event.name} loading="lazy" width="500" className="image"/>
           </div>
           <div className="title-wording">
             <div className="title">{event.name}</div>
-            <div className="host">Hosted by: Captain Jack</div>
-            <div className="location">Location: Tortuga</div>
-            <div className="price">Price: £50</div>
+            <div className="host">Hosted by: {event.host.username}</div>
+            <div className="location">Location: {event.location}</div>
+            <div className="price">Price: £{event.price}</div>
             <div className="owner-buttons">
               <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link>
               <button onClick={handleDelete}>Delete event</button>
@@ -67,7 +68,7 @@ function EventShow() {
         <div className="description">
           <div className="title-wording">
             <strong>About this event:</strong><br></br>
-            {event.tastingNotes}
+            {event.about}
           </div>
         </div>
         <div className="tags">
@@ -77,10 +78,9 @@ function EventShow() {
           <strong>Similar Events:</strong><br></br>
           <div className="similar-events-cards">
 
-            {filterOrigin().map(event => 
-            // <div key={event._id} >{event.name}</div>
+            {/* {filterOrigin().map(event => 
               <EventCard key={event.id} className="card" {...event} />
-            )}
+            )} */}
           </div>
         </div>
         <div className="recently-viewed">

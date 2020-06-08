@@ -21,7 +21,8 @@ export const createEvent = data => {
 }
 
 export const editEvent = (data, id) => {
-  return axios.put(`${baseUrl}/talks/${id}`, data, withHeaders())
+  console.log(data)
+  return axios.put(`${baseUrl}/talks/${id}/`, data, withHeaders())
 }
 
 export const deleteEvent = id => {
@@ -42,4 +43,9 @@ export const getOwnProfile = () => {
 
 export const getOwnBasket = () => {
   return axios.get(`${baseUrl}/basket/3/`)
+  return axios.get(`${baseUrl}/profile`, withHeaders())
+}
+
+export const getCategories = () => {
+  return axios.get(`${baseUrl}/categories/`)
 }
