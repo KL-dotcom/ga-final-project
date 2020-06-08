@@ -13,14 +13,14 @@ class Basket(models.Model):
     # this is for the qr code
     user = models.ForeignKey(
         User,
-        related_name='baskets',
+        related_name='users_basket',
         on_delete=models.CASCADE
     )
-    talk = models.ForeignKey(
-        Talk,
+    talk = models.ManyToManyField(
+        'talks.Talk',
         related_name='baskets',
-        on_delete=models.CASCADE
+        # on_delete=models.CASCADE
     )
-    
+
     def __str__(self):
         return f'{self.user} going to {self.talk}'

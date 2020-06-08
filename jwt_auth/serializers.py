@@ -7,10 +7,11 @@ from django.core.exceptions import ValidationError
 
 
 from categories.serializers import CategorySerializer
-from images.serializers import UserImageSerializer
+from images.serializers import ImageSerializerUser
+from baskets.serializers import BasketSerializer
+from tickets.serializers import TicketSerializer
 
 User = get_user_model()
-
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -38,7 +39,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PopulatedUserSerializer(UserSerializer):
     interests = CategorySerializer(many=True)
-    # users_images = UserImageSerializer(many=True)
+    profile_images = ImageSerializerUser(many=True)
+    basket = BasketSerializer(many=True)
+    ticket = TicketSerializer(many=True)
 
     # def update(self, instance, validated_data):
     #     category_label = [cdata['label']
@@ -50,18 +53,18 @@ class PopulatedUserSerializer(UserSerializer):
     #     return instance
 
     # def update(self, instance, validated_data):
-        # category_label = [cdata['label']
-        #                   for cdata in validated_data['categories']]
-        # validated_data.pop('categories', None)
-        # categories = Category.objects.filter(label__in=category_label)
-        # super().update(instance, validated_data)
-        # instance.categories.set(categories)
-        # return instance
+    # category_label = [cdata['label']
+    #                   for cdata in validated_data['categories']]
+    # validated_data.pop('categories', None)
+    # categories = Category.objects.filter(label__in=category_label)
+    # super().update(instance, validated_data)
+    # instance.categories.set(categories)
+    # return instance
 
-        # category_category = [cdata['category']
-        #                      for cdata in validated_data['categories']]
-        # validated_data.pop('categories', None)
-        # categories = Category.objects.filter(category__in=category_category)
-        # super().update(instance, validated_data)
-        # instance.categories.set(categories)
-        # return instance
+    # category_category = [cdata['category']
+    #                      for cdata in validated_data['categories']]
+    # validated_data.pop('categories', None)
+    # categories = Category.objects.filter(category__in=category_category)
+    # super().update(instance, validated_data)
+    # instance.categories.set(categories)
+    # return instance

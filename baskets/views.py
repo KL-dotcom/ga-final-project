@@ -13,10 +13,25 @@ from .serializers import PopulatedBasketSerializer, BasketSerializer
 # class BasketListView(APIView):
 #     permission_classes = (IsAuthenticatedOrReadOnly,)
 
+<<<<<<< HEAD
+    def get(self, _request):
+        baskets = Basket.objects.all()
+        serialized_baskets = PopulatedBasketSerializer(baskets, many=True)
+        return Response(serialized_baskets.data, status=status.HTTP_200_OK)
+=======
 #     def get(self, _request):
 #         baskets = Basket.objects.all()
 #         serialized_baskets = BasketSerializer(baskets, many=True)
 #         return Response(serialized_baskets.data, status=status.HTTP_200_OK)
+>>>>>>> development
+
+    def post(self, request):
+        request.data['user'] = request.user.id
+        new_basket = BasketSerializer(data=request.data)
+        if new_basket.is_valid():
+            new_basket.save()
+            return Response(new_basket.data, status=status.HTTP_201_CREATED)
+        return Response(new_basket.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 # populatedbasketserializer populates user field but leave the fiend 'name' null on talk
@@ -38,3 +53,19 @@ class BasketDetailView(APIView):
         basket = self.get_basket(pk)
         serialized_basket = PopulatedBasketSerializer(basket)
         return Response(serialized_basket.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        basket_to_update = self.get_basket(pk)
+        self.is_basket_user(basket_to_update, request.user)
+        updated_basket = BasketSerializer(
+            basket_to_update, data=request.data, partial=True)
+        if updated_basket.is_valid():
+            updated_basket.save()
+            return Response(updated_basket.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_basket.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    def delete(self, request, pk):
+        basket_to_delete = self.get_basket(pk)
+        self.is_basket_user(basket_to_delete, request.user)
+        basket_to_delete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

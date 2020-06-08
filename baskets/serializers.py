@@ -7,11 +7,11 @@ from .models import Basket
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username')
-        
 
 class BasketSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,4 +20,4 @@ class BasketSerializer(serializers.ModelSerializer):
 
 class PopulatedBasketSerializer(BasketSerializer):
     user = UserSerializer()
-    talk = TalkSerializer()
+    talk = TalkSerializer(many=True)

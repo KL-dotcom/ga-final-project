@@ -1,26 +1,28 @@
 [
-{
-  "model": "jwt_auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$180000$n4jCbWSTKYru$e+eVRDK6XWY1ZNXjpCYnjbqyR7Cb4PzQkrW4PXIrpBA=",
-    "last_login": null,
-    "is_superuser": false,
-    "first_name": "",
-    "last_name": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2020-06-06T16:21:40.298Z",
-    "email": "test@email.com",
-    "username": "test1",
-    "profile_pic": "",
-    "gender": "",
-    "age": null,
-    "ethinicity": "",
-    "industry": "",
-    "categories": [1, 2],
-    "groups": [],
-    "user_permissions": []
+  {
+    "model": "jwt_auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$n4jCbWSTKYru$e+eVRDK6XWY1ZNXjpCYnjbqyR7Cb4PzQkrW4PXIrpBA=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-06-06T16:21:40.298Z",
+      "email": "test@email.com",
+      "username": "test1",
+      "gender": "",
+      "age": null,
+      "ethinicity": "",
+      "industry": "",
+      "interests": [
+        1,
+        2
+      ],
+      "groups": [],
+      "user_permissions": []
+    }
   }
-}
 ]
