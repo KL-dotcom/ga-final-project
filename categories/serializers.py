@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from talks.serializers import CategoryTalkSerializer
 from .models import Category
 
+
+from talks.serializers import PopulatedTalkSerializer
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,5 +12,5 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PopulatedCategorySerializer(CategorySerializer):
-    talk = CategoryTalkSerializer()
+        talks = PopulatedTalkSerializer(many=True)
     # if many=True and there is only one in the category it will create an error - object Talk is not iterable. be aware

@@ -11,7 +11,7 @@ class UserImage(models.Model):
 
     user = models.ForeignKey(
         User,
-        related_name='images',
+        related_name='profile_images',
         blank=True,
         on_delete=models.CASCADE
     )
@@ -26,7 +26,7 @@ class TalkImage(models.Model):
 
     talk = models.ForeignKey(
           'talks.Talk',
-          related_name='images',
+          related_name='talk_images',
           blank=True,
           on_delete=models.CASCADE
       )
