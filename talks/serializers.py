@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.apps import apps
 
-from polls.serializers import PollSerializer
+from polls.serializers import PopulatedPollSerializer
 from images.serializers import ImageSerializerTalk
 from comments.serializers import CommentSerializer
 from tickets.serializers import TicketSerializer
@@ -37,7 +37,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class PopulatedTalkSerializer(TalkSerializer):
     host = UserSerializer()
     categories = CategorySerializer(many=True)
-    polls = PollSerializer(many=True)
+    polls = PopulatedPollSerializer(many=True)
     talk_images = ImageSerializerTalk(many=True)
     comments = CommentSerializer(many=True)
     ticket = TicketSerializer(many=True)
