@@ -43,7 +43,7 @@ function EventShow() {
     console.log(e.target.value)
   }
   if (!event || !events) return null
-  console.log(event.image)
+
 
   return (
     <div className="body">
@@ -80,6 +80,9 @@ function EventShow() {
             </div>
             <div className="tags">
               <strong>Tags:</strong><br></br>
+              {/* {event.categories.map(category => (
+                <h1 key={category}>{category}</h1>
+              ))} */}
             </div>
             <div className="similar-events">
               <strong>Similar Events:</strong><br></br>

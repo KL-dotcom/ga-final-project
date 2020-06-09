@@ -31,6 +31,8 @@ function EventEdit() {
   if (error) {
     return <Redirect to="notfound" />
   }
+  if (!event) return null
+  console.log(event.categories)
 
   return (
     <div className="body">
