@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { getOwnProfile, getCategories } from '../../lib/api'
+import { getOwnProfile, getCategories, editProfile } from '../../lib/api'
 import useForm from '../../utils/useForm'
 import useFetch from '../../utils/useFetch'
 import ProfileForm from './ProfileForm'
@@ -18,9 +18,8 @@ function ProfileEdit() {
 
 
   const { formData, handleChange, setFormData, formErrors, handleSubmit } = useForm({
-    name: '',
-    image: ''
-  }, profile, categories, onSubmitSuccess) 
+    name: ''
+  }, editProfile, profile, onSubmitSuccess) 
 
   React.useEffect(() => {
     if (profile) {

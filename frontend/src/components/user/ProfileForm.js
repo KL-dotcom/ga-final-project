@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
+import Select from 'react-select'
 import CategoryCard from '../../lib/CategoryCard'
 
 
 function ProfileForm({ data, handleChange, handleSubmit , errors , submitText, categories, interests }) {
 const [colorInt, setColorInt] = useState('purple')
-
-// const [interestNames, setInterestNames] = useState([''])
-const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
+// const [userInterests, setUserInterests] = useState([])
 
 if (!categories) return null
-
+const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
+// setUserInterests(interestNames)
 // const categoryNames = categories.map(category => { return category.name})
 
 
@@ -112,6 +112,9 @@ const addToInterests = (e) => {
             error={errors.industry}
           />
         </div>
+
+
+
         Interested in events about:
   {categories ? categories.map( category => 
   <CategoryCard
