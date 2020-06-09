@@ -22,9 +22,6 @@ function EventAttending() {
   // const history = useHistory()
   // // const eventImage = event.talk_images
   // const activeQuestions = [1,2,3,4]
-
-
-
   
   if (error) {
     return <Redirect to="/notfound" />

@@ -9,6 +9,7 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
     const newValue = type === 'checkbox' ? checked : value
     const updatedFormData = { ...formData, [name]: newValue }
     const updatedErrors = { ...formErrors, [name]: '' }
+    console.log('changing')
     setFormData(updatedFormData)
     setFormErrors(updatedErrors)
   }
