@@ -13,10 +13,10 @@ from .serializers import PopulatedBasketSerializer, BasketSerializer
 class BasketListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
-#     def get(self, _request):
-#         baskets = Basket.objects.all()
-#         serialized_baskets = BasketSerializer(baskets, many=True)
-#         return Response(serialized_baskets.data, status=status.HTTP_200_OK)
+    def get(self, _request):
+        baskets = Basket.objects.all()
+        serialized_baskets = BasketSerializer(baskets, many=True)
+        return Response(serialized_baskets.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         request.data['user'] = request.user.id
@@ -42,8 +42,9 @@ class BasketDetailView(APIView):
         if basket.user.id != user.id:
             raise PermissionDenied()
 
-    def get(self, _request, pk):
+    def get(self, request, pk):
         basket = self.get_basket(pk)
+        self.is_basket_user(basket, request.user)
         serialized_basket = PopulatedBasketSerializer(basket)
         return Response(serialized_basket.data, status=status.HTTP_200_OK)
 
