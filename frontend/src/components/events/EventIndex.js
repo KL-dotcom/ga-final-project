@@ -24,7 +24,7 @@ function EventIndex() {
     setFilteredEvents(filtered)
     console.log(filtered)
   }
-  console.log(loading)
+
   
   const handleSearch = e => {
     const search = e.target.value
@@ -50,20 +50,20 @@ function EventIndex() {
           <div className="filter-item">Host</div>
         </div>
       </div>         
-        {loading ?
-          <Spinner />
-          :
-      <div className="container-index">
-        {filteredEvents ? 
-          filteredEvents.map(event => (
-            <EventCard key={event.id} {...event} />
-          )) :
-          events.map(event => (
-            <EventCard key={event.id} {...event} />
-          ))
-        }
-      </div>
-}
+      {loading ?
+        <Spinner />
+        :
+        <div className="container-index">
+          {filteredEvents ? 
+            filteredEvents.map(event => (
+              <EventCard key={event.id} {...event} />
+            )) :
+            events.map(event => (
+              <EventCard key={event.id} {...event} />
+            ))
+          }
+        </div>
+      }
     </div>
   )
 }

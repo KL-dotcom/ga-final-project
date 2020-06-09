@@ -22,7 +22,6 @@ export const createEvent = data => {
 }
 
 export const editEvent = (data, id) => {
-  console.log(data)
   return axios.put(`${baseUrl}/talks/${id}/`, data, withHeaders())
 }
 
@@ -49,4 +48,8 @@ export const getOwnBasket = () => {
 
 export const getCategories = () => {
   return axios.get(`${baseUrl}/categories/`)
+}
+
+export const createComment = data => {
+  return axios.post(`${baseUrl}/comments/`, data, withHeaders())
 }

@@ -8,7 +8,7 @@ import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
 import Footer from './components/common/Footer'
 import Profile from './components/user/Profile'
-import ProfileEdit from'./components/user/ProfileEdit'
+import ProfileEdit from './components/user/ProfileEdit'
 import EventShow from './components/events/EventShow'
 import EventIndex from './components/events/EventIndex'
 import EventNew from './components/events/EventNew'
@@ -24,9 +24,8 @@ const App = () => {
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route path="/events/attending/:id" component={EventAttending} />
         <Route path="/events/new" component={EventNew} />
-        <Route path="/events/attending" component={EventAttending} />
-        {/* Add ID to the line above */}
         <Route path="/events/:id/edit" component={EventEdit} />
         <Route path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />

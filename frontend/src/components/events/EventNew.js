@@ -15,10 +15,20 @@ function EventNew() {
     history.push(`/events/${res.data._id}`)
   }
 
+  const tempCategories = []
+  
   const { formData, handleChange, formErrors, handleSubmit } = useForm({
     name: '',
-    image: ''
+    image: '',
+    categories: []
   }, createEvent, null, onSubmitSuccess)
+
+  const categoryPush = () => {
+    console.log(tempCategories)
+    formData.categories.push(formData.tempCategories)
+    console.log(formData.categories)
+  }
+
 
   return (
     <div className="body">
@@ -29,6 +39,7 @@ function EventNew() {
           data={formData}
           errors={formErrors}
           handleChange={handleChange}
+          categoryPush={categoryPush}
           handleSubmit={handleSubmit}
           submitText="Make my Event!"
         />
