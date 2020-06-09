@@ -39,7 +39,7 @@ export const loginUser = data => {
 }
 
 export const getOwnProfile = () => {
-  return axios.get(`${baseUrl}/profile/`, withHeaders())
+  return axios.get(`${baseUrl}/profile`, withHeaders())
 }
 
 export const getOwnBasket = () => {
