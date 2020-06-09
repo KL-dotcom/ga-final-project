@@ -22,7 +22,6 @@ export const createEvent = data => {
 }
 
 export const editEvent = (data, id) => {
-  console.log(data)
   return axios.put(`${baseUrl}/talks/${id}/`, data, withHeaders())
 }
 
@@ -40,6 +39,10 @@ export const loginUser = data => {
 
 export const getOwnProfile = () => {
   return axios.get(`${baseUrl}/profile`, withHeaders())
+}
+
+export const editProfile = (data) => {
+  return axios.put(`${baseUrl}/profile/`, data, withHeaders())
 }
 
 export const getOwnBasket = id => {
