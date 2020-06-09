@@ -42,11 +42,29 @@ export const getOwnProfile = () => {
   return axios.get(`${baseUrl}/profile/`, withHeaders())
 }
 
-export const getOwnBasket = () => {
-  return axios.get(`${baseUrl}/basket/3/`)
-  return axios.get(`${baseUrl}/profile`, withHeaders())
+export const getOwnBasket = id => {
+  return axios.get(`${baseUrl}/basket/${id}/`, {}, withHeaders())
+
+}
+
+export const updateBasket = (data, id) => {
+  return axios.put(`${baseUrl}/basket/${id}/`, data, withHeaders())
+}
+
+export const createBasket = () => {
+  return axios.post(`${baseUrl}/basket/`, {}, withHeaders())
 }
 
 export const getCategories = () => {
   return axios.get(`${baseUrl}/categories/`)
 }
+
+
+export const createTicket = data => {
+  return axios.post(`${baseUrl}/tickets/`, data, withHeaders())
+}
+
+export const getTicket = id => {
+  return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
+}
+

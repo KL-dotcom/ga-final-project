@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerUser , loginUser } from '../../lib/api'
+import { registerUser, loginUser, createBasket } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 
 
@@ -27,7 +27,9 @@ class Register extends React.Component {
       await registerUser(this.state.formData)
       const res = await loginUser(this.state.formData)
       setToken(res.data.token)
+      await createBasket()
       this.props.history.push('/events')
+
     } catch (err) {
       console.log(err.response)
       this.setState({ errors: err.response.data })

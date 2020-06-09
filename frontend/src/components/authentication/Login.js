@@ -30,7 +30,7 @@ class Login extends React.Component {
 
   render() {
     const { formData, error } = this.state
-    return (      
+    return (
       <div className="body">
         <div className="container">
           <div className="login">
