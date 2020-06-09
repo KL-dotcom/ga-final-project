@@ -12,6 +12,8 @@ function Basket() {
     console.log(error)
   }
 
+  console.log(basket)
+
   const makeTicket = () => {
 
     {
@@ -25,6 +27,18 @@ function Basket() {
 
   }
 
+  const handleClick = (item) => {
+    const newArr =
+      basket.talk.filter(talk => (
+        talk !== item
+      )).map(obj => (obj.id))
+    console.log(newArr)
+    updateBasket({ 'talk': newArr }, basketId)
+
+
+  }
+
+
 
   if (loading) return <p>Loading</p>
   return (
@@ -36,10 +50,10 @@ function Basket() {
           <div key={item.id}>
             <p>{item.name}</p>
             <p>{item.price}</p>
-
+            <button onClick={() => (handleClick(item))}>x</button>
           </div>))}
 
-        <p>Price: <span>{basket.total_price}</span></p>
+        <p>Price: <span>£{basket.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
         <button onClick={makeTicket}>Check Out</button>
       </div>
 

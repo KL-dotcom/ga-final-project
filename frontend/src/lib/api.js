@@ -54,6 +54,10 @@ export const updateBasket = (data, id) => {
   return axios.put(`${baseUrl}/basket/${id}/`, data, withHeaders())
 }
 
+export const userBasket = () => {
+  return axios.get(`${baseUrl}/basket/`, withHeaders())
+}
+
 export const createBasket = () => {
   return axios.post(`${baseUrl}/basket/`, {}, withHeaders())
 }
