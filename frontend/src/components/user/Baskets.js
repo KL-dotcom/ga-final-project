@@ -21,10 +21,10 @@ function Basket() {
     }
 
     updateBasket({ 'talk': [], 'total_price': 0.00 }, basketId)
-    // history.push('/profile/') --> push to profile, doesn't seem to be working rn check after next push
+    history.push('/profile/')
 
   }
-  console.log(basket)
+
 
   if (loading) return <p>Loading</p>
   return (
@@ -32,14 +32,14 @@ function Basket() {
       <h1>Your Basket</h1>
       <div className="basket-item">
 
-        {basket?.talk.map(item => (
+        {basket.talk.map(item => (
           <div key={item.id}>
             <p>{item.name}</p>
             <p>{item.price}</p>
 
           </div>))}
 
-        <p>Price: <span>{basket?.total_price}</span></p>
+        <p>Price: <span>{basket.total_price}</span></p>
         <button onClick={makeTicket}>Check Out</button>
       </div>
 
