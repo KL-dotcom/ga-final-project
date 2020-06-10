@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function EventForm({ data, handleChange, handleSubmit, errors, submitText, categoryPush }) {
+function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
   return (
     <div className="event-form">
       <form onSubmit={handleSubmit}>
@@ -15,18 +15,6 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText, categ
             error={errors.name}
           />
         </div>
-
-        <div className="form-item">
-          <input
-            type="number"
-            name="tempCategories"
-            label="Categories"
-            placeholder="Categories"
-            onChange={handleChange}
-            value={data.tempCategories}
-          />
-        </div>
-        <button onClick={categoryPush}>Submit Categories</button>
 
         <div className="form-item">
           <input

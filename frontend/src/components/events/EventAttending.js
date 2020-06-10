@@ -20,6 +20,15 @@ function EventAttending() {
     talk: eventId
   }, createComment, eventId)
 
+
+  const [answer, setAnswer] = React.useState(
+    {
+      answerA: 0,
+      answerB: 0,
+      answerC: 0,
+      answerD: 0
+    })
+
   console.log(event)
 
   if (error) {

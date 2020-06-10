@@ -47,7 +47,6 @@ export const editProfile = (data) => {
 
 export const getOwnBasket = id => {
   return axios.get(`${baseUrl}/basket/${id}/`, withHeaders())
-
 }
 
 export const updateBasket = (data, id) => {
@@ -90,6 +89,13 @@ export const createPoll = data => {
   return axios.post(`${baseUrl}/polls/`, data)
 }
 
+export const answerPoll = data => {
+  return axios.post(`${baseUrl}/votes/`, data, withHeaders())
+}
+
+export const getAllCategories = () => {
+  return axios.get(`${baseUrl}/categories/`)
+  
 export const updatePoll = (data, id) => {
   return axios.put(`${baseUrl}/polls/${id}/`, data, withHeaders())
 }

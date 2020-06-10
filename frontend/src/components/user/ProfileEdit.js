@@ -36,7 +36,7 @@ function ProfileEdit() {
           errors={formErrors}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          submitText="Finish Editting Profile"
+          submitText="Finish Editing Profile"
         />
       </div>
     </div>
