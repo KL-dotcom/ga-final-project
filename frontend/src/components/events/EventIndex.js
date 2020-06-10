@@ -4,6 +4,8 @@ import useFetch from '../../utils/useFetch'
 import { Redirect } from 'react-router-dom'
 import Spinner from '../common/Spinner'
 
+import { locationOptions, categoryOptions, priceOptions } from '../../lib/IndexSearchOptions'
+
 import EventCard from './EventCard'
 
 
@@ -26,11 +28,18 @@ function EventIndex() {
   }
 
 
-  const handleSearch = e => {
-    const search = e.target.value
+  // const handleSearch = e => {
+  //   const search = e.target.value
+  // const handleReset = () => {
+  //   setFilteredEvents('')
+  // }
+
+  const handleSearch = event => {
+    const search = event.target.value
+    console.log(event.target.value)
+
     setSetSearchVal(search)
     filterEvents()
-    console.log(searchVal)
   }
 
   if (error) {
@@ -44,10 +53,20 @@ function EventIndex() {
         {/* <h1>{searchVal}</h1> */}
         <div className="filters">
           <input className="input" type="text" onChange={handleSearch} placeholder="Search..." />
-          <div className="filter-item">Location</div>
-          <div className="filter-item">Category</div>
-          <div className="filter-item">Price</div>
-          <div className="filter-item">Host</div>
+          <button onClick={handleReset}>Reset Filter</button>
+          <div className="filter-item">Location
+  {locationOptions.map(location => <button onClick={handleSearch} value={location.label} key={location.label}>{location.label}</button>)}
+          </div>
+          <div className="filter-item">Category
+  {categoryOptions.map(category => <button onClick={handleSearch} value={category.label} key={category.label}>{category.label}</button>)}
+
+          </div>
+          <div className="filter-item">Price
+  {priceOptions.map(price => <button onClick={handleSearch} value={price.value} key={price.label}>{price.label}</button>)}
+
+          </div>
+
+          {/* <div className="filter-item">Host</div> */}
         </div>
       </div>
       {loading ?

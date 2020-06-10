@@ -30,3 +30,9 @@ export const isOwner = id => {
   const subject = getPayload().sub
   return id === subject
 }
+
+export const isAttending = id => {
+  console.log(id)
+  const subject = getPayload().sub
+  return id === subject
+}
