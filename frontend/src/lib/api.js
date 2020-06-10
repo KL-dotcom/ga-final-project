@@ -78,3 +78,6 @@ export const getTicket = id => {
   return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
 }
 
+export const answerPoll = data => {
+  return axios.post(`${baseUrl}/votes/`, data, withHeaders())
+}
