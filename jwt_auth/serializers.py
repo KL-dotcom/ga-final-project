@@ -44,7 +44,7 @@ class updateUserSerializer(serializers.ModelSerializer):
 
 
 class PopulatedUserSerializer(UserSerializer):
-    interests = CategorySerializer(many=True)
+    # interests = CategorySerializer(many=True)
     profile_images = ImageSerializerUser(many=True)
     users_basket = BasketSerializer(many=True)
     ticket = TicketSerializer(many=True)

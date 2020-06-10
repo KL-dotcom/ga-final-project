@@ -1,40 +1,38 @@
 import React, { useState } from 'react'
-import Select from 'react-select'
-import CategoryCard from '../../lib/CategoryCard'
+import { genderOptions, ageOptions, industryOptions, ethnicityOptions } from '../../lib/userOptions'
 
 
-function ProfileForm({ data, handleChange, handleSubmit , errors , submitText, categories, interests }) {
-const [colorInt, setColorInt] = useState('purple')
+function ProfileForm({ data, handleChange, handleSubmit , errors , submitText }) {
+// const [colorInt, setColorInt] = useState('purple')
 // const [userInterests, setUserInterests] = useState([])
 
-if (!categories) return null
-const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
+// if (!categories) return null
+// const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
 // setUserInterests(interestNames)
 // const categoryNames = categories.map(category => { return category.name})
 
 
-const addToInterests = (e) => {
-  const name = e.target.id
-  const index = interestNames.indexOf(name)
+// const addToInterests = (e) => {
+//   const name = e.target.id
+//   const index = interestNames.indexOf(name)
 
-  if (interestNames.includes(name)) {
-    interestNames.splice(index, 1)
-    console.log('taking out')
-    console.log(interestNames)
-    // setInterestNames(interestNames)
+//   if (interestNames.includes(name)) {
+//     interestNames.splice(index, 1)
+//     console.log('taking out')
+//     console.log(interestNames)
+//     // setInterestNames(interestNames)
 
-  } else {
-    interestNames.push(name)
-    console.log('adding')
-    console.log(interestNames)
-    // setInterestNames(interestNames)
-  }
-}
-
-
-
+//   } else {
+//     interestNames.push(name)
+//     console.log('adding')
+//     console.log(interestNames)
+//     // setInterestNames(interestNames)
+//   }
+// }
   return (
-    <div className="event-form">
+    <div className="prof-form">
+      <h1>Edit your Profile</h1>
+      
       <form onSubmit={handleSubmit}>
         <div className="form-item">
           <input
@@ -81,58 +79,56 @@ const addToInterests = (e) => {
         </div>
         
         <div className="form-item">
-          <input
+          <select
             name="age"
-            label="age"
+            label="Age"
             placeholder="Age"
             onChange={handleChange}
             value={data.age}
-            error={errors.age}
-          />
+            error={errors.age}>
+            {ageOptions.map(age => {return <option value={age.value}>{age.value}</option>})}
+            </select>
         </div>
 
         <div className="form-item">
-          <input
+          <select
             name="gender"
             label="Gender"
             placeholder="Gender"
             onChange={handleChange}
             value={data.gender}
             error={errors.gender}
-          />
+          >
+            {genderOptions.map(gender => {return <option value={gender.value}>{gender.value}</option>})}
+            </select>
         </div>
 
         <div className="form-item">
-          <input
+          <select
             name="industry"
             label="industry"
             placeholder="Industry"
             onChange={handleChange}
             value={data.industry}
             error={errors.industry}
-          />
+          >
+            {industryOptions.map(industry => {return <option value={industry.value}>{industry.value}</option>})}
+            </select>
         </div>
 
-
-
-        Interested in events about:
-  {categories ? categories.map( category => 
-  <CategoryCard
-  addToInterests={addToInterests}
-  style={interestNames.includes(category.name) ? { color: colorInt } : { color: "black" }}
-  key={category.name}
-  {...category}
-  interests={data.interests}
-  />) : ""}
-        
-        
-        
-
-
-
-
-
-        <button onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
+        <div className="form-item">
+          <select
+            name="ethnicity"
+            label="ethnicity"
+            placeholder="Ethnicity"
+            onChange={handleChange}
+            value={data.ethnicity}
+            error={errors.ethnicity}
+          >
+            {ethnicityOptions.map(ehtnicity => {return <option value={ehtnicity.value}>{ehtnicity.value}</option>})}
+            </select>
+        </div>
+        <button className="edit-prof-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
       </form>
     </div>
   )
