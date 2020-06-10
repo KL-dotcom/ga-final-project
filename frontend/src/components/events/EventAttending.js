@@ -1,82 +1,138 @@
 import React from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
-import { getSingleEvent, deleteEvent, createComment, answerPoll } from '../../lib/api'
+import { getSingleEvent, deleteEvent, createComment, updatePoll } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 import Spinner from '../common/Spinner'
 import useForm from '../../utils/useForm'
+import useFetchNew from '../../utils/useFetchNew'
 
 
 
 function EventAttending() {
   const { id: eventId } = useParams()
-  const { data: event, loading, error } = useFetch(getSingleEvent, eventId)
+  const result = useFetchNew(getSingleEvent, eventId)
+  const { data: event, loading, error } = result.state
+  const setState = result.setState
   const { formData, handleChange, handleSubmit } = useForm({
     text: '',
     talk: eventId
   }, createComment, eventId)
 
-
-
-  // const [answerA, setAnswerA] = React.useState(0)
-  // const [answerB, setAnswerB] = React.useState(0)
-  // const [answerC, setAnswerC] = React.useState(0)
-  // const [answerD, setAnswerD] = React.useState(0)
-  const [answer, setAnswer] = React.useState(
-    {
-      answerA: 0,
-      answerB: 0,
-      answerC: 0,
-      answerD: 0
-    })
-
-
-  const pollVote = async e => {
-    e.preventDefault()
-    const data = {
-      response: e.target.value,
-      polls: e.target.id
-    }
-    try {
-      const res = await answerPoll(data)
-      pollAnswers(data)
-      console.log(res)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  console.log(event)
 
   if (error) {
     return <Redirect to="/notfound" />
   }
 
+  // const onSubmitSuccess = (response) => {
+  //   setState((oldState) => {
+  //     const newState = { ...oldState }
+  //     newState.comments.push(response.data)
+  //   })
+  // }
+
   if (!event) return null
 
-
-  // const pollAnswers = (data) => {
-  //   console.log(data)
-  //   event.polls[(data.polls - 1)].results.map(poll => {
-  //     if ( poll.response === 'a' ){
-  //       setAnswer( { ...answer, answerA: 10 + 1  })
-  //     } else if (poll.response === 'b' ){
-  //       setAnswer( { ...answer, answerB: 10 + 1  })
-  //     } else if (poll.response === 'c' ){
-  //       setAnswer( { ...answer, answerC: 10 + 1  })
-  //     } else {
-  //       setAnswer( { ...answer, answerD: 10 + 1  })
-  //     }
+  //   const handleChange = async () => {
+  // await 
   //   }
-  //   )
+
+  const pollVote = async (id, value, number) => {
+    const newValue = number + 1
+    let res
+    if (value === 'a') {
+      res = await updatePoll({ option_a_count: newValue }, id)
+    } else if (value === 'b') {
+      res = await updatePoll({ option_b_count: newValue }, id)
+    } else if (value === 'c') {
+      res = await updatePoll({ option_c_count: newValue }, id)
+    } else {
+      res = await updatePoll({ option_d_count: newValue }, id)
+    }
+
+    setState((oldState) => {
+      const newState = { ...oldState }
+      console.log('os ', oldState)
+      console.log('dat ', res)
+      newState.data.polls = oldState.data.polls.map((poll) => {
+        if (poll.id === res.data.id) {
+          console.log('Got a match and making a replacement')
+          return res.data
+        } else {
+          console.log('no match')
+          return poll
+        }
+      })
+      console.log('new state', newState)
+      return newState
+    })
+    console.log('event', event)
+  }
+
+  return (
+    <div className="body">
+      <div className="container">
+        {loading ?
+          <Spinner />
+          :
+          <>
+            <div className="title-container">
+              <div className="title-image">
+                <img src={event.image} alt={event.name} loading="lazy" width="500" className="image" />
+              </div>
+              <div className="title-wording">
+                <div className="title">{event.name}</div>
+                <div className="host">Hosted by: {event.host.username}</div>
+                <div className="location">Location: {event.location}</div>
+                <div className="date-time">When: {event.date_time.replace('T', ' at ').replace(':00Z', '')}</div>
+                <div className="price">Price: £{event.price}</div>
+              </div>
+            </div>
+            <div className="description">
+              <div className="title-wording">
+                <strong>About this event:</strong><br></br>
+                {event.about}
+              </div>
+            </div>
+            <div className="poll-container">
+              {event.polls ?
+                event.polls.map(poll => (
+                  <EventPoll
+                    pollVote={pollVote}
+                    // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                    id={poll.id}
+                    key={poll.id}
+
+                    {...poll} />
+                ))
+                : ''}
+            </div>
+
+            {event.comments ?
+              event.comments.map(poll => (
+                <EventComment
+                  style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                  key={poll.id}
+                  {...poll} />
+              ))
+              : ''}
 
 
+            <input
+              onChange={handleChange}
+              value={formData.text}
+              name="text"
+            ></input>
+            <button onClick={handleSubmit}>Submit</button>
 
+          </>
+        }
+      </div>
+    </div>
 
-  console.log(answer.answerA)
-  console.log(answer.answerB)
-  console.log(answer.answerC)
-  console.log(answer.answerD)
-
+  )
 
 }
 // const totalVotes = a + b + c + d
@@ -97,69 +153,7 @@ function EventAttending() {
 
 
 
-return (
-  <div className="body">
-    <div className="container">
-      <h1>THIS PAGE IS FOR PEOPLE ATTENDING THE EVENT</h1>
-
-      {loading ?
-        <Spinner />
-        :
-        <>
-          <div className="title-container">
-            <div className="title-image">
-              <img src={event.image} alt={event.name} loading="lazy" width="500" className="image" />
-            </div>
-            <div className="title-wording">
-              <div className="title">{event.name}</div>
-              <div className="host">Hosted by: {event.host.username}</div>
-              <div className="location">Location: {event.location}</div>
-              <div className="price">Price: £{event.price}</div>
-            </div>
-          </div>
-          <div className="description">
-            <div className="title-wording">
-              <strong>About this event:</strong><br></br>
-              {event.about}
-            </div>
-          </div>
-          {event.polls ?
-            event.polls.map(poll => (
-              <EventPoll
-                pollVote={pollVote}
-                style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                id={poll.id}
-                key={poll.id}
-                answerA={answer.answerA}
-                answerB={answer.answerB}
-                answerC={answer.answerC}
-                answerD={answer.answerD}
-                {...poll} />
-            ))
-            : ''}
-          {event.comments ?
-            event.comments.map(poll => (
-              <EventComment
-                style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                key={poll.id}
-                {...poll} />
-            ))
-            : ''}
 
 
-          <input
-            onChange={handleChange}
-            value={formData.text}
-            name="text"
-          ></input>
-          <button onClick={handleSubmit}>Submit</button>
-
-        </>
-      }
-    </div>
-  </div>
-
-)
-// }
 
 export default EventAttending

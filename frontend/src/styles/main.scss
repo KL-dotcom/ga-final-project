@@ -365,6 +365,60 @@ text-decoration: none;
 }
 }
 
+// EventPoll
+.poll-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+.poll {
+  margin: 10px;
+  .answers {
+  margin: 5px;
+  h3 {
+    font-size: 20px;
+    margin: 7px;
+  }
+.option-container {
+  display: flex;
+  justify-content: space-between;
+  p {
+    padding: 5px;
+  }
+  button{
+    width: 45px;
+  }
+  button:hover {
+    font-size: 12px;
+  }
+}
+}
+}
+.answers {
+  margin: 5px;
+  h3 {
+    font-size: 20px;
+    margin: 7px;
+  }
+.option-container {
+  display: flex;
+  justify-content: space-between;
+  p {
+    padding: 5px;
+  }
+  button{
+    width: 45px;
+  }
+  button:hover {
+    font-size: 12px;
+  }
+}
+}
+}
+
+
+
 
 
 
