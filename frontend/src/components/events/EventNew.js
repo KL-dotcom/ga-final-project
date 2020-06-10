@@ -2,6 +2,8 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { createEvent , getAllCategories } from '../../lib/api'
 // import { popupNotification } from '../../lib/notification'
+// import { categoryOptions } from '../../lib/IndexSearchOptions'
+
 import useForm from '../../utils/useForm'
 import useFetch from '../../utils/useFetch'
 

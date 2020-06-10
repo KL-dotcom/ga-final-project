@@ -1,7 +1,8 @@
 import React from 'react'
-
+import { locationOptions } from '../../lib/IndexSearchOptions'
 
 function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
+  console.log(locationOptions)
   return (
     <div className="event-form">
       <form onSubmit={handleSubmit}>
@@ -16,6 +17,20 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
           />
         </div>
 
+
+        <div className="form-item">
+          <select
+            name="location"
+            label="location"
+            placeholder="Location"
+            onChange={handleChange}
+            value={data.location}
+            error={errors.location}
+          >
+            {locationOptions.map(location => {return <option key={location.label} value={location.label}>{location.label}</option>})}
+            </select>
+        </div>
+{/* 
         <div className="form-item">
           <input
             name="location"
@@ -25,7 +40,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.location}
             error={errors.location}
           />
-        </div>
+        </div> */}
 
         <div className="form-item">
           <input

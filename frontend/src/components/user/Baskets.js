@@ -66,12 +66,13 @@ function Basket() {
               className="cancel" onClick={() => (handleClick(item))}>x</Button><hr></hr>
           </div>))}
 
-        <p>Total Price: <span style={{ fontWeight: 'bold' }}>£{basket.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
+        <p>Total Price: <span style={{fontWeight: 'bold'}}>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
         <Button
-          variant="success"
-          className="checkout" onClick={makeTicket}>Check Out</Button>
-        <p>Price: <span>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
-        <button onClick={makeTicket}>Check Out</button>
+        variant="success"
+        className="checkout" onClick={makeTicket}>Check Out</Button>
+
+        {/* <p>Price: <span>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
+        <button onClick={makeTicket}>Check Out</button> */}
       </div>
 
     </div >
