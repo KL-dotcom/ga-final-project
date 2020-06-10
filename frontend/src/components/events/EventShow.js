@@ -28,10 +28,10 @@ function EventShow() {
   }
   const filterOrigin = () => {
     if (!events) return null
-    const regexp = new RegExp(event.origin, 'i')
+    const regexp = new RegExp(event.categories[0], 'i')
     let filtered = events.filter(event => (
-      (regexp.test(event.origin))))
-    filtered = [filtered[0], filtered[1], filtered[2]]
+      (regexp.test(event.categories))))
+    filtered = [filtered[1], filtered[2], filtered[3]]
     return filtered
   }
 
@@ -87,22 +87,20 @@ function EventShow() {
             </div>
             <div className="tags">
               <strong>Tags:</strong><br></br>
-              {/* {event.categories.map(category => (
-                <h1 key={category}>{category}</h1>
-              ))} */}
+              {event.categories.map(category => (
+                <h1 key={category.id}>{category.name}</h1>
+              ))}
             </div>
             <div className="similar-events">
               <strong>Similar Events:</strong><br></br>
               <div className="similar-events-cards">
 
-                {/* {filterOrigin().map(event => 
-                <EventCard key={event.id} className="card" {...event} />
-              )} */}
+                {filterOrigin().map(event => 
+                  <EventCard key={event.id} className="card" {...event} />
+                )}
               </div>
             </div>
-            <div className="recently-viewed">
-              <strong>Recently viewed:</strong><br></br>
-            </div>
+
           </>
         }
       </div>

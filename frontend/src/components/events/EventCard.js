@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ name, id , image , location , about }) {
+function EventCard({ categories, name, id , image , location , about }) {
 
   return (
     <Link className="link" to={`/events/${id}`}>
@@ -13,6 +13,13 @@ function EventCard({ name, id , image , location , about }) {
           <div className="name">{name}</div>
           <div className="location">{location}</div>
           {/* <div className="description">{about}</div> */}
+          <div className="tags">
+            <strong>Tags:</strong><br></br>
+
+            {categories.map(category => (
+              <h4 key={category.id}>{category.name}</h4>
+            ))}
+          </div>
         </div>
       </div>
     </Link>

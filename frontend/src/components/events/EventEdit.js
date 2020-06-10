@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { useHistory, useParams } from 'react-router-dom'
-import { editEvent, getSingleEvent } from '../../lib/api'
+import { editEvent, getSingleEvent , getAllCategories } from '../../lib/api'
 import useForm from '../../utils/useForm'
 import useFetch from '../../utils/useFetch'
 
@@ -9,17 +9,21 @@ import EventForm from './EventForm'
 import ImageForm from '../forms/ImageForm'
 import PollForm from '../forms/PollForm'
 
+
+
 function EventEdit() {
   const { id: eventId } = useParams()
   const history = useHistory()
   const { data: event, error } = useFetch(getSingleEvent, eventId)
+  const { data: categories } = useFetch(getAllCategories)
+
   const onSubmitSuccess = () => {
     history.push(`/events/${eventId}`)
   }
 
   const { formData, handleChange, setFormData, formErrors, handleSubmit } = useForm({
-    name: ''
-
+    name: '',
+    categories: []
   }, editEvent, eventId, onSubmitSuccess)
 
   React.useEffect(() => {
@@ -28,11 +32,18 @@ function EventEdit() {
     }
   }, [event, setFormData])
 
+  const categoryPush = (event) => {
+    const category = parseInt(event.target.id)
+    formData.categories.push(category)
+    console.log(formData.categories)
+  }
+
   if (error) {
     return <Redirect to="notfound" />
   }
   if (!event) return null
-  console.log(event.categories)
+  if (!categories) return null
+
 
   return (
     <div className="body">
@@ -47,6 +58,15 @@ function EventEdit() {
           handleSubmit={handleSubmit}
           submitText="Edit my Event!"
         />
+        {categories.map(category => (
+          <button
+            key={category.id}
+            id={category.id}
+            onClick={categoryPush}
+            style={ formData.categories.includes(category.id) ? console.log('hello') : console.log('bugger')}
+          >
+            {category.name}
+          </button>))}
       </div>
     </div>
   )

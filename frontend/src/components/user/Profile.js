@@ -35,8 +35,6 @@ function ProfilePage() {
         <p id="prof-industry">{profile.industry}</p>
         <p id="prof-ethnicity">{profile.ethnicity}</p>
       </div>
-      
-      
 
       <button className="edit-prof-button" onClick={handleEditButton}>Edit my profile</button>
       <button className="user-basket-button" onClick={toBasket}>My Basket</button>
