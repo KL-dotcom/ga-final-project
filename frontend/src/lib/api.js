@@ -58,11 +58,9 @@ export const getCategories = () => {
   return axios.get(`${baseUrl}/categories/`)
 }
 
-<<<<<<< HEAD
 export const createComment = data => {
   return axios.post(`${baseUrl}/comments/`, data, withHeaders())
 }
-=======
 
 export const createTicket = data => {
   return axios.post(`${baseUrl}/tickets/`, data, withHeaders())
@@ -72,4 +70,3 @@ export const getTicket = id => {
   return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
 }
 
->>>>>>> development
