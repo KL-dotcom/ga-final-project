@@ -17,6 +17,7 @@ import EventEdit from './components/events/EventEdit'
 import EventAttending from './components/events/EventAttending'
 import ErrorPage from './components/common/Error'
 import Basket from './components/user/Baskets'
+import TicketIndex from './components/user/TicketIndex'
 import TicketShow from './components/user/TicketShow'
 
 
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/profile" component={Profile} />
         <Route path="/basket/:id" component={Basket} />
         <Route path="/tickets/:id" component={TicketShow} />
+        <Route path="/tickets" component={TicketIndex} />
         <Route path="/*" component={ErrorPage} />
       </Switch>
       <Footer />

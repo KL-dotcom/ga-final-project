@@ -9,7 +9,6 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
     const newValue = type === 'checkbox' ? checked : value
     const updatedFormData = { ...formData, [name]: newValue }
     const updatedErrors = { ...formErrors, [name]: '' }
-    console.log(updatedFormData)
     setFormData(updatedFormData)
     setFormErrors(updatedErrors)
   }
@@ -18,9 +17,11 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
     event.preventDefault()
 
     try {
-      console.log(formData)
       const response = await submitFn(formData, submitParams)
+<<<<<<< HEAD
+=======
       console.log('initial res', response)
+>>>>>>> development
       onSubmitSuccess(response)
     } catch (err) {
       console.log(err.response)

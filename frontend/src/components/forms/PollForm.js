@@ -1,5 +1,5 @@
 import React from 'react'
-import { createImage } from '../../lib/api'
+import { createPoll } from '../../lib/api'
 import useForm from '../../utils/useForm'
 
 import { useParams } from 'react-router-dom'
@@ -13,7 +13,7 @@ function PollForm() {
   const { data, handleChange, formErrors, handleSubmit } = useForm({
     image: '',
     talk: eventId
-  }, createImage, null, onSubmitSuccess)
+  }, createPoll, null, onSubmitSuccess)
 
 
 

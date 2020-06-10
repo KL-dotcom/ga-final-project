@@ -7,7 +7,7 @@ export const genderOptions = [
 ]
 
 export const ageOptions = []
-for (let i = 18; i < 66; i++) {
+for (let i = 18; i < 71; i++) {
   ageOptions.push({value: i})
 }
 

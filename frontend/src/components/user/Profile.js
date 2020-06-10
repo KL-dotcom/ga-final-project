@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { getOwnProfile } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 
-
 function ProfilePage() {
   const history = useHistory()
   const { data: profile } = useFetch(getOwnProfile)
@@ -16,8 +15,11 @@ function ProfilePage() {
     history.push('/profile/edit/')
   }
 
+  const handleTicketButton = () => {
+    history.push('/tickets')
+  }
+
   if (!profile) return null
-  console.log(profile)
   return (
     <div className="body">
       <div className="prof-stats">
@@ -35,9 +37,14 @@ function ProfilePage() {
         <p id="prof-industry">{profile.industry}</p>
         <p id="prof-ethnicity">{profile.ethnicity}</p>
       </div>
+      
 
       <button className="edit-prof-button" onClick={handleEditButton}>Edit my profile</button>
+
+      <div className="profile-buttons">
+      <button className="my-tickets-button" onClick={handleTicketButton}>My Tickets</button>
       <button className="user-basket-button" onClick={toBasket}>My Basket</button>
+      </div>
     </div>
 
   )

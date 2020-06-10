@@ -73,6 +73,10 @@ export const createTicket = data => {
   return axios.post(`${baseUrl}/tickets/`, data, withHeaders())
 }
 
+// export const getAllTickets = () => {
+//   return axios.get(`${baseUrl}/tickets/`, withHeaders())
+// }
+
 export const getTicket = id => {
   return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
 }
@@ -91,4 +95,11 @@ export const answerPoll = data => {
 
 export const getAllCategories = () => {
   return axios.get(`${baseUrl}/categories/`)
+  
+export const updatePoll = (data, id) => {
+  return axios.put(`${baseUrl}/polls/${id}/`, data, withHeaders())
+}
+
+export const answerPoll = data => {
+  return axios.post(`${baseUrl}/votes/`, data, withHeaders())
 }
