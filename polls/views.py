@@ -46,7 +46,7 @@ class PollDetailView(APIView):
 
     def put(self, request, pk):
         poll_to_update = self.get_poll(pk)
-        self.is_poll_owner(poll_to_update, request.user)
+        # self.is_poll_owner(poll_to_update, request.user)
         updated_poll = PollSerializer(
             poll_to_update, data=request.data, partial=True)
         if updated_poll.is_valid():

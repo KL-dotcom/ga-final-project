@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
 import { getSingleEvent, deleteEvent, createComment, updatePoll } from '../../lib/api'
-import useFetch from '../../utils/useFetch'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 import Spinner from '../common/Spinner'
@@ -15,39 +14,37 @@ function EventAttending() {
   const result = useFetchNew(getSingleEvent, eventId)
   const { data: event, loading, error } = result.state
   const setState = result.setState
-  const { formData, handleChange, handleSubmit } = useForm({
-    text: '',
-    talk: eventId
-  }, createComment, eventId)
+
+  const [pending, setPending] = React.useState('')
+  const handleChange = e => {
+    const text = e.target.value
+    setPending(text)
+  }
+
+  console.log(pending)
 
 
-  const [answer, setAnswer] = React.useState(
-    {
-      answerA: 0,
-      answerB: 0,
-      answerC: 0,
-      answerD: 0
-    })
+  const handleClick = async () => {
 
-  console.log(event)
+    try {
+      const res = await createComment({ text: pending, talk: eventId })
+      setState((oldState) => {
+        const newState = { ...oldState }
+        console.log(newState.data.comments.push(res.data))
+        return newState
+      })
+      setPending('')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   if (error) {
     return <Redirect to="/notfound" />
   }
 
-  // const onSubmitSuccess = (response) => {
-  //   setState((oldState) => {
-  //     const newState = { ...oldState }
-  //     newState.comments.push(response.data)
-  //   })
-  // }
-
   if (!event) return null
-
-  //   const handleChange = async () => {
-  // await 
-  //   }
-
   const pollVote = async (id, value, number) => {
     const newValue = number + 1
     let res
@@ -63,21 +60,15 @@ function EventAttending() {
 
     setState((oldState) => {
       const newState = { ...oldState }
-      console.log('os ', oldState)
-      console.log('dat ', res)
       newState.data.polls = oldState.data.polls.map((poll) => {
         if (poll.id === res.data.id) {
-          console.log('Got a match and making a replacement')
           return res.data
         } else {
-          console.log('no match')
           return poll
         }
       })
-      console.log('new state', newState)
       return newState
     })
-    console.log('event', event)
   }
 
   return (
@@ -89,7 +80,10 @@ function EventAttending() {
           <>
             <div className="title-container">
               <div className="title-image">
-                <img src={event.image} alt={event.name} loading="lazy" width="500" className="image" />
+                {/* {event.image ? */}
+                < img src={event.image} alt={event.name} loading="lazy" width="150" height="150" />
+                {/* // :
+                  // <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />} */}
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>
@@ -131,10 +125,10 @@ function EventAttending() {
 
             <input
               onChange={handleChange}
-              value={formData.text}
+              value={pending}
               name="text"
             ></input>
-            <button onClick={handleSubmit}>Submit</button>
+            <button onClick={handleClick}>Submit</button>
 
           </>
         }

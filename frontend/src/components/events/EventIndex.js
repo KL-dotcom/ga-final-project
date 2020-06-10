@@ -9,30 +9,30 @@ import EventCard from './EventCard'
 
 function EventIndex() {
   const { data: events, loading, error } = useFetch(getAllEvents)
-  const [filteredEvents , setFilteredEvents] = React.useState('')
-  const [searchVal , setSetSearchVal] = React.useState(events)
+  const [filteredEvents, setFilteredEvents] = React.useState('')
+  const [searchVal, setSetSearchVal] = React.useState(events)
 
   const filterEvents = () => {
     console.log('filter', searchVal)
     const regexp = new RegExp(searchVal, 'i')
     const filtered = events.filter(event => (
-      (regexp.test(event.origin)
-      // || regexp.test(trip.endPointCity))
+      (regexp.test(event.name)
+        || regexp.test(event.location))
       // && (selectVal?.every(tag => { return trip.tags.includes(tag.name) }) ?? true
-      )
-    ))
+    )
+    )
     setFilteredEvents(filtered)
     console.log(filtered)
   }
 
-  
+
   const handleSearch = e => {
     const search = e.target.value
     setSetSearchVal(search)
     filterEvents()
     console.log(searchVal)
   }
-  
+
   if (error) {
     return <Redirect to="/notfound" />
   }
@@ -49,12 +49,12 @@ function EventIndex() {
           <div className="filter-item">Price</div>
           <div className="filter-item">Host</div>
         </div>
-      </div>         
+      </div>
       {loading ?
         <Spinner />
         :
         <div className="container-index">
-          {filteredEvents ? 
+          {filteredEvents ?
             filteredEvents.map(event => (
               <EventCard key={event.id} {...event} />
             )) :
