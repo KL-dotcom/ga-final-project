@@ -1,21 +1,17 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { getOwnProfile, getCategories, editProfile } from '../../lib/api'
+import { getOwnProfile, editProfile } from '../../lib/api'
 import useForm from '../../utils/useForm'
 import useFetch from '../../utils/useFetch'
 import ProfileForm from './ProfileForm'
 
 function ProfileEdit() {
   const { data: profile, error } = useFetch(getOwnProfile)
-  const { data: categories } = useFetch(getCategories)
   const history = useHistory()
-
   const onSubmitSuccess = () => {
     history.push('/profile')
   }
-
-
 
   const { formData, handleChange, setFormData, formErrors, handleSubmit } = useForm({
     name: ''
@@ -34,15 +30,12 @@ function ProfileEdit() {
 
   return (
     <div className="body">
-      <h1>Edit your Profile</h1>
-      <div className="form">
+      <div className="edit-prof-form">
         <ProfileForm
           data={formData}
           errors={formErrors}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          categories={categories}
-          interests={formData.interests}
           submitText="Finish Editting Profile"
         />
       </div>

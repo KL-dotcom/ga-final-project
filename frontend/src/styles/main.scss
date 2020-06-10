@@ -180,8 +180,92 @@
   justify-content: flex-start;
   align-items: center;
   height: 1000px;
-  .form{
-    background-color: blue;
+
+    #prof-pic-box{
+    margin-top: 10px;
+
+    #prof-pic{
+    border-radius: 50%;
+    border: 7px solid rgb(19, 3, 112);
+    padding: 8px;
+    width: 200px;
+    }
+  }
+.prof-stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(44, 7, 255, 0.548),
+      rgba(32, 7, 255, 0.685) 10px,
+      #47455570 10px,
+      #47455570 20px
+    );
+    padding: 30px;
+    font-size: 20px;
+}
+
+.edit-prof-button{
+  padding: 5px;
+  font-size: 15px;
+  margin: 5px;
+  background-color: black;
+  color: white;
+}
+
+.user-basket-button{
+  padding: 10px;
+  font-size: 20px;
+  margin: 5px;
+  background-color: black;
+  color: white;
+}
+
+  #prof-username{
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+  #prof-email{
+    margin-bottom: 20px;
+  }
+  #stats{
+    font-size: 27px;
+  }
+  
+  .edit-prof-form{
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(44, 7, 255, 0.548),
+      rgba(32, 7, 255, 0.685) 10px,
+      #47455570 10px,
+      #47455570 20px
+    );
+  
+
+  .prof-form{
+    // background-color: red;
+    padding: 20px;
+    
+
+    .form-item{
+      margin: 5px;
+      input {
+      padding: 3px;
+      }
+      select {
+        padding: 3px;
+      }
+    }
+    .edit-prof-button{
+      position: relative;
+      left: 25%;
+      padding: 3px;
+      background-color: black;
+      color: white;
+    }
+  }
 
   .event-form{
     background-color: blue;
