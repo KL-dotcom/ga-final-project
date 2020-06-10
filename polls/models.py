@@ -9,6 +9,10 @@ class Poll(models.Model):
     option_b = models.CharField(max_length=300)
     option_c = models.CharField(max_length=300, blank=True)
     option_d = models.CharField(max_length=300, blank=True)
+    option_a_count = models.IntegerField(default=0)
+    option_b_count = models.IntegerField(default=0)
+    option_c_count = models.IntegerField(default=0)
+    option_d_count = models.IntegerField(default=0)
 
     talk = models.ForeignKey(
         'talks.Talk',
