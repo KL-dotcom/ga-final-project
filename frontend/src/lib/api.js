@@ -84,4 +84,6 @@ export const createImage = data => {
 
 export const createPoll = data => {
   return axios.post(`${baseUrl}/polls/`, data)
-}
+  export const answerPoll = data => {
+    return axios.post(`${baseUrl}/votes/`, data, withHeaders())
+  }
