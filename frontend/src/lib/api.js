@@ -74,6 +74,10 @@ export const createTicket = data => {
   return axios.post(`${baseUrl}/tickets/`, data, withHeaders())
 }
 
+// export const getAllTickets = () => {
+//   return axios.get(`${baseUrl}/tickets/`, withHeaders())
+// }
+
 export const getTicket = id => {
   return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
 }
