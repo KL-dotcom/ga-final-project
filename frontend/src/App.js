@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// import './styles/main.scss'
 
 
 import Register from './components/authentication/Register'

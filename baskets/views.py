@@ -39,6 +39,7 @@ class BasketDetailView(APIView):
             raise NotFound()
 
     def is_basket_user(self, basket, user):
+
         if basket.user.id != user.id:
             raise PermissionDenied()
 
@@ -63,3 +64,12 @@ class BasketDetailView(APIView):
         self.is_basket_user(basket_to_delete, request.user)
         basket_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class BasketUserView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
+    def get(self, request):
+        basket = Basket.objects.get(user=request.user.id)
+        serialized_baskets = BasketSerializer(basket)
+        return Response(serialized_baskets.data, status=status.HTTP_200_OK)

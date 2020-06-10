@@ -46,12 +46,16 @@ export const editProfile = (data) => {
 }
 
 export const getOwnBasket = id => {
-  return axios.get(`${baseUrl}/basket/${id}/`, {}, withHeaders())
+  return axios.get(`${baseUrl}/basket/${id}/`, withHeaders())
 
 }
 
 export const updateBasket = (data, id) => {
   return axios.put(`${baseUrl}/basket/${id}/`, data, withHeaders())
+}
+
+export const userBasket = () => {
+  return axios.get(`${baseUrl}/basket/`, withHeaders())
 }
 
 export const createBasket = () => {

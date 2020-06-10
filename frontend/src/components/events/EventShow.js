@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
-import { getSingleEvent , getAllEvents , deleteEvent } from '../../lib/api'
+import { getSingleEvent, getAllEvents, deleteEvent, userBasket, updateBasket } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 import EventCard from './EventCard'
 import Spinner from '../common/Spinner'
@@ -8,7 +8,7 @@ import Spinner from '../common/Spinner'
 
 function EventShow() {
   const { id: eventId } = useParams()
-  const { data: event , loading , error } = useFetch(getSingleEvent, eventId)
+  const { data: event, loading, error } = useFetch(getSingleEvent, eventId)
   const { data: events } = useFetch(getAllEvents)
   const history = useHistory()
   // const eventImage = event.talk_images
@@ -21,7 +21,7 @@ function EventShow() {
       history.push('/notfound')
     }
   }
-  
+
   if (error) {
     return <Redirect to="/notfound" />
   }
@@ -30,13 +30,16 @@ function EventShow() {
     const regexp = new RegExp(event.origin, 'i')
     let filtered = events.filter(event => (
       (regexp.test(event.origin))))
-    filtered = [filtered[0],filtered[1],filtered[2]]
+    filtered = [filtered[0], filtered[1], filtered[2]]
     return filtered
   }
 
 
-  const addToBasket = e => {
-    console.log(e.target.value)
+  const addToBasket = async () => {
+    const res = await userBasket()
+    const basket = res.data[0]
+    await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
+
   }
 
   const addToWishlist = e => {
@@ -55,7 +58,7 @@ function EventShow() {
           <>
             <div className="title-container">
               <div className="title-image">
-                <img src={event.image} alt={event.name} loading="lazy" width="500" className="image"/>
+                <img src={event.image} alt={event.name} loading="lazy" width="500" className="image" />
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>

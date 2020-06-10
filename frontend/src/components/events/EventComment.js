@@ -1,12 +1,13 @@
 import React from 'react'
 
 
-function EventComment({ text }) {
-
+function EventComment({ text , user}) {
+console.log(user)
   return (
 
     <div className="comment">
       {text}
+      {/* {userId} */}
     </div>
 
   )

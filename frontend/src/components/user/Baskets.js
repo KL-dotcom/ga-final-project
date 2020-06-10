@@ -12,6 +12,8 @@ function Basket() {
     console.log(error)
   }
 
+  console.log(basket)
+
   const makeTicket = () => {
 
     {
@@ -21,10 +23,22 @@ function Basket() {
     }
 
     updateBasket({ 'talk': [], 'total_price': 0.00 }, basketId)
-    // history.push('/profile/') --> push to profile, doesn't seem to be working rn check after next push
+    history.push('/profile/')
 
   }
-  console.log(basket)
+
+  const handleClick = (item) => {
+    const newArr =
+      basket.talk.filter(talk => (
+        talk !== item
+      )).map(obj => (obj.id))
+    console.log(newArr)
+    updateBasket({ 'talk': newArr }, basketId)
+
+
+  }
+
+
 
   if (loading) return <p>Loading</p>
   return (
@@ -32,14 +46,14 @@ function Basket() {
       <h1>Your Basket</h1>
       <div className="basket-item">
 
-        {basket?.talk.map(item => (
+        {basket.talk.map(item => (
           <div key={item.id}>
             <p>{item.name}</p>
             <p>{item.price}</p>
-
+            <button onClick={() => (handleClick(item))}>x</button>
           </div>))}
 
-        <p>Price: <span>{basket?.total_price}</span></p>
+        <p>Price: <span>£{basket.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
         <button onClick={makeTicket}>Check Out</button>
       </div>
 
