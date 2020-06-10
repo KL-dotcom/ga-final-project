@@ -41,13 +41,21 @@ export const getOwnProfile = () => {
   return axios.get(`${baseUrl}/profile`, withHeaders())
 }
 
+export const editProfile = (data) => {
+  return axios.put(`${baseUrl}/profile/`, data, withHeaders())
+}
+
 export const getOwnBasket = id => {
-  return axios.get(`${baseUrl}/basket/${id}/`, {}, withHeaders())
+  return axios.get(`${baseUrl}/basket/${id}/`, withHeaders())
 
 }
 
 export const updateBasket = (data, id) => {
   return axios.put(`${baseUrl}/basket/${id}/`, data, withHeaders())
+}
+
+export const userBasket = () => {
+  return axios.get(`${baseUrl}/basket/`, withHeaders())
 }
 
 export const createBasket = () => {

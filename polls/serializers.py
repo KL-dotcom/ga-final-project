@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Poll
 from talks.models import Talk
+from votes.models import Votes
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -10,11 +11,18 @@ class PollSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TalkSerializer(serializers.ModelSerializer):
+# class TalkSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Talk
+#         fields = ('name', 'id', 'host')
+
+
+class VotesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Talk
-        fields = ('name', 'id', 'host')
+        model = Votes
+        fields = '__all__'
 
 
 class PopulatedPollSerializer(PollSerializer):
-    talk = TalkSerializer()
+
+    results = VotesSerializer(many=True)

@@ -10,7 +10,7 @@ from django.conf import settings
 import jwt
 
 
-from .serializers import UserSerializer, PopulatedUserSerializer
+from .serializers import UserSerializer, PopulatedUserSerializer, updateUserSerializer
 from categories.models import Category
 
 User = get_user_model()
@@ -65,7 +65,7 @@ class ProfileView(APIView):
 
     def put(self, request):
         user_to_update = self.get_profile(pk=request.user.id)
-        updated_user = UserSerializer(
+        updated_user = updateUserSerializer(
             user_to_update, data=request.data, partial=True)
 
         if updated_user.is_valid():

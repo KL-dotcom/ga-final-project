@@ -37,6 +37,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class updateUserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name', 'email', 'username', 'gender', 'age', 'ethnicity', 'industry', 'interests')
+
+
 class PopulatedUserSerializer(UserSerializer):
     interests = CategorySerializer(many=True)
     profile_images = ImageSerializerUser(many=True)
