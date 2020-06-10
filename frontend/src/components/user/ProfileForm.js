@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { genderOptions, ageOptions, industryOptions, ethnicityOptions } from '../../lib/userOptions'
 
 
@@ -29,11 +29,25 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
 //     // setInterestNames(interestNames)
 //   }
 // }
+if (!data.profile_images) return null
+// console.log(data.profile_images[0].image)
   return (
     <div className="prof-form">
       <h1>Edit your Profile</h1>
       
       <form onSubmit={handleSubmit}>
+
+      {/* <div className="form-item">
+          <input
+            name="profile_images"
+            label="Profile Images"
+            placeholder="Profile Url"
+            onChange={handleChange}
+            value={data.profile_images[0].image}
+            error={errors.profile_images}
+          />
+        </div> */}
+
         <div className="form-item">
           <input
             name="username"
@@ -77,6 +91,18 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
             error={errors.email}
           />
         </div>
+
+        {/* <div className="form-item">
+          <input
+            name="profile_images"
+            label="Profile Image"
+            placeholder="Profile Image"
+            onChange={handleChange}
+            value={data.profile_images}
+            error={errors.profile_images}
+          />
+        </div> */}
+
         
         <div className="form-item">
           <select
@@ -86,7 +112,7 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
             onChange={handleChange}
             value={data.age}
             error={errors.age}>
-            {ageOptions.map(age => {return <option value={age.value}>{age.value}</option>})}
+            {ageOptions.map(age => {return <option key={age.value} value={age.value}>{age.value}</option>})}
             </select>
         </div>
 
@@ -99,7 +125,7 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
             value={data.gender}
             error={errors.gender}
           >
-            {genderOptions.map(gender => {return <option value={gender.value}>{gender.value}</option>})}
+            {genderOptions.map(gender => {return <option key={gender.value} value={gender.value}>{gender.value}</option>})}
             </select>
         </div>
 
@@ -112,7 +138,7 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
             value={data.industry}
             error={errors.industry}
           >
-            {industryOptions.map(industry => {return <option value={industry.value}>{industry.value}</option>})}
+            {industryOptions.map(industry => {return <option key={industry.value} value={industry.value}>{industry.value}</option>})}
             </select>
         </div>
 
@@ -125,10 +151,10 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
             value={data.ethnicity}
             error={errors.ethnicity}
           >
-            {ethnicityOptions.map(ehtnicity => {return <option value={ehtnicity.value}>{ehtnicity.value}</option>})}
+            {ethnicityOptions.map(ethnicity => {return <option key={ethnicity.value} value={ethnicity.value}>{ethnicity.value}</option>})}
             </select>
         </div>
-        <button className="edit-prof-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
+        <button className="finish-edit-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
       </form>
     </div>
   )

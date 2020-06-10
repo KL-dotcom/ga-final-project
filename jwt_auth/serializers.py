@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 from categories.serializers import CategorySerializer
 from images.serializers import ImageSerializerUser
 from baskets.serializers import BasketSerializer
-from tickets.serializers import TicketSerializer
+from tickets.serializers import TicketSerializer, PopulatedTicketSerializer
 
 User = get_user_model()
 
@@ -47,7 +47,7 @@ class PopulatedUserSerializer(UserSerializer):
     # interests = CategorySerializer(many=True)
     profile_images = ImageSerializerUser(many=True)
     users_basket = BasketSerializer(many=True)
-    ticket = TicketSerializer(many=True)
+    ticket = PopulatedTicketSerializer(many=True)
 
     # def update(self, instance, validated_data):
     #     category_label = [cdata['label']
