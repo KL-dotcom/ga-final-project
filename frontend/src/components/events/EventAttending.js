@@ -15,14 +15,9 @@ function EventAttending() {
   const { formData, handleChange, handleSubmit } = useForm({
     text: '', 
     talk: eventId
-  }, createComment, eventId) 
-  
+  }, createComment, eventId)
 
 
-  // const [answerA, setAnswerA] = React.useState(0)
-  // const [answerB, setAnswerB] = React.useState(0)
-  // const [answerC, setAnswerC] = React.useState(0)
-  // const [answerD, setAnswerD] = React.useState(0)
   const [answer, setAnswer] = React.useState(
     {
       answerA: 0,

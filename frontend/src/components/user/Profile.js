@@ -22,18 +22,18 @@ function ProfilePage() {
     <div className="body">
       <div className="prof-stats">
 
-      <div id="prof-pic-box">
-        <img id="prof-pic" src={profile.profile_images[0]?.image} alt={profile.name} loading="lazy" />
+        <div id="prof-pic-box">
+          <img id="prof-pic" src={profile.profile_images[0]?.image} alt={profile.name} loading="lazy" />
 
-      </div>
-      <p id="prof-username">{profile.username}</p>
-      <p>{profile.first_name} {profile.last_name}</p>
-      <p id="prof-email" >{profile.email}</p>
-      <p id="stats">Stats</p>
-      <p id="prof-age">{profile.age}</p>
-      <p id="prof-gender">{profile.gender}</p>
-      <p id="prof-industry">{profile.industry}</p>
-      <p id="prof-ethnicity">{profile.ethnicity}</p>
+        </div>
+        <p id="prof-username">{profile.username}</p>
+        <p>{profile.first_name} {profile.last_name}</p>
+        <p id="prof-email" >{profile.email}</p>
+        <p id="stats">Stats</p>
+        <p id="prof-age">{profile.age}</p>
+        <p id="prof-gender">{profile.gender}</p>
+        <p id="prof-industry">{profile.industry}</p>
+        <p id="prof-ethnicity">{profile.ethnicity}</p>
       </div>
       
       
