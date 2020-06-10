@@ -95,11 +95,11 @@ export const answerPoll = data => {
 
 export const getAllCategories = () => {
   return axios.get(`${baseUrl}/categories/`)
-  
+}
 export const updatePoll = (data, id) => {
   return axios.put(`${baseUrl}/polls/${id}/`, data, withHeaders())
 }
 
-export const answerPoll = data => {
-  return axios.post(`${baseUrl}/votes/`, data, withHeaders())
-}
+// export const answerPoll = data => {
+//   return axios.post(`${baseUrl}/votes/`, data, withHeaders())
+// }

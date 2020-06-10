@@ -7,7 +7,8 @@ import EventComment from './EventComment'
 import Spinner from '../common/Spinner'
 import useForm from '../../utils/useForm'
 import useFetchNew from '../../utils/useFetchNew'
-
+import { isAuthenticated } from '../../lib/auth'
+// import { isAttending } from '../../lib/auth'
 
 
 function EventAttending() {
@@ -29,7 +30,7 @@ function EventAttending() {
       answerD: 0
     })
 
-  console.log(event)
+
 
   if (error) {
     return <Redirect to="/notfound" />
@@ -41,8 +42,25 @@ function EventAttending() {
   //     newState.comments.push(response.data)
   //   })
   // }
+  console.log(isAuthenticated().sub)
 
+  
+  
   if (!event) return null
+  
+  const isAttending = () => {
+    const attendees = event.ticket.map(ticket => {
+      console.log(ticket.user)
+      return ticket.user
+    })
+    if (attendees.includes(isAuthenticated().sub)){
+      return (true)
+    }
+  
+    console.log(attendees)
+
+  }
+
 
   //   const handleChange = async () => {
   // await 
@@ -105,37 +123,37 @@ function EventAttending() {
                 {event.about}
               </div>
             </div>
-            <div className="poll-container">
-              {event.polls ?
-                event.polls.map(poll => (
-                  <EventPoll
-                    pollVote={pollVote}
-                    // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                    id={poll.id}
-                    key={poll.id}
+            { isAttending() ? 
+              <div className="poll-container">
+                {event.polls ?
+                  event.polls.map(poll => (
+                    <EventPoll
+                      pollVote={pollVote}
+                      // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                      id={poll.id}
+                      key={poll.id}
 
-                    {...poll} />
-                ))
-                : ''}
-            </div>
+                      {...poll} />
+                  ))
+                  : ''}
 
-            {event.comments ?
-              event.comments.map(poll => (
-                <EventComment
-                  style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                  key={poll.id}
-                  {...poll} />
-              ))
+                {event.comments ?
+                  event.comments.map(poll => (
+                    <EventComment
+                      style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                      key={poll.id}
+                      {...poll} />
+                  ))
+                  : ''}
+
+                <input
+                  onChange={handleChange}
+                  value={formData.text}
+                  name="text"
+                ></input>
+                <button onClick={handleSubmit}>Submit</button>
+              </div>
               : ''}
-
-
-            <input
-              onChange={handleChange}
-              value={formData.text}
-              name="text"
-            ></input>
-            <button onClick={handleSubmit}>Submit</button>
-
           </>
         }
       </div>
