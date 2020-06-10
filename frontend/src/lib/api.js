@@ -38,7 +38,7 @@ export const loginUser = data => {
 }
 
 export const getOwnProfile = () => {
-  return axios.get(`${baseUrl}/profile`, withHeaders())
+  return axios.get(`${baseUrl}/profile/`, withHeaders())
 }
 
 export const editProfile = (data) => {
@@ -78,3 +78,10 @@ export const getTicket = id => {
   return axios.get(`${baseUrl}/tickets/${id}/`, withHeaders())
 }
 
+export const createImage = data => {
+  return axios.post(`${baseUrl}/images/talk/`, data, withHeaders())
+}
+
+export const createPoll = data => {
+  return axios.post(`${baseUrl}/polls/`, data)
+}

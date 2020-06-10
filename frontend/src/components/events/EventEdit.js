@@ -6,21 +6,21 @@ import useForm from '../../utils/useForm'
 import useFetch from '../../utils/useFetch'
 
 import EventForm from './EventForm'
+import ImageForm from '../forms/ImageForm'
+import PollForm from '../forms/PollForm'
 
 function EventEdit() {
   const { id: eventId } = useParams()
   const history = useHistory()
-
   const { data: event, error } = useFetch(getSingleEvent, eventId)
-
   const onSubmitSuccess = () => {
     history.push(`/events/${eventId}`)
   }
 
   const { formData, handleChange, setFormData, formErrors, handleSubmit } = useForm({
-    name: '',
-    image: ''
-  }, editEvent, eventId, onSubmitSuccess) 
+    name: ''
+
+  }, editEvent, eventId, onSubmitSuccess)
 
   React.useEffect(() => {
     if (event) {
@@ -38,6 +38,8 @@ function EventEdit() {
     <div className="body">
       <h1>Edit your event</h1>
       <div className="form">
+        <ImageForm />
+        <PollForm />
         <EventForm
           data={formData}
           errors={formErrors}
