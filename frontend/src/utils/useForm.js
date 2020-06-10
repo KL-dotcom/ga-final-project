@@ -18,10 +18,7 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
 
     try {
       const response = await submitFn(formData, submitParams)
-<<<<<<< HEAD
-=======
       console.log('initial res', response)
->>>>>>> development
       onSubmitSuccess(response)
     } catch (err) {
       console.log(err.response)

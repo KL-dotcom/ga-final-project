@@ -160,6 +160,6 @@ return (
   </div>
 
 )
-}
+// }
 
 export default EventAttending

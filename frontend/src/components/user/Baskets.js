@@ -18,10 +18,6 @@ function Basket() {
     console.log(error)
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> development
   const makeTicket = () => {
 
     {
