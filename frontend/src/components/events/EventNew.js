@@ -1,27 +1,29 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { createEvent } from '../../lib/api'
-import { popupNotification } from '../../lib/notification'
+// import { popupNotification } from '../../lib/notification'
 import useForm from '../../utils/useForm'
 
 import EventForm from './EventForm'
+
 
 function EventNew() {
 
   const history = useHistory()
 
   const onSubmitSuccess = res => {
-    popupNotification('Event Added!')
-    history.push(`/events/${res.data._id}`)
+    // popupNotification('Event Added!')
+    history.push(`/events/${res.data.id}`)
   }
 
   const tempCategories = []
-  
+
   const { formData, handleChange, formErrors, handleSubmit } = useForm({
     name: '',
-    image: '',
-    categories: []
+    date_time: ''
   }, createEvent, null, onSubmitSuccess)
+
+
 
   const categoryPush = () => {
     console.log(tempCategories)

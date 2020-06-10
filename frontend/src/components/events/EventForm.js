@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function EventForm({ data, handleChange, handleSubmit , errors , submitText , categoryPush }) {
+function EventForm({ data, handleChange, handleSubmit, errors, submitText, categoryPush }) {
   return (
     <div className="event-form">
       <form onSubmit={handleSubmit}>
@@ -26,8 +26,8 @@ function EventForm({ data, handleChange, handleSubmit , errors , submitText , ca
             value={data.tempCategories}
           />
         </div>
-        <button onClick={categoryPush}></button>
-          
+        <button onClick={categoryPush}>Submit Categories</button>
+
         <div className="form-item">
           <input
             name="location"
@@ -38,7 +38,7 @@ function EventForm({ data, handleChange, handleSubmit , errors , submitText , ca
             error={errors.location}
           />
         </div>
-        
+
         <div className="form-item">
           <input
             name="price"
@@ -49,9 +49,10 @@ function EventForm({ data, handleChange, handleSubmit , errors , submitText , ca
             error={errors.price}
           />
         </div>
-        
+
         <div className="form-item">
           <input
+            type="datetime-local"
             name="date_time"
             label="date_time"
             placeholder="Date time"
@@ -62,7 +63,7 @@ function EventForm({ data, handleChange, handleSubmit , errors , submitText , ca
         </div>
 
         <div className="form-item">
-          <input
+          <textarea
             name="about"
             label="About"
             placeholder="About"

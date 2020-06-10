@@ -6,7 +6,7 @@ const initialState = {
   loading: true
 }
 
-function useFetch(request, params = null) {
+function useFetchNew(request, params = null) {
   const [state, setState] = React.useState(initialState)
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ function useFetch(request, params = null) {
     getData()
   }, [request, params])
 
-  return (state)
+  return { state: state, setState: setState }
 }
 
-export default useFetch
+export default useFetchNew

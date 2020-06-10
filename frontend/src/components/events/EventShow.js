@@ -21,6 +21,7 @@ function EventShow() {
       history.push('/notfound')
     }
   }
+  console.log(event)
 
   if (error) {
     return <Redirect to="/notfound" />
@@ -58,7 +59,10 @@ function EventShow() {
           <>
             <div className="title-container">
               <div className="title-image">
-                <img src={event.image} alt={event.name} loading="lazy" width="500" className="image" />
+                {event.talk_images.map(image => (
+                  <img src={image.image} key={image.id} loading="lazy" width="500" className="image" />
+                ))}
+
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>

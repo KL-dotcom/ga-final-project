@@ -3,18 +3,25 @@ import Button from 'react-bootstrap/Button';
 import '../../styles/main.scss'
 import { useParams, useHistory } from 'react-router-dom'
 import { getOwnBasket, createTicket, updateBasket } from '../../lib/api'
-import useFetch from '../../utils/useFetch'
+import useFetchNew from '../../utils/useFetchNew'
+
 
 function Basket() {
   const { id: basketId } = useParams()
-  const { data: basket, loading, error } = useFetch(getOwnBasket, basketId)
+  const result = useFetchNew(getOwnBasket, basketId)
+  const { data: basket, loading, error } = result.state
+  console.log('init state is ', basket)
+  const setState = result.setState
   const history = useHistory()
 
   if (error) {
     console.log(error)
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
   const makeTicket = () => {
 
     {
@@ -28,14 +35,20 @@ function Basket() {
 
   }
 
-  const handleClick = (item) => {
+  const handleClick = async (item) => {
     const newArr =
       basket.talk.filter(talk => (
         talk !== item
       )).map(obj => (obj.id))
-    console.log(newArr)
-    updateBasket({ 'talk': newArr }, basketId)
 
+    const res = await updateBasket({ 'talk': newArr }, basketId)
+
+    setState((oldState) => {
+
+      const newState = { ...oldState }
+      newState.data.talk = oldState.data.talk.filter((talk) => res.data.talk.includes(talk.id))
+      return newState
+    })
 
   }
 
@@ -48,8 +61,12 @@ function Basket() {
       <div className="basket-item">
       <h1>Your Basket</h1><hr></hr>
 
+<<<<<<< HEAD
         
         {basket.talk.map(item => (
+=======
+        {basket?.talk.map(item => (
+>>>>>>> development
           <div key={item.id}>
             <p className="talk-name">{item.name}</p>
             <p>{item.price}</p>
@@ -58,10 +75,15 @@ function Basket() {
             className="cancel" onClick={() => (handleClick(item))}>x</Button><hr></hr>
           </div>))}
 
+<<<<<<< HEAD
         <p>Total Price: <span style={{fontWeight: 'bold'}}>£{basket.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
         <Button
         variant="success"
         className="checkout" onClick={makeTicket}>Check Out</Button>
+=======
+        <p>Price: <span>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
+        <button onClick={makeTicket}>Check Out</button>
+>>>>>>> development
       </div>
 
     </div >
