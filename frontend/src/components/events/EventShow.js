@@ -29,15 +29,18 @@ function EventShow() {
   }
 
 
+  console.log('array length', event?.talk_images.length)
 
   const handleClick = async () => {
 
     try {
       const res = await createComment({ text: pending, talk: eventId })
+      res.data.user = { username: 'Your most recent comment' }
       console.log('res', res)
       setState((oldState) => {
         const newState = { ...oldState }
-        console.log(newState.data.comments.push(res.data))
+        newState.data.comments.push(res.data)
+        console.log(newState)
         return newState
       })
       setPending('')
@@ -112,13 +115,34 @@ function EventShow() {
   if (error) {
     return <Redirect to="/notfound" />
   }
+
+
+
   const filterOrigin = () => {
     if (!events) return null
-    const regexp = new RegExp(event.categories[0], 'i')
-    let filtered = events.filter(event => (
-      (regexp.test(event.categories))))
-    filtered = [filtered[1], filtered[2], filtered[3]]
+    const filtered = events.filter((item, index) => (
+      item.id !== parseFloat(eventId) && index < 3
+    ))
     return filtered
+  }
+
+
+  const picture = () => {
+    if (event.talk_images.length === 0) {
+      return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />
+    } else {
+      return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" width="150" height="150" />
+    }
+  }
+
+  const whichUser = async () => {
+    const res = await userBasket()
+    const commentWriter = res.data.user
+    if (event.comments.user.id === commentWriter) {
+      return <p>You:</p>
+    } else {
+      return <p>{event.comments.user.username}</p>
+    }
   }
 
 
@@ -145,10 +169,7 @@ function EventShow() {
           <>
             <div className="title-container">
               <div className="title-image">
-                {event.talk_images[0] ?
-                  < img src={event.talk_images[0].image} alt={event.name} loading="lazy"  className="image" />
-                  :
-                  <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />}
+                {picture()}
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>
@@ -202,12 +223,14 @@ function EventShow() {
                       event.comments.map(poll => (
                         <EventComment
                           // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                          whichUser={whichUser}
                           key={poll.id}
                           {...poll} />
+
                       ))
                       : ''}
                   </div>
-                  <div>
+                  <div className="create-comment">
                     <textarea
                       onChange={handleChange}
                       value={pending}
@@ -224,12 +247,14 @@ function EventShow() {
 
 
               <div className="similar-events">
-                <strong>Similar Events:</strong><br></br>
+                <strong>Other events you may like:</strong><br></br>
                 <div className="similar-events-cards">
-                  {/* 
-                  {filterOrigin().map(event => 
+
+                  {filterOrigin()?.map(event =>
                     <EventCard key={event.id} className="card" {...event} />
-                  )} */}
+                  )}
+                  {/* {filterOrigin()} */}
+
                 </div>
               </div>
 

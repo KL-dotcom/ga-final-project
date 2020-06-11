@@ -31,15 +31,16 @@ class Login extends React.Component {
   render() {
     const { formData, error } = this.state
     return (
-      <div className="body">
+      <div className="small-body">
         <div className="container">
           <div className="login">
-            <div className="title">Log In</div>
             <form onSubmit={this.handleSubmit}>
+
               <div className="form" style={{ height: '300px' }}>
                 <div className="error-msg">
                   {error && <small>{error}</small>}
                 </div>
+                <div className="title">Log In</div>
 
                 <div className="form-item">
                   <label> Email </label>

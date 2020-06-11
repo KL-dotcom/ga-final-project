@@ -71,7 +71,7 @@ function PollForm() {
             error={formErrors}
           />
         </div>
-        <button>Submit your Image</button>
+        <button>Submit your Poll</button>
       </form>
     </div>
   )
