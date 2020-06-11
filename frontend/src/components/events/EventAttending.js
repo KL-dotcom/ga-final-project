@@ -15,7 +15,8 @@ function EventAttending() {
   const result = useFetchNew(getSingleEvent, eventId)
   const { data: event, loading, error } = result.state
   const setState = result.setState
-
+  const history = useHistory()
+  // const { data: events } = useFetch(getAllEvents)
   const [pending, setPending] = React.useState('')
   const handleChange = e => {
     const text = e.target.value
@@ -46,12 +47,7 @@ function EventAttending() {
   }
 
   if (!event) return null
-  // const onSubmitSuccess = (response) => {
-  //   setState((oldState) => {
-  //     const newState = { ...oldState }
-  //     newState.comments.push(response.data)
-  //   })
-  // }
+
   console.log(isAuthenticated().sub)
 
 
@@ -71,10 +67,6 @@ function EventAttending() {
 
   }
 
-
-  //   const handleChange = async () => {
-  // await 
-  //   }
 
   const pollVote = async (id, value, number) => {
     const newValue = number + 1
@@ -155,7 +147,7 @@ function EventAttending() {
 
                 {/* <input
                   onChange={handleChange}
-                  value={formData.text}
+                  value={pending}
                   name="text"
                 ></input>
                 <button onClick={handleSubmit}>Submit</button> */}

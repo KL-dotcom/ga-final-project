@@ -1,12 +1,13 @@
 import React from 'react'
 
 
-function EventComment({ text , user }) {
+function EventComment({ text, user }) {
   return (
 
     <div className="comment">
-      {text}
-      {/* {userId} */}
+      {/* <p>{user.username}:</p> */}
+      <p> {text}</p>
+      <hr />
     </div>
 
   )

@@ -29,24 +29,26 @@ function ProfileForm({ data, handleChange, handleSubmit , errors , submitText })
 //     // setInterestNames(interestNames)
 //   }
 // }
+
+
 if (!data.profile_images) return null
-// console.log(data.profile_images[0].image)
+// console.log(data)
   return (
     <div className="prof-form">
       <h1>Edit your Profile</h1>
       
       <form onSubmit={handleSubmit}>
-
-      {/* <div className="form-item">
+      <div className="form-item">
           <input
-            name="profile_images"
+            name="profile_image"
             label="Profile Images"
-            placeholder="Profile Url"
+            placeholder="Profile Pic Url"
             onChange={handleChange}
-            value={data.profile_images[0].image}
-            error={errors.profile_images}
+            // value={data.profile_images[0].image}
+            value={data.profile_image}
+            error={errors.profile_image}
           />
-        </div> */}
+        </div>
 
         <div className="form-item">
           <input

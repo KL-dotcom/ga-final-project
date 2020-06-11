@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
-import { getSingleEvent, getAllEvents, deleteEvent, userBasket, updateBasket , updatePoll , createComment } from '../../lib/api'
+import { getSingleEvent, getAllEvents, deleteEvent, userBasket, updateBasket, updatePoll, createComment } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
 import EventCard from './EventCard'
 import Spinner from '../common/Spinner'
@@ -8,57 +8,70 @@ import { isOwner } from '../../lib/auth'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 
-import useForm from '../../utils/useForm'
 import useFetchNew from '../../utils/useFetchNew'
 import { isAuthenticated } from '../../lib/auth'
 // import { isAttending } from '../../lib/auth'
+import { popupToasty } from '../../lib/toasty'
+import Notifications from 'react-notify-toast'
 
 
 function EventShow() {
   const { id: eventId } = useParams()
   const result = useFetchNew(getSingleEvent, eventId)
-  const { data: event, loading, error } = useFetch(getSingleEvent, eventId)
-  const { data: events } = useFetch(getAllEvents)
+  const { data: event, loading, error } = result.state
   const setState = result.setState
-  const { formData, handleChange, handleSubmit } = useForm({
-    text: '',
-    talk: eventId
-  }, createComment, eventId)
   const history = useHistory()
-  // const eventImage = event.talk_images
+  const { data: events } = useFetch(getAllEvents)
+  const [pending, setPending] = React.useState('')
+  const handleChange = e => {
+    const text = e.target.value
+    setPending(text)
+  }
 
 
 
-  const [answer, setAnswer] = React.useState(
-    {
-      answerA: 0,
-      answerB: 0,
-      answerC: 0,
-      answerD: 0
-    })
+  const handleClick = async () => {
+
+    try {
+      const res = await createComment({ text: pending, talk: eventId })
+      console.log('res', res)
+      setState((oldState) => {
+        const newState = { ...oldState }
+        console.log(newState.data.comments.push(res.data))
+        return newState
+      })
+      setPending('')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
   if (error) {
     return <Redirect to="/notfound" />
   }
 
-  console.log(isAuthenticated().sub)
+  if (!event) return null
+
+  // console.log(isAuthenticated().sub)
 
 
-  if (!event || !events) return null
+
+  if (!event) return null
 
   const isAttending = () => {
     const attendees = event.ticket.map(ticket => {
-      console.log(ticket.user)
+      // console.log(ticket.user)
       return ticket.user
     })
-    if (attendees.includes(isAuthenticated().sub)){
+    if (attendees.includes(isAuthenticated().sub)) {
       return (true)
     }
-    
-    console.log(attendees)
-  
+
+    // console.log(attendees)
+
   }
+
 
   const pollVote = async (id, value, number) => {
     const newValue = number + 1
@@ -72,26 +85,19 @@ function EventShow() {
     } else {
       res = await updatePoll({ option_d_count: newValue }, id)
     }
-  
+
     setState((oldState) => {
       const newState = { ...oldState }
-      console.log('os ', oldState)
-      console.log('dat ', res)
       newState.data.polls = oldState.data.polls.map((poll) => {
         if (poll.id === res.data.id) {
-          console.log('Got a match and making a replacement')
           return res.data
         } else {
-          console.log('no match')
           return poll
         }
       })
-      console.log('new state', newState)
       return newState
     })
-    console.log('event', event)
   }
-
   const handleDelete = async () => {
     try {
       await deleteEvent(eventId)
@@ -100,7 +106,8 @@ function EventShow() {
       history.push('/notfound')
     }
   }
-  console.log(event)
+
+
 
   if (error) {
     return <Redirect to="/notfound" />
@@ -117,37 +124,38 @@ function EventShow() {
 
   const addToBasket = async () => {
     const res = await userBasket()
-    const basket = res.data[0]
+    const basket = res.data
+    console.log(basket)
+
+    popupToasty('Added to Basket!')
     await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
 
   }
 
-  const addToWishlist = e => {
-    console.log(e.target.value)
-  }
   console.log(event.host.id)
   console.log(isOwner(event.host.id))
 
   return (
     <div className="body">
       <div className="container">
-
+        <Notifications />
         {loading ?
           <Spinner />
           :
           <>
             <div className="title-container">
               <div className="title-image">
-                {event.talk_images.map(image => (
-                  <img src={image.image} key={image.id} loading="lazy" width="500" className="image" />
-                ))}
-
+                {event.image ?
+                  < img src={event.image} alt={event.name} loading="lazy" width="150" height="150" />
+                  :
+                  <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />}
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>
                 <div className="host">Hosted by: {event.host.username}</div>
                 <div className="location">Location: {event.location}</div>
                 <div className="price">Price: £{event.price}</div>
+                <div className="date-time">{event.date_time.replace('T', ' at ').replace(':00Z', '')}</div>
                 {isOwner(event.host.id) ?
                   <div className="owner-buttons">
                     <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link>
@@ -157,8 +165,8 @@ function EventShow() {
               </div>
             </div>
             <div className="interest-buttons">
-              <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button>
-              <button onClick={addToBasket} value="Basket" >Add to basket</button>
+              {/* <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button> */}
+              {!isAttending() && <button onClick={addToBasket} value="Basket" >Add to basket</button>}
             </div>
             <div className="description">
               <div className="title-wording">
@@ -173,49 +181,55 @@ function EventShow() {
               ))}
             </div>
 
-            { isAttending() ? 
-              <div className="poll-container">
-                {event.polls ?
-                  event.polls.map(poll => (
-                    <EventPoll
-                      pollVote={pollVote}
-                      // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                      id={poll.id}
-                      key={poll.id}
+            {isAttending() ?
+              <div className="paricipation-container">
+                <div className="poll-container">
+                  {event.polls ?
+                    event.polls.map(poll => (
+                      <EventPoll
+                        pollVote={pollVote}
+                        // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                        id={poll.id}
+                        key={poll.id}
 
-                      {...poll} />
-                  ))
-                  : ''}
-
-                {event.comments ?
-                  event.comments.map(poll => (
-                    <EventComment
-                      style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
-                      key={poll.id}
-                      {...poll} />
-                  ))
-                  : ''}
-
-                <input
-                  onChange={handleChange}
-                  value={formData.text}
-                  name="text"
-                ></input>
-                <button onClick={handleSubmit}>Submit</button>
+                        {...poll} />
+                    ))
+                    : ''}
+                </div>
+                <div>
+                  <div>
+                    {event.comments ?
+                      event.comments.map(poll => (
+                        <EventComment
+                          // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
+                          key={poll.id}
+                          {...poll} />
+                      ))
+                      : ''}
+                  </div>
+                  <div>
+                    <textarea
+                      onChange={handleChange}
+                      value={pending}
+                      name="text"
+                    ></textarea>
+                    <button onClick={handleClick}>Submit</button>
+                  </div>
+                </div>
               </div>
-              : 
-            
-            
-            
-            
-            
+              :
+
+
+
+
+
               <div className="similar-events">
                 <strong>Similar Events:</strong><br></br>
                 <div className="similar-events-cards">
-
+                  {/* 
                   {filterOrigin().map(event => 
                     <EventCard key={event.id} className="card" {...event} />
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -228,7 +242,7 @@ function EventShow() {
           </>
         }
       </div>
-    </div>
+    </div >
 
   )
 }

@@ -70,6 +70,6 @@ class BasketUserView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get(self, request):
-        basket = Basket.objects.get(user=request.user.id)
+        basket = Basket.objects.get(user_id=request.user.id)
         serialized_baskets = BasketSerializer(basket)
         return Response(serialized_baskets.data, status=status.HTTP_200_OK)

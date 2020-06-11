@@ -366,15 +366,15 @@ text-decoration: none;
 }
 
 // EventPoll
+.paricipation-container{
 .poll-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
 
 .poll {
   margin: 10px;
+  min-width: 500px;
   .answers {
+
   margin: 5px;
   h3 {
     font-size: 20px;
@@ -416,6 +416,9 @@ text-decoration: none;
 }
 }
 }
+}
+
+
 
 
 

@@ -146,6 +146,10 @@ function EventIndex() {
     setFilteredEvents(filtered)
   }
 
+  const handleReset = () => {
+
+    setFilteredEvents('')
+  }
 
 
   console.log(priceFilter)
