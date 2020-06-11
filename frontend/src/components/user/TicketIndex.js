@@ -27,7 +27,7 @@ console.log(profile.ticket)
   key={tick.id}
   value={tick.id}
   onClick={handleTicketSelect}
-  >{tick.talk.name} </button>)}
+  >{tick.talk.name} - {tick.id} </button>)}
       </div>
       <button onClick={handleBackButton}>Back</button>
 

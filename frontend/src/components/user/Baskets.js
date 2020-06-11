@@ -5,7 +5,6 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getOwnBasket, createTicket, updateBasket } from '../../lib/api'
 import useFetchNew from '../../utils/useFetchNew'
 
-
 function Basket() {
   const { id: basketId } = useParams()
   const result = useFetchNew(getOwnBasket, basketId)
@@ -19,7 +18,6 @@ function Basket() {
   }
 
   const makeTicket = () => {
-
     {
       basket.talk.map(item => (
         createTicket({ 'talk': item.id, 'image': `https://api.qrserver.com/v1/create-qr-code/?data=talk=${item.id}&size=300x300` }, basketId)
@@ -55,6 +53,7 @@ function Basket() {
   return (
     <div className="body">
       <div className="basket-item">
+
         <h1>Your Basket</h1><hr></hr>
 
         {basket?.talk.map(item => (

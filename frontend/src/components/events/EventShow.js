@@ -12,6 +12,8 @@ import useForm from '../../utils/useForm'
 import useFetchNew from '../../utils/useFetchNew'
 import { isAuthenticated } from '../../lib/auth'
 // import { isAttending } from '../../lib/auth'
+import { popupToasty } from '../../lib/toasty'
+import Notifications from 'react-notify-toast'
 
 
 function EventShow() {
@@ -118,6 +120,7 @@ function EventShow() {
   const addToBasket = async () => {
     const res = await userBasket()
     const basket = res.data[0]
+    popupToasty('Added to Basket!')
     await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
 
   }
@@ -131,7 +134,7 @@ function EventShow() {
   return (
     <div className="body">
       <div className="container">
-
+<Notifications />
         {loading ?
           <Spinner />
           :
@@ -213,9 +216,9 @@ function EventShow() {
                 <strong>Similar Events:</strong><br></br>
                 <div className="similar-events-cards">
 
-                  {filterOrigin().map(event => 
+                  {/* {filterOrigin().map(event => 
                     <EventCard key={event.id} className="card" {...event} />
-                  )}
+                  )} */}
                 </div>
               </div>
 
