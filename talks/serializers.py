@@ -5,7 +5,7 @@ from django.apps import apps
 
 from polls.serializers import PopulatedPollSerializer
 from images.serializers import ImageSerializerTalk
-from comments.serializers import CommentSerializer
+from comments.serializers import PopulatedCommentSerializer
 from tickets.serializers import TicketSerializer
 
 from .models import Talk
@@ -39,7 +39,7 @@ class PopulatedTalkSerializer(TalkSerializer):
     categories = CategorySerializer(many=True)
     polls = PopulatedPollSerializer(many=True)
     talk_images = ImageSerializerTalk(many=True)
-    comments = CommentSerializer(many=True)
+    comments = PopulatedCommentSerializer(many=True)
     ticket = TicketSerializer(many=True)
 
     # def update(self, instance, validated_data):
