@@ -35,10 +35,11 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
   // console.log(data)
   return (
     <div className="prof-form">
-      <h1>Edit your Profile</h1>
+      <h1>Edit your Profile</h1><hr></hr>
 
       <form onSubmit={handleSubmit}>
         <div className="form-item">
+          Profile Image<br></br>
           <input
             name="profile_image"
             label="Profile Images"
@@ -48,9 +49,10 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.profile_image}
             error={errors.profile_image}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Username<br></br>
           <input
             name="username"
             label="Username"
@@ -59,9 +61,10 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.username}
             error={errors.username}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          First Name<br></br>
           <input
             name="first_name"
             label="firstName"
@@ -70,9 +73,10 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.first_name}
             error={errors.first_name}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Last Name<br></br>
           <input
             name="last_name"
             label="LastName"
@@ -81,9 +85,10 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.last_name}
             error={errors.last_name}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Email<br></br>
           <input
             name="email"
             label="Email"
@@ -92,38 +97,25 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.email}
             error={errors.email}
           />
-        </div>
-
-        {/* <div className="form-item">
-          <input
-            name="profile_images"
-            label="Profile Image"
-            placeholder="Profile Image"
-            onChange={handleChange}
-            value={data.profile_images}
-            error={errors.profile_images}
-          />
-        </div> */}
-
+        </div><hr></hr>
 
         <div className="form-item">
+          Age<br></br>
           <select
             name="age"
             label="Age"
             placeholder="Age"
             onChange={handleChange}
             value={data.age}
-            error={errors.age}
-            defaultValue="default-age"
-          >
-            <option value="default-age" disabled>age</option>
+            error={errors.age}>
             {ageOptions.map(age => {
               return <option key={age.value} value={age.value}>{age.value}</option>
             })}
           </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Gender<br></br>
           <select
             name="gender"
             label="Gender"
@@ -133,14 +125,14 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.gender}
             defaultValue="default-gender"
           >
-            <option value="default-gender" disabled>gender</option>
             {genderOptions.map(gender => {
               return <option key={gender.value} value={gender.value}>{gender.value}</option>
             })}
           </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Industry Profession<br></br>
           <select
             name="industry"
             label="industry"
@@ -150,14 +142,14 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.industry}
             defaultValue="default-industry"
           >
-            <option value="default-industry" disabled>Industry</option>
             {industryOptions.map(industry => {
               return <option key={industry.value} value={industry.value}>{industry.value}</option>
             })}
           </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Ethnicity<br></br>
           <select
             name="ethnicity"
             label="ethnicity"
@@ -167,11 +159,10 @@ function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.ethnicity}
             defaultValue="default-ethnicity"
           >
-            <option value="default-ethnicity" disabled>Ethnicity</option>
             {ethnicityOptions.map(ethnicity => {
               return <option key={ethnicity.value} value={ethnicity.value}>{ethnicity.value}</option>
             })}
-          </select>
+          </select> <hr></hr>
         </div>
         <button className="finish-edit-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
       </form>

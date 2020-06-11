@@ -45,7 +45,7 @@ class Register extends React.Component {
   render() {
     const { formData, errors } = this.state
     return (
-      <div className="body">
+      <div className="small-body">
         <div className="section">
           <div className="container">
             <div className="register">
@@ -65,20 +65,6 @@ class Register extends React.Component {
                   </div>
 
 
-                  {/* <div className="form-item">
-                  <label> Name </label>
-                  <input type="text"
-                    name="name"
-                    onChange={this.handleChange}
-                    value={formData.name}
-                    className={errors.name ? 'error' : ''}
-                  />
-                </div>
-                <div className="error-msg">
-                  {errors.name && <small>{errors.name}</small>}
-                </div> */}
-
-
                   <div className="form-item">
                     <label> Email: </label>
                     <input type="email"
@@ -91,21 +77,6 @@ class Register extends React.Component {
                   <div className="error-msg">
                     {errors.email && <small>{errors.email}</small>}
                   </div>
-
-                  {/* 
-                <div className="form-item">
-                  <label> Home Base: </label>
-                  <input type="text"
-                    name="homeBase"
-                    onChange={this.handleChange}
-                    value={formData.homeBase}
-                    className={errors.homeBase ? 'error' : ''}
-                  />
-                </div>
-                <div className="error-msg">
-                  {errors.homeBase && <small>{errors.homeBase}</small>}
-                </div> */}
-
 
                   <div className="form-item">
                     <label> Password: </label>
@@ -141,6 +112,7 @@ class Register extends React.Component {
             </div>
           </div>
         </div>
+
       </div>
     )
   }

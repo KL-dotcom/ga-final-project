@@ -16,7 +16,7 @@ const Navbar = () => {
 
 
     <div className="navbar">
-      <div className="navbar-content">
+      {/* <div className="navbar-content"> */}
         <div className="navbar-left">
           <Link to='/events' className="link">Events</Link>
           {isAuthenticated() && <Link to='/events/new' className="link">New Event</Link>}
@@ -29,7 +29,7 @@ const Navbar = () => {
           {isAuthenticated() && <Link to='/profile' className="link">Profile</Link>}
           {isAuthenticated() && <span onClick={handleLogout} className="link">Logout</span>}
         </div>
-      </div>
+      {/* </div> */}
       <div className="navbar-line"></div>
     </div>
 
