@@ -26,11 +26,15 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             onChange={handleChange}
             value={data.location}
             error={errors.location}
+            defaultValue="DEFAULT"
           >
-            {locationOptions.map(location => {return <option key={location.label} value={location.label}>{location.label}</option>})}
-            </select>
+            <option value="DEFAULT" disabled>Location</option>
+            {locationOptions.map(location => {
+              return <option key={location.label} value={location.label}>{location.label}</option>
+            })}
+          </select>
         </div>
-{/* 
+        {/* 
         <div className="form-item">
           <input
             name="location"
@@ -76,7 +80,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
           />
         </div>
 
-        <div className="form-item">
+        {/* <div className="form-item">
           <input
             name="talk_images"
             label="talk_images"
@@ -85,7 +89,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             value={data.talk_images}
             error={errors.talk_images}
           />
-        </div>
+        </div> */}
 
 
 

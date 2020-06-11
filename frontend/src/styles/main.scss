@@ -365,8 +365,13 @@ text-decoration: none;
 }
 }
 
-// EventPoll
+// show page
+
+
+//polls and comments
 .paricipation-container{
+
+// polls
 .poll-container {
 
 
@@ -402,8 +407,10 @@ text-decoration: none;
     margin: 7px;
   }
 .option-container {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // flex-wrap: wrap;
   p {
     padding: 5px;
   }
@@ -416,6 +423,16 @@ text-decoration: none;
 }
 }
 }
+//comments
+.create-comment {
+  display: flex;
+  margin-bottom: 30px;
+  textarea {
+    width: 350px;
+  }
+}
+
+
 }
 
 

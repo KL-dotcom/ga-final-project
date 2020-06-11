@@ -9,6 +9,7 @@ from .models import Comment
 from .serializers import CommentSerializer, PopulatedCommentSerializer
 
 
+
 class CommentListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 

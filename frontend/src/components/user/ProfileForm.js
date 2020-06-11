@@ -2,43 +2,43 @@ import React from 'react'
 import { genderOptions, ageOptions, industryOptions, ethnicityOptions } from '../../lib/userOptions'
 
 
-function ProfileForm({ data, handleChange, handleSubmit , errors , submitText }) {
-// const [colorInt, setColorInt] = useState('purple')
-// const [userInterests, setUserInterests] = useState([])
+function ProfileForm({ data, handleChange, handleSubmit, errors, submitText }) {
+  // const [colorInt, setColorInt] = useState('purple')
+  // const [userInterests, setUserInterests] = useState([])
 
-// if (!categories) return null
-// const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
-// setUserInterests(interestNames)
-// const categoryNames = categories.map(category => { return category.name})
-
-
-// const addToInterests = (e) => {
-//   const name = e.target.id
-//   const index = interestNames.indexOf(name)
-
-//   if (interestNames.includes(name)) {
-//     interestNames.splice(index, 1)
-//     console.log('taking out')
-//     console.log(interestNames)
-//     // setInterestNames(interestNames)
-
-//   } else {
-//     interestNames.push(name)
-//     console.log('adding')
-//     console.log(interestNames)
-//     // setInterestNames(interestNames)
-//   }
-// }
+  // if (!categories) return null
+  // const interestNames = interests ? interests.map(interest => { return interest.name}) : ""
+  // setUserInterests(interestNames)
+  // const categoryNames = categories.map(category => { return category.name})
 
 
-if (!data.profile_images) return null
-// console.log(data)
+  // const addToInterests = (e) => {
+  //   const name = e.target.id
+  //   const index = interestNames.indexOf(name)
+
+  //   if (interestNames.includes(name)) {
+  //     interestNames.splice(index, 1)
+  //     console.log('taking out')
+  //     console.log(interestNames)
+  //     // setInterestNames(interestNames)
+
+  //   } else {
+  //     interestNames.push(name)
+  //     console.log('adding')
+  //     console.log(interestNames)
+  //     // setInterestNames(interestNames)
+  //   }
+  // }
+
+
+  if (!data.profile_images) return null
+  // console.log(data)
   return (
     <div className="prof-form">
       <h1>Edit your Profile</h1>
-      
+
       <form onSubmit={handleSubmit}>
-      <div className="form-item">
+        <div className="form-item">
           <input
             name="profile_image"
             label="Profile Images"
@@ -60,7 +60,7 @@ if (!data.profile_images) return null
             error={errors.username}
           />
         </div>
-          
+
         <div className="form-item">
           <input
             name="first_name"
@@ -82,7 +82,7 @@ if (!data.profile_images) return null
             error={errors.last_name}
           />
         </div>
-        
+
         <div className="form-item">
           <input
             name="email"
@@ -105,7 +105,7 @@ if (!data.profile_images) return null
           />
         </div> */}
 
-        
+
         <div className="form-item">
           <select
             name="age"
@@ -113,9 +113,14 @@ if (!data.profile_images) return null
             placeholder="Age"
             onChange={handleChange}
             value={data.age}
-            error={errors.age}>
-            {ageOptions.map(age => {return <option key={age.value} value={age.value}>{age.value}</option>})}
-            </select>
+            error={errors.age}
+            defaultValue="default-age"
+          >
+            <option value="default-age" disabled>age</option>
+            {ageOptions.map(age => {
+              return <option key={age.value} value={age.value}>{age.value}</option>
+            })}
+          </select>
         </div>
 
         <div className="form-item">
@@ -126,9 +131,13 @@ if (!data.profile_images) return null
             onChange={handleChange}
             value={data.gender}
             error={errors.gender}
+            defaultValue="default-gender"
           >
-            {genderOptions.map(gender => {return <option key={gender.value} value={gender.value}>{gender.value}</option>})}
-            </select>
+            <option value="default-gender" disabled>gender</option>
+            {genderOptions.map(gender => {
+              return <option key={gender.value} value={gender.value}>{gender.value}</option>
+            })}
+          </select>
         </div>
 
         <div className="form-item">
@@ -139,9 +148,13 @@ if (!data.profile_images) return null
             onChange={handleChange}
             value={data.industry}
             error={errors.industry}
+            defaultValue="default-industry"
           >
-            {industryOptions.map(industry => {return <option key={industry.value} value={industry.value}>{industry.value}</option>})}
-            </select>
+            <option value="default-industry" disabled>Industry</option>
+            {industryOptions.map(industry => {
+              return <option key={industry.value} value={industry.value}>{industry.value}</option>
+            })}
+          </select>
         </div>
 
         <div className="form-item">
@@ -152,9 +165,13 @@ if (!data.profile_images) return null
             onChange={handleChange}
             value={data.ethnicity}
             error={errors.ethnicity}
+            defaultValue="default-ethnicity"
           >
-            {ethnicityOptions.map(ethnicity => {return <option key={ethnicity.value} value={ethnicity.value}>{ethnicity.value}</option>})}
-            </select>
+            <option value="default-ethnicity" disabled>Ethnicity</option>
+            {ethnicityOptions.map(ethnicity => {
+              return <option key={ethnicity.value} value={ethnicity.value}>{ethnicity.value}</option>
+            })}
+          </select>
         </div>
         <button className="finish-edit-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
       </form>
