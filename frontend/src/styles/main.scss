@@ -4,6 +4,11 @@
 *{
   margin:0;
   font-family: 'Josefin Sans', sans-serif;
+  
+}
+
+.reset-button{
+  margin-top: 200px;
 }
 
 .body{
@@ -13,7 +18,7 @@
   margin-top: 69px;
   margin-bottom: 30px;
   background-color: rgb(245, 241, 237);
-  height: 1000px;
+  // height: 1000px;
   line-height: 25px;
 
   .container{
@@ -40,12 +45,16 @@
       justify-content: space-between;
       width: 100%;
       .title-image{
+        overflow: hidden;
         .image{
           width: 400px;
-          height: 300px; 
+          height: 400px; 
           object-fit: cover;
         }
       }
+
+
+
       .owner-buttons{
         display: flex;
         flex-direction: column;
@@ -297,24 +306,42 @@ button.my-tickets-buton{
   margin-top: 50px;
   margin-bottom: 30px;
   background-color: rgb(245, 241, 237);
+
 }
 
 .filter-container{
   height: 100vh;
-  background-color: palevioletred;
+  // background-color: white;
   overflow-y : auto;
   position: fixed;
-  margin-bottom: 100px;
+
   .filters{
-    margin-bottom: 50px;
-    width: 300px;
-    background-color: palegoldenrod;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+    margin-top: 15px;
+    // margin-bottom: 200px;
+    width: 240px;
+    background-color: white;
     .filter-item {
-      background-color: paleturquoise;
-      height: 400px;
+      display: flex;
+      flex-direction: column;
+      // background-color: paleturquoise;
       margin: 5px;
+      .filter-option{
+        width: 210px;
+        margin: 3px 0px;
+        border: none;
+        background-color: white;
+      }
+        .filter-option-selected{
+          background-color: blue;
+          color: white;
+          border: none;
+        }
+      
     }
   }
 }
@@ -331,6 +358,7 @@ text-decoration: none;
 .event-card{
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: white;
   width: 100%;
   height: 150px;
@@ -339,6 +367,14 @@ text-decoration: none;
   .card-left{
     background-color: white;
     margin: 5px;
+    .crop{
+      overflow: hidden;
+      .image{
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      }
+    }
   }
   .card-right{
     background-color: white;
@@ -358,6 +394,19 @@ text-decoration: none;
       color: black;
       font-weight: 300;
       margin: 3px;
+    }
+    .tags{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .tag{
+        font-size: 14px;
+        background-color: lightblue;
+        margin: 3px;
+        padding: 1px 3px;
+        border-radius: 3px;
+      }
     }
   }
 

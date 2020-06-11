@@ -1,16 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ categories, name, id, image, location, date_time }) {
+function EventCard({ categories, name, id, talk_images, location, date_time }) {
 
   return (
     <Link className="link" to={`/events/${id}`}>
       <div className="event-card">
         <div className="card-left">
-          {image ?
-            < img src={image} alt={name} loading="lazy" width="150" height="150" />
+          {talk_images[0] ?
+            <div className="crop">
+              < img src={talk_images[0].image} alt={name} loading="lazy"  height="105" className="image"/>
+            </div>
             :
-            <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={name} loading="lazy" width="150" height="150" />}
+            <div className="crop">
+              <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={name} loading="lazy" height="105" />
+            </div>
+          }
 
         </div>
         <div className="card-right">
@@ -19,9 +24,8 @@ function EventCard({ categories, name, id, image, location, date_time }) {
           <div className="date-time">{date_time.replace('T', ' at ').replace(':00Z', '')}</div>
           <div className="tags">
             <strong>Tags:</strong><br></br>
-
             {categories.map(category => (
-              <h4 key={category.id}>{category.name}</h4>
+              <div key={category.id} className="tag">{category.name}</div>
             ))}
           </div>
         </div>

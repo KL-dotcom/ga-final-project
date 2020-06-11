@@ -145,8 +145,8 @@ function EventShow() {
           <>
             <div className="title-container">
               <div className="title-image">
-                {event.image ?
-                  < img src={event.image} alt={event.name} loading="lazy" width="150" height="150" />
+                {event.talk_images[0] ?
+                  < img src={event.talk_images[0].image} alt={event.name} loading="lazy"  className="image" />
                   :
                   <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />}
               </div>
