@@ -147,7 +147,7 @@ function EventAttending() {
 
                 {/* <input
                   onChange={handleChange}
-                  value={formData.text}
+                  value={pending}
                   name="text"
                 ></input>
                 <button onClick={handleSubmit}>Submit</button> */}

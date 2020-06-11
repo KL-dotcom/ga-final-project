@@ -11,6 +11,8 @@ import EventComment from './EventComment'
 import useFetchNew from '../../utils/useFetchNew'
 import { isAuthenticated } from '../../lib/auth'
 // import { isAttending } from '../../lib/auth'
+import { popupToasty } from '../../lib/toasty'
+import Notifications from 'react-notify-toast'
 
 
 function EventShow() {
@@ -124,6 +126,8 @@ function EventShow() {
     const res = await userBasket()
     const basket = res.data
     console.log(basket)
+
+    popupToasty('Added to Basket!')
     await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
 
   }
@@ -134,7 +138,7 @@ function EventShow() {
   return (
     <div className="body">
       <div className="container">
-
+        <Notifications />
         {loading ?
           <Spinner />
           :
@@ -238,7 +242,7 @@ function EventShow() {
           </>
         }
       </div>
-    </div>
+    </div >
 
   )
 }

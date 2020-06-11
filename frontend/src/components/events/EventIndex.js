@@ -28,7 +28,8 @@ function EventIndex() {
   }
 
   const handleReset = () => {
-    console.log('reset')
+
+    setFilteredEvents('')
   }
 
   // const handleSearch = e => {

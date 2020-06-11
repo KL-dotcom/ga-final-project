@@ -25,7 +25,7 @@ function ProfilePage() {
       <div className="prof-stats">
 
         <div id="prof-pic-box">
-          <img id="prof-pic" src={profile.profile_images[0]?.image} alt={profile.name} loading="lazy" />
+          <img id="prof-pic" src={profile.profile_image} alt={profile.name} loading="lazy" />
 
         </div>
         <p id="prof-username">{profile.username}</p>
