@@ -27,6 +27,9 @@ function EventIndex() {
     console.log(filtered)
   }
 
+  const handleReset = () => {
+    console.log('reset')
+  }
 
   // const handleSearch = e => {
   //   const search = e.target.value
@@ -55,14 +58,14 @@ function EventIndex() {
           <input className="input" type="text" onChange={handleSearch} placeholder="Search..." />
           <button onClick={handleReset}>Reset Filter</button>
           <div className="filter-item">Location
-  {locationOptions.map(location => <button onClick={handleSearch} value={location.label} key={location.label}>{location.label}</button>)}
+            {locationOptions.map(location => <button onClick={handleSearch} value={location.label} key={location.label}>{location.label}</button>)}
           </div>
           <div className="filter-item">Category
-  {categoryOptions.map(category => <button onClick={handleSearch} value={category.label} key={category.label}>{category.label}</button>)}
+            {categoryOptions.map(category => <button onClick={handleSearch} value={category.label} key={category.label}>{category.label}</button>)}
 
           </div>
           <div className="filter-item">Price
-  {priceOptions.map(price => <button onClick={handleSearch} value={price.value} key={price.label}>{price.label}</button>)}
+            {priceOptions.map(price => <button onClick={handleSearch} value={price.value} key={price.label}>{price.label}</button>)}
 
           </div>
 

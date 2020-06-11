@@ -54,7 +54,7 @@ export const updateBasket = (data, id) => {
 }
 
 export const userBasket = () => {
-  return axios.get(`${baseUrl}/basket/`, withHeaders())
+  return axios.get(`${baseUrl}/basket/query`, withHeaders())
 }
 
 export const createBasket = () => {

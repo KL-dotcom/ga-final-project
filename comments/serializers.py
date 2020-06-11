@@ -18,4 +18,4 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PopulatedCommentSerializer(CommentSerializer):
-    owner = UserSerializer()
+    user = UserSerializer()
