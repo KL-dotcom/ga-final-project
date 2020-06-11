@@ -9,8 +9,8 @@ function EventComment({ text, user }) {
   return (
 
     <div className="comment">
-      <p>{user.username}:</p>
-      <p> {text}</p>
+      <div className="comment-title">{user.username}:</div>
+      <div className="comment-text"> {text}</div>
       <hr />
     </div>
 

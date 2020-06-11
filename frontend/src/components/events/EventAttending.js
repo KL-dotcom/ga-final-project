@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
-import { getSingleEvent, deleteEvent, createComment, updatePoll } from '../../lib/api'
+import { Redirect, useParams } from 'react-router-dom'
+import { getSingleEvent, createComment, updatePoll } from '../../lib/api'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 import Spinner from '../common/Spinner'
-import useForm from '../../utils/useForm'
+
 import useFetchNew from '../../utils/useFetchNew'
 import { isAuthenticated } from '../../lib/auth'
-// import { isAttending } from '../../lib/auth'
+
 
 
 function EventAttending() {
@@ -15,7 +15,7 @@ function EventAttending() {
   const result = useFetchNew(getSingleEvent, eventId)
   const { data: event, loading, error } = result.state
   const setState = result.setState
-  const history = useHistory()
+
   // const { data: events } = useFetch(getAllEvents)
   const [pending, setPending] = React.useState('')
   const handleChange = e => {
