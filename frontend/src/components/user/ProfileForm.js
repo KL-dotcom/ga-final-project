@@ -35,10 +35,11 @@ if (!data.profile_images) return null
 // console.log(data)
   return (
     <div className="prof-form">
-      <h1>Edit your Profile</h1>
+      <h1>Edit your Profile</h1><hr></hr>
       
       <form onSubmit={handleSubmit}>
       <div className="form-item">
+        Profile Image<br></br>
           <input
             name="profile_image"
             label="Profile Images"
@@ -48,9 +49,10 @@ if (!data.profile_images) return null
             value={data.profile_image}
             error={errors.profile_image}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Username<br></br>
           <input
             name="username"
             label="Username"
@@ -59,9 +61,10 @@ if (!data.profile_images) return null
             value={data.username}
             error={errors.username}
           />
-        </div>
+        </div><hr></hr>
           
         <div className="form-item">
+          First Name<br></br>
           <input
             name="first_name"
             label="firstName"
@@ -70,9 +73,10 @@ if (!data.profile_images) return null
             value={data.first_name}
             error={errors.first_name}
           />
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Last Name<br></br>
           <input
             name="last_name"
             label="LastName"
@@ -81,9 +85,10 @@ if (!data.profile_images) return null
             value={data.last_name}
             error={errors.last_name}
           />
-        </div>
+        </div><hr></hr>
         
         <div className="form-item">
+          Email<br></br>
           <input
             name="email"
             label="Email"
@@ -92,21 +97,10 @@ if (!data.profile_images) return null
             value={data.email}
             error={errors.email}
           />
-        </div>
+        </div><hr></hr>
 
-        {/* <div className="form-item">
-          <input
-            name="profile_images"
-            label="Profile Image"
-            placeholder="Profile Image"
-            onChange={handleChange}
-            value={data.profile_images}
-            error={errors.profile_images}
-          />
-        </div> */}
-
-        
         <div className="form-item">
+          Age<br></br>
           <select
             name="age"
             label="Age"
@@ -116,9 +110,10 @@ if (!data.profile_images) return null
             error={errors.age}>
             {ageOptions.map(age => {return <option key={age.value} value={age.value}>{age.value}</option>})}
             </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Gender<br></br>
           <select
             name="gender"
             label="Gender"
@@ -129,9 +124,10 @@ if (!data.profile_images) return null
           >
             {genderOptions.map(gender => {return <option key={gender.value} value={gender.value}>{gender.value}</option>})}
             </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Industry Profession<br></br>
           <select
             name="industry"
             label="industry"
@@ -142,9 +138,10 @@ if (!data.profile_images) return null
           >
             {industryOptions.map(industry => {return <option key={industry.value} value={industry.value}>{industry.value}</option>})}
             </select>
-        </div>
+        </div><hr></hr>
 
         <div className="form-item">
+          Ethnicity<br></br>
           <select
             name="ethnicity"
             label="ethnicity"
@@ -154,7 +151,7 @@ if (!data.profile_images) return null
             error={errors.ethnicity}
           >
             {ethnicityOptions.map(ethnicity => {return <option key={ethnicity.value} value={ethnicity.value}>{ethnicity.value}</option>})}
-            </select>
+            </select> <hr></hr>
         </div>
         <button className="finish-edit-button" onClick={handleSubmit} buttontext={submitText}>{submitText}</button>
       </form>

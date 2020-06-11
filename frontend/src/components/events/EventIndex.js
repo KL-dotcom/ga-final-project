@@ -31,12 +31,6 @@ function EventIndex() {
     setFilteredEvents('')
   }
 
-  // const handleSearch = e => {
-  //   const search = e.target.value
-  // const handleReset = () => {
-  //   setFilteredEvents('')
-  // }
-
   const handleSearch = event => {
     const search = event.target.value
     console.log(event.target.value)
