@@ -28,8 +28,13 @@ function EventNew() {
   const { formData, handleChange, formErrors, handleSubmit } = useForm({
     name: '',
     categories: [],
-    date_time: ''
+    date_time: '',
+    price: '',
+    about: ''
+
   }, createEvent, null, onSubmitSuccess)
+
+  console.log('errors', formErrors)
 
 
   const categoryPush = (event) => {

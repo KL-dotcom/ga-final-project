@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // import './styles/main.scss'
 
-
+import SecureRoute from './components/common/SecureRoute'
 import Register from './components/authentication/Register'
 import Login from './components/authentication/Login'
 import Navbar from './components/common/Navbar'
@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/events/attending/:id" component={EventAttending} />
         <Route path="/events/new" component={EventNew} />
         <Route path="/events/:id/edit" component={EventEdit} />
-        <Route path="/events/:id" component={EventShow} />
+        <SecureRoute path="/events/:id" component={EventShow} />
         <Route path="/events" component={EventIndex} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

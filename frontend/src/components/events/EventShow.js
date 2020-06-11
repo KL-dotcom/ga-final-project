@@ -4,7 +4,7 @@ import { getSingleEvent, getAllEvents, deleteEvent, userBasket, updateBasket, up
 import useFetch from '../../utils/useFetch'
 import EventCard from './EventCard'
 import Spinner from '../common/Spinner'
-import { isOwner } from '../../lib/auth'
+import { isOwner, getPayload } from '../../lib/auth'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 
@@ -127,6 +127,8 @@ function EventShow() {
   }
 
 
+
+
   const picture = () => {
     if (event.talk_images.length === 0) {
       return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />
@@ -147,6 +149,7 @@ function EventShow() {
 
 
   const addToBasket = async () => {
+    if (!isAuthenticated()) popupToasty('Please log in or register an account first')
     const res = await userBasket()
     const basket = res.data
     console.log(basket)
@@ -156,8 +159,7 @@ function EventShow() {
 
   }
 
-  console.log(event.host.id)
-  console.log(isOwner(event.host.id))
+
 
   return (
     <div className="body">
@@ -202,7 +204,7 @@ function EventShow() {
               ))}
             </div>
 
-            {isAttending() ?
+            {isOwner(event.host.id) || isAttending() ?
               <div className="paricipation-container">
                 <div className="poll-container">
                   {event.polls ?

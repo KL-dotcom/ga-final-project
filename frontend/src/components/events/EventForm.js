@@ -16,7 +16,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.name}
           />
         </div>
-
+        {errors && <small>{errors.name}</small>}
 
         <div className="form-item">
           <select
@@ -34,6 +34,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             })}
           </select>
         </div>
+        {errors && <small>{errors.location}</small>}
         {/* 
         <div className="form-item">
           <input
@@ -48,6 +49,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
 
         <div className="form-item">
           <input
+
             name="price"
             label="Price"
             placeholder="Price"
@@ -56,7 +58,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.price}
           />
         </div>
-
+        {errors && <small>{errors.price}</small>}
         <div className="form-item">
           <input
             type="datetime-local"
@@ -68,7 +70,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.date_time}
           />
         </div>
-
+        {errors && <small>{errors.date_time}</small>}
         <div className="form-item">
           <textarea
             name="about"
@@ -79,7 +81,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.about}
           />
         </div>
-
+        {errors && <small>{errors.about}</small>}
         {/* <div className="form-item">
           <input
             name="talk_images"

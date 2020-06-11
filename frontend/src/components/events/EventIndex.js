@@ -18,12 +18,6 @@ function EventIndex() {
   const [searchInput, setSearchInput] = React.useState()
 
 
-  console.log(locationFilter)
-  console.log(priceFilter)
-  console.log(categoryFilter)
- 
-  console.log(events)
-  
 
 
 
@@ -35,7 +29,7 @@ function EventIndex() {
   const filterLocations = (event) => {
     if (locationFilter) {
       return null
-    } else { 
+    } else {
       const search = event.target.value
       const regexp = new RegExp(search, 'i')
       const startingEvents = filteredEvents ? filteredEvents : events
@@ -51,7 +45,7 @@ function EventIndex() {
   const filterCategories = (event) => {
     if (categoryFilter) {
       return null
-    } else { 
+    } else {
       const search = event.target.value
       const startingEvents = filteredEvents ? filteredEvents : events
       const filtered = startingEvents.filter((event) => {
@@ -73,12 +67,12 @@ function EventIndex() {
   const filterPrice = (event) => {
     if (priceFilter) {
       return null
-    } else { 
+    } else {
       const search = event.target.value
       const startingEvents = filteredEvents ? filteredEvents : events
       const filtered = startingEvents.filter((event) => {
         if (event.price < search) return event
-      
+
       })
       setPriceFilter(search)
       setFilteredEvents(filtered)
@@ -104,11 +98,11 @@ function EventIndex() {
     setFilteredEvents(filtered)
     setSearchInput(search)
   }
-  
+
   if (error) {
     return <Redirect to="/notfound" />
   }
-  
+
   if (!events) return null
   return (
     <div className="body-index">
@@ -117,20 +111,20 @@ function EventIndex() {
         <div className="filters">
           <button onClick={handleReset}>Reset filters</button>
           <input
-            value = {searchInput}
+            value={searchInput}
             className="input"
-            type="text" 
+            type="text"
             onChange={handleSearch}
             placeholder="Search..." />
           {/* <button onClick={handleReset}>Reset Filter</button> */}
           <div className="filter-item">
             <div>
-            Location
+              Location
             </div>
-            {locationOptions.map(location => 
+            {locationOptions.map(location =>
               <button
                 onClick={filterLocations}
-                className={location.label === locationFilter ? 'filter-option-selected' : 'filter-option' }
+                className={location.label === locationFilter ? 'filter-option-selected' : 'filter-option'}
                 value={location.label}
                 key={location.label}>
                 {location.label}
@@ -138,14 +132,14 @@ function EventIndex() {
           </div>
           <div className="filter-item">
             <div>
-            Category
+              Category
             </div>
-            {categoryOptions.map(category => 
-            
-              <button 
-                onClick={filterCategories} 
-                className={category.id === parseInt(categoryFilter) ? 'filter-option-selected' : 'filter-option' }                
-                value={category.id} 
+            {categoryOptions.map(category =>
+
+              <button
+                onClick={filterCategories}
+                className={category.id === parseInt(categoryFilter) ? 'filter-option-selected' : 'filter-option'}
+                value={category.id}
                 key={category.id}>
                 {category.label}
               </button>)}
@@ -153,12 +147,12 @@ function EventIndex() {
           </div>
           <div className="filter-item">Price
             {priceOptions.map(price =>
-              <button 
-                onClick={filterPrice} 
-                className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option' }                value={price.value} 
-                key={price.label}>
-                {price.label}
-              </button>)}
+            <button
+              onClick={filterPrice}
+              className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option'} value={price.value}
+              key={price.label}>
+              {price.label}
+            </button>)}
 
           </div>
 
@@ -179,7 +173,7 @@ function EventIndex() {
             <button
               onClick={handleReset}
               className="reset-button"
-            >Reset</button> 
+            >Reset</button>
           </div>
           {filteredEvents ?
             filteredEvents.map(event => (
