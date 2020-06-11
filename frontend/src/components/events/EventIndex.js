@@ -11,22 +11,146 @@ import EventCard from './EventCard'
 
 function EventIndex() {
   const { data: events, loading, error } = useFetch(getAllEvents)
-  const [filteredEvents, setFilteredEvents] = React.useState('')
-  const [searchVal, setSetSearchVal] = React.useState(events)
+  const [filteredEvents, setFilteredEvents] = React.useState()
+  const [locationFilter, setLocationFilter] = React.useState()
+  const [priceFilter, setPriceFilter] = React.useState()
+  const [categoryFilter, setCategoryFilter] = React.useState()
 
-  const filterEvents = () => {
-    console.log('filter', searchVal)
-    const regexp = new RegExp(searchVal, 'i')
-    const filtered = events.filter(event => (
-      (regexp.test(event.name)
-        || regexp.test(event.location))
-      // && (selectVal?.every(tag => { return trip.tags.includes(tag.name) }) ?? true
+
+
+ 
+
+  // const filterLocations = (event) => {
+  //   const search = event.target.value
+  //   // const regexp = new RegExp(search, 'i')
+  //   // const startingEvents = filteredEvents ? filteredEvents : events
+  //   // const filtered = startingEvents.filter((event) => {
+  //   //   if (regexp.test(event.location)) return true
+  //   // } 
+  //   // )
+  //   setLocationFilter(search)
+  //   filterEvents()
+  //   // setFilteredEvents(filtered)
+  // }
+  // console.log(locationFilter)
+
+  // const filterCategories = (event) => {
+  //   const search = event.target.value
+  //   // const startingEvents = filteredEvents ? filteredEvents : events
+  //   // const filtered = startingEvents.filter((event) => {
+  //   //   const eventCategories = event.categories.map((currentValue) => {
+  //   //     return currentValue.id
+  //   //   })
+  //   //   if (eventCategories.includes(parseInt(search))) {
+  //   //     return event
+  //   //   }
+  //   // }
+  //   // )
+  //   setCategoryFilter(search)
+  //   filterEvents()
+  // }
+
+
+  // const filterPrice = (event) => {
+  //   const search = event.target.value
+  //   // const startingEvents = filteredEvents ? filteredEvents : events
+  //   // const filtered = startingEvents.filter((event) => {
+  //   //   if (event.price < search) return event
+  //   // })
+
+  //   setPriceFilter(search)
+  //   filterEvents()
+  // }
+
+
+
+  // console.log(priceFilter)
+  // console.log(locationFilter)
+  // console.log(categoryFilter)
+
+
+
+
+  // const filterEvents = () => {
+  //   const regexp = new RegExp(locationFilter, 'i')
+  //   const startingEvents = filteredEvents ? filteredEvents : events
+  //   console.log(startingEvents)
+  //   const filtered = startingEvents.filter(event => (
+  //     (priceFilter ? event.price < priceFilter : null) 
+  //       &&
+  //       (categoryFilter ?  
+  //         startingEvents.filter((event) => {
+  //           const eventCategories = event.categories.map((currentValue) => {
+  //             return currentValue.id
+  //           })
+  //           if (eventCategories.includes(parseInt(categoryFilter))) {
+  //             return true
+  //           }
+  //         })
+  //         : null) 
+  //     && 
+  //     (locationFilter ? (regexp.test(event.location)) : null) 
+
+      
+  //   ))
+  //   setFilteredEvents(filtered)
+  // }
+
+
+
+
+
+
+
+
+
+
+  const filterLocations = (event) => {
+    const search = event.target.value
+    const regexp = new RegExp(search, 'i')
+    const startingEvents = filteredEvents ? filteredEvents : events
+    const filtered = startingEvents.filter((event) => {
+      if (regexp.test(event.location)) return true
+    }
     )
-    )
+    setLocationFilter(search)
     setFilteredEvents(filtered)
-    console.log(filtered)
   }
 
+  const filterCategories = (event) => {
+    const search = event.target.value
+    const startingEvents = filteredEvents ? filteredEvents : events
+    const filtered = startingEvents.filter((event) => {
+      const eventCategories = event.categories.map((currentValue) => {
+        return currentValue.id
+      })
+      if (eventCategories.includes(parseInt(search))) {
+        return event
+      }
+    }
+    )
+    setCategoryFilter(search)
+    setFilteredEvents(filtered)
+
+  }
+
+
+  const filterPrice = (event) => {
+    const search = event.target.value
+    const startingEvents = filteredEvents ? filteredEvents : events
+    const filtered = startingEvents.filter((event) => {
+      if (event.price < search) return event
+      
+    })
+    setPriceFilter(search)
+    setFilteredEvents(filtered)
+  }
+
+
+
+  console.log(priceFilter)
+  console.log(locationFilter)
+  console.log(categoryFilter)
 
   // const handleSearch = e => {
   //   const search = e.target.value
@@ -35,17 +159,17 @@ function EventIndex() {
   // }
 
   const handleSearch = event => {
-    const search = event.target.value
-    console.log(event.target.value)
 
-    setSetSearchVal(search)
-    filterEvents()
+    console.log(event)
+    // filterEvents(search)
+
+    // setSetSearchVal(search)
   }
-
+  
   if (error) {
     return <Redirect to="/notfound" />
   }
-
+  
   if (!events) return null
   return (
     <div className="body-index">
@@ -53,16 +177,34 @@ function EventIndex() {
         {/* <h1>{searchVal}</h1> */}
         <div className="filters">
           <input className="input" type="text" onChange={handleSearch} placeholder="Search..." />
-          <button onClick={handleReset}>Reset Filter</button>
+          {/* <button onClick={handleReset}>Reset Filter</button> */}
           <div className="filter-item">Location
-  {locationOptions.map(location => <button onClick={handleSearch} value={location.label} key={location.label}>{location.label}</button>)}
+            {locationOptions.map(location => 
+              <button
+                onClick={filterLocations}
+                value={location.label}
+                key={location.label}>
+                {location.label}
+              </button>)}
           </div>
           <div className="filter-item">Category
-  {categoryOptions.map(category => <button onClick={handleSearch} value={category.label} key={category.label}>{category.label}</button>)}
+            {categoryOptions.map(category => 
+              <button 
+                onClick={filterCategories} 
+                value={category.id} 
+                key={category.id}>
+                {category.label}
+              </button>)}
 
           </div>
           <div className="filter-item">Price
-  {priceOptions.map(price => <button onClick={handleSearch} value={price.value} key={price.label}>{price.label}</button>)}
+            {priceOptions.map(price =>
+              <button 
+                onClick={filterPrice} 
+                value={price.value} 
+                key={price.label}>
+                {price.label}
+              </button>)}
 
           </div>
 

@@ -20,7 +20,7 @@ const Navbar = () => {
         <div className="navbar-left">
           <Link to='/events' className="link">Events</Link>
           {isAuthenticated() && <Link to='/events/new' className="link">New Event</Link>}
-          {isAuthenticated() && <Link to='/events/attending' className="link">Attending</Link>}
+          {/* {isAuthenticated() && <Link to='/events/attending' className="link">Attending</Link>} */}
         </div>
         <Link to='/' className="title">EVENTR</Link>
         <div className="navbar-right">

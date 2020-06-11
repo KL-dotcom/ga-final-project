@@ -153,12 +153,12 @@ function EventAttending() {
                   ))
                   : ''}
 
-                <input
+                {/* <input
                   onChange={handleChange}
                   value={formData.text}
                   name="text"
                 ></input>
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={handleSubmit}>Submit</button> */}
               </div>
               : ''}
 
