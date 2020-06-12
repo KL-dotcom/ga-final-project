@@ -12,13 +12,16 @@ function EventIndex() {
   const [priceFilter, setPriceFilter] = React.useState()
   const [categoryFilter, setCategoryFilter] = React.useState()
   const [searchInput, setSearchInput] = React.useState()
+  const [showFilter, setShowFilter] = React.useState('')
+
   const emptyFilter = () => {
     if (filteredEvents && filteredEvents.length === 0) return true
   }
+
   const filterLocations = (event) => {
     if (locationFilter) {
       return null
-    } else {
+    } else { 
       const search = event.target.value
       const regexp = new RegExp(search, 'i')
       const startingEvents = filteredEvents ? filteredEvents : events
@@ -33,7 +36,7 @@ function EventIndex() {
   const filterCategories = (event) => {
     if (categoryFilter) {
       return null
-    } else {
+    } else { 
       const search = event.target.value
       const startingEvents = filteredEvents ? filteredEvents : events
       const filtered = startingEvents.filter((event) => {
@@ -52,7 +55,7 @@ function EventIndex() {
   const filterPrice = (event) => {
     if (priceFilter) {
       return null
-    } else {
+    } else { 
       const search = event.target.value
       const startingEvents = filteredEvents ? filteredEvents : events
       const filtered = startingEvents.filter((event) => {
@@ -79,13 +82,22 @@ function EventIndex() {
     setFilteredEvents(filtered)
     setSearchInput(search)
   }
+
+const handleShowFilters = () => {
+  setShowFilter('')
+}
+const handleHideFilters = () => {
+  setShowFilter('hidden')
+}
+
   if (error) {
     return <Redirect to="/notfound" />
   }
   if (!events) return null
   return (
     <div className="body-index">
-      <div className="filter-container">
+      <button onClick={handleShowFilters} className="show-filters-button">Show Filters</button>
+      <div style={{visibility: `${showFilter}`}} className="filter-container">
         {/* <h1>{searchVal}</h1> */}
         <div className="filters">
           <button
@@ -93,6 +105,9 @@ function EventIndex() {
             onClick={handleReset}>
             Reset filters
           </button>
+          <button
+          
+          onClick={handleHideFilters} className="hide-filters-button">Hide Filters</button>
           <div className="filter-item">
             <div className="filter-title">
               Search:

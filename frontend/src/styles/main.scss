@@ -181,8 +181,9 @@
       justify-content: center;
       background-color: rgb(245, 244, 255);
       border: 3px solid rgb(30, 13, 126);
-      margin-top: 100px;
+      margin-top: 150px;
       width: 500px;
+      height: 320px;
       .form{
         display: flex;
         flex-direction: column;
@@ -246,21 +247,37 @@
     #prof-pic-box{
     margin-top: 10px;
     margin-bottom: 10px;
-
-    #prof-pic{
     border-radius: 50%;
     border: 7px solid rgba(2, 61, 129, 0.692);
     padding: 8px;
     width: 200px;
-    }
   }
 
- 
+  .event-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(146, 142, 168, 0.3),
+      rgba(175, 174, 184, 0.3) 10px,
+      #cfced470 10px,
+      #cfced470 20px
+    );
+    .event-form-item{
+      margin-top: 15px;
+    }
+    .make-event-button{
+      margin-left: 20%;
+    }
+  }
 .prof-stats, .basket-item, .ticket-show, .ticket-body{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
+  // width: 100%;
+  height: 100%;
   background: repeating-linear-gradient(
       45deg,
       rgba(146, 142, 168, 0.3),
@@ -268,7 +285,7 @@
       #cfced470 10px,
       #cfced470 20px
     );
-    padding: 30px;
+    // padding: 30px;
     font-size: 20px;
     p.talk-name{
     font-size: 35px;  
@@ -343,11 +360,6 @@ button.my-tickets-buton{
     }
   }
 
-  .event-form{
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-  }
 }
 }
 
@@ -356,7 +368,13 @@ button.my-tickets-buton{
   flex-direction: row;
   margin-top: 50px;
   margin-bottom: 30px;
-  background-color: rgb(245, 241, 237);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(146, 142, 168, 0.3),
+    rgba(175, 174, 184, 0.3) 10px,
+    #cfced470 10px,
+    #cfced470 20px
+  );
   min-height: 100vh;
 
 
@@ -366,6 +384,10 @@ button.my-tickets-buton{
   // background-color: white;
   overflow-y : auto;
   position: fixed;
+
+  .hide-filters-button{
+    visibility: hidden;
+  }
 
   .filters{
     display: flex;
@@ -467,6 +489,7 @@ text-decoration: none;
   height: 150px;
   margin: 5px;
   padding: 10px;
+
   .card-left{
     background-color: white;
     margin: 5px;
@@ -609,11 +632,6 @@ padding: 10px;
 
 
 
-
-
-
-
-
   .navbar {
     display: flex;
     flex-direction: row;
@@ -691,8 +709,72 @@ padding: 10px;
     background-color: black;
     // z-index: 10;
 
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar{
+    .title, .link {
+      font-size: 15px;
+    }
+  }
+  .small-body {
+    .register, .login{
+      height: 380px;
+  .form{
+    .form-item {
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+  }
+}
+}
+
+.body-index{
+  width: 115%;
+
+  .show-filters-button{
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 100px;
+  }
+.filter-container{
+  z-index: 2;
+  border-right: 4px solid rgb(30, 13, 126);
+  margin-top: 8px;
+  background-color: white;
+
+  .hide-filters-button{
+    visibility: inherit;
+  }
+
+  .filters{
+    width: 200px;
+}
+}
+.container-index{
+  a.link{
+    width: 100px;
+  }
+  .event-card{
+    width:350px;
+    height: 230px;
+    margin-bottom: 60px;
+    transform: translateX(-290px);
+  }
+}
+}
 small {
 min-height: 10px;
+}
+
+.body{
+  .container{
+    width: 50%;
+    .title-container{
+      flex-direction: column;
+    }
+  }
 }
 
 }

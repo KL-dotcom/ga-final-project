@@ -2,8 +2,6 @@ import React from 'react'
 import { Link, withRouter, useHistory } from 'react-router-dom'
 import { isAuthenticated, logout } from '../../lib/auth'
 
-
-
 const Navbar = () => {
   const history = useHistory()
 
@@ -12,10 +10,12 @@ const Navbar = () => {
     history.push('/')
   }
 
+
   return (
 
 
     <div className="navbar">
+     
       {/* <div className="navbar-content"> */}
       <div className="navbar-left">
         <Link to='/events' className="link">Events</Link>
