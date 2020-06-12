@@ -21,6 +21,7 @@ function EventShow() {
   const { data: event, loading, error } = result.state
   const setState = result.setState
   const history = useHistory()
+
   const { data: events } = useFetch(getAllEvents)
   const [pending, setPending] = React.useState('')
   const handleChange = e => {
@@ -41,6 +42,7 @@ function EventShow() {
         return newState
       })
       setPending('')
+
     } catch (err) {
       console.log(err)
     }
@@ -95,6 +97,7 @@ function EventShow() {
           return poll
         }
       })
+
       return newState
     })
   }
@@ -240,6 +243,7 @@ function EventShow() {
                         <EventComment
                           // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
                           whichUser={whichUser}
+
                           key={poll.id}
                           {...poll} />
 

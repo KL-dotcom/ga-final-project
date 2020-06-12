@@ -45,16 +45,24 @@ function ProfilePage() {
         <p id="prof-gender">{profile.gender}</p>
         <p id="prof-industry">{profile.industry}</p>
         <p id="prof-ethnicity">{profile.ethnicity}</p>
+
+
+
+        <button className="edit-prof-button" onClick={handleEditButton}>Edit my profile</button>
+
+<div className="profile-buttons">
+  <button className="my-tickets-button" onClick={handleTicketButton}>My Tickets</button>
+  <button className="user-basket-button" onClick={toBasket}>My Basket</button>
+</div>
       </div>
 
 
-      <button className="edit-prof-button" onClick={handleEditButton}>Edit my profile</button>
-
-      <div className="profile-buttons">
-        <button className="my-tickets-button" onClick={handleTicketButton}>My Tickets</button>
-        <button className="user-basket-button" onClick={toBasket}>My Basket</button>
+      
       </div>
-    </div>
+      
+
+      
+    // </div>
 
   )
 }

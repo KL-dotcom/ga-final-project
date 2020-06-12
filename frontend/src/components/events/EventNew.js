@@ -50,8 +50,9 @@ function EventNew() {
 
   return (
     <div className="body">
+      <div className="event-form">
       <h1>Create new event</h1>
-      <div className="form">
+
         {/* <ImageForm />
         <PollForm /> */}
         <EventForm

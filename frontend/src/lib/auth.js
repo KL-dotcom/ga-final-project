@@ -7,24 +7,24 @@ export const getToken = () => {
 }
 
 export const logout = () => {
-  localStorage.removeItem('token')
+  localStorage.clear()
 }
 
 export const getPayload = () => {
-  const token = getToken() 
-  if (!token) return false 
-  const parts = token.split('.') 
-  if (parts.length < 3) return false 
+  const token = getToken()
+  if (!token) return false
+  const parts = token.split('.')
+  if (parts.length < 3) return false
   return JSON.parse(atob(parts[1]))
 }
 
 export const isAuthenticated = () => {
-  const token = getToken() 
-  if (!token) return false 
-  const parts = token.split('.') 
+  const token = getToken()
+  if (!token) return false
+  const parts = token.split('.')
   if (parts.length < 3) return false
   return JSON.parse(atob(parts[1]))
-} 
+}
 
 export const isOwner = id => {
   const subject = getPayload().sub
