@@ -4,9 +4,15 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import '../../styles/main.scss'
 
 
-function EventPoll({ id, question, option_a, option_b, option_c, option_d, style, pollVote, answerA, answerB, answerC, answerD, option_a_count, option_b_count, option_c_count, option_d_count }) {
+function EventPoll({ id, question, option_a: optionA, option_b: optionB, option_c: optionC, option_d: optionD, style, pollVote, option_a_count: optionACount, option_b_count: optionBCount, option_c_count: optionCCount, option_d_count: optionDCount }) {
 
-  const total = option_a_count + option_b_count + option_c_count + option_d_count
+  const total = optionACount + optionBCount + optionCCount + optionDCount
+
+  const makeNum = value => {
+    if (value === 0) return 0
+    return Math.round((value / total) * 100)
+  }
+
 
   return (
     <div className="poll" style={style}>
@@ -17,27 +23,27 @@ function EventPoll({ id, question, option_a, option_b, option_c, option_d, style
       </div>
       <div className="answers">
         <div className="option-container">
-          <button onClick={() => pollVote(id, 'a', option_a_count)} id={id} value="a" max='30'>{option_a}</button>
-          <button onClick={() => pollVote(id, 'b', option_b_count)} id={id} value="b" max='30'>{option_b}</button>
-          <button onClick={() => pollVote(id, 'c', option_c_count)} id={id} value="c" max='30'>{option_c}</button>
-          <button onClick={() => pollVote(id, 'd', option_d_count)} id={id} value="d" max='30'>{option_d}</button>
+          <button onClick={() => pollVote(id, 'a', optionACount)} id={id} value="a" max='30'>{optionA}</button>
+          <button onClick={() => pollVote(id, 'b', optionBCount)} id={id} value="b" max='30'>{optionB}</button>
+          <button onClick={() => pollVote(id, 'c', optionCCount)} id={id} value="c" max='30'>{optionC}</button>
+          <button onClick={() => pollVote(id, 'd', optionDCount)} id={id} value="d" max='30'>{optionD}</button>
         </div>
 
 
 
 
 
-        <div>{option_a}: {Math.round((option_a_count / total) * 100)}%</div>
-        <ProgressBar animated variant="info" now={(option_a_count / total) * 100} />
+        <div>{optionA}: {makeNum(optionACount)}%</div>
+        <ProgressBar animated variant="info" now={(optionACount / total) * 100} />
 
-        <div>{option_b}: {Math.round((option_b_count / total) * 100)}%</div>
-        <ProgressBar animated now={(option_b_count / total) * 100} />
+        <div>{optionB}: {makeNum(optionBCount)}%</div>
+        <ProgressBar animated now={(optionBCount / total) * 100} />
 
-        <div>{option_c}: {Math.round((option_c_count / total) * 100)}%</div>
-        <ProgressBar animated variant="warning" now={(option_c_count / total) * 100} />
+        <div>{optionC}: {makeNum(optionCCount)}%</div>
+        <ProgressBar animated variant="warning" now={(optionCCount / total) * 100} />
 
-        <div>{option_d}: {Math.round((option_d_count / total) * 100)}%</div>
-        <ProgressBar animated variant="danger" now={(option_d_count / total) * 100} />
+        <div>{optionD}: {makeNum(optionDCount)}%</div>
+        <ProgressBar animated variant="danger" now={(optionDCount / total) * 100} />
 
       </div>
     </div>

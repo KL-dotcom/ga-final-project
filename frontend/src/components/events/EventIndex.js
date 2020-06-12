@@ -5,8 +5,6 @@ import { Redirect } from 'react-router-dom'
 import Spinner from '../common/Spinner'
 import { locationOptions, categoryOptions, priceOptions } from '../../lib/IndexSearchOptions'
 import EventCard from './EventCard'
-
-
 function EventIndex() {
   const { data: events, loading, error } = useFetch(getAllEvents)
   const [filteredEvents, setFilteredEvents] = React.useState()
@@ -35,7 +33,6 @@ function EventIndex() {
       setFilteredEvents(filtered)
     }
   }
-
   const filterCategories = (event) => {
     if (categoryFilter) {
       return null
@@ -55,7 +52,6 @@ function EventIndex() {
       setFilteredEvents(filtered)
     }
   }
-
   const filterPrice = (event) => {
     if (priceFilter) {
       return null
@@ -69,7 +65,6 @@ function EventIndex() {
       setFilteredEvents(filtered)
     }
   }
-
   const handleReset = () => {
     setFilteredEvents('')
     setSearchInput('')
@@ -77,7 +72,6 @@ function EventIndex() {
     setCategoryFilter('')
     setLocationFilter('')
   }
-
   const handleSearch = (event) => {
     const search = event.target.value
     const regexp = new RegExp(search, 'i')
@@ -106,7 +100,6 @@ const handleHideFilters = () => {
       <div style={{visibility: `${showFilter}`}} className="filter-container">
         {/* <h1>{searchVal}</h1> */}
         <div className="filters">
-          
           <button
             className="reset-button"
             onClick={handleReset}>
@@ -121,22 +114,22 @@ const handleHideFilters = () => {
             </div>
             <div className="text-input">
               <input
-                value = {searchInput}
+                value={searchInput}
                 className="input"
-                type="text" 
+                type="text"
                 onChange={handleSearch}
                 placeholder="Search..." />
             </div>
           </div>
           <div className="filter-item">
             <div className="filter-title">
-            Location:
+              Location:
             </div>
             <div className="filter-options">
-              {locationOptions.map(location => 
+              {locationOptions.map(location =>
                 <button
                   onClick={filterLocations}
-                  className={location.label === locationFilter ? 'filter-option-selected' : 'filter-option' }
+                  className={location.label === locationFilter ? 'filter-option-selected' : 'filter-option'}
                   value={location.label}
                   key={location.label}>
                   {location.label}
@@ -145,14 +138,14 @@ const handleHideFilters = () => {
           </div>
           <div className="filter-item">
             <div className="filter-title">
-            Category:
+              Category:
             </div>
             <div className="filter-options">
-              {categoryOptions.map(category => 
-                <button 
-                  onClick={filterCategories} 
-                  className={category.id === parseInt(categoryFilter) ? 'filter-option-selected' : 'filter-option' }                
-                  value={category.id} 
+              {categoryOptions.map(category =>
+                <button
+                  onClick={filterCategories}
+                  className={category.id === parseInt(categoryFilter) ? 'filter-option-selected' : 'filter-option'}
+                  value={category.id}
                   key={category.id}>
                   {category.label}
                 </button>)}
@@ -164,9 +157,9 @@ const handleHideFilters = () => {
             </div>
             <div className="filter-options">
               {priceOptions.map(price =>
-                <button 
-                  onClick={filterPrice} 
-                  className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option' }                value={price.value} 
+                <button
+                  onClick={filterPrice}
+                  className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option'} value={price.value}
                   key={price.label}>
                   {price.label}
                 </button>)}
@@ -190,8 +183,8 @@ const handleHideFilters = () => {
               <button
                 onClick={handleReset}
                 className="reset-button">
-              Reset
-              </button> 
+                Reset
+              </button>
             </div>
           </div>
           {filteredEvents ?
