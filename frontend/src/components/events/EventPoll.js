@@ -11,38 +11,34 @@ function EventPoll({ id, question, option_a, option_b, option_c, option_d, style
   return (
     <div className="poll" style={style}>
       <div className="question">
-
-        <h4>{question}</h4>
         <hr />
+        <h5>{question}</h5>
+        {/* <hr /> */}
       </div>
       <div className="answers">
         <div className="option-container">
-          <p>{option_a}</p>
-          <button onClick={() => pollVote(id, 'a', option_a_count)} id={id} value="a">Select</button>
+          <button onClick={() => pollVote(id, 'a', option_a_count)} id={id} value="a" max='30'>{option_a}</button>
+          <button onClick={() => pollVote(id, 'b', option_b_count)} id={id} value="b" max='30'>{option_b}</button>
+          <button onClick={() => pollVote(id, 'c', option_c_count)} id={id} value="c" max='30'>{option_c}</button>
+          <button onClick={() => pollVote(id, 'd', option_d_count)} id={id} value="d" max='30'>{option_d}</button>
         </div>
-        <h3>Total Votes: {option_a_count}</h3>
-        <ProgressBar animated variant="info" now={(option_a_count / total) * 100} />
-        <hr />
 
-        <div className="option-container">
-          <p>{option_b}</p>
-          <button onClick={() => pollVote(id, 'b', option_b_count)} id={id} value="b">Select</button>
-        </div>
-        <h3>Total Votes: {option_b_count}</h3>
+
+
+
+
+        <div>{option_a}: {Math.round((option_a_count / total) * 100)}%</div>
+        <ProgressBar animated variant="info" now={(option_a_count / total) * 100} />
+
+        <div>{option_b}: {Math.round((option_b_count / total) * 100)}%</div>
         <ProgressBar animated now={(option_b_count / total) * 100} />
-        <hr />
-        <div className="option-container">
-          <p>{option_c}</p>
-          <button onClick={() => pollVote(id, 'c', option_c_count)} id={id} value="c">Select</button>
-        </div>
-        <h3>Total Votes: {option_c_count}</h3>
+
+        <div>{option_c}: {Math.round((option_c_count / total) * 100)}%</div>
         <ProgressBar animated variant="warning" now={(option_c_count / total) * 100} />
-        <hr />
-        <div className="option-container"> <p>{option_d}</p>
-          <button onClick={() => pollVote(id, 'd', option_d_count)} id={id} value="d">Select</button></div>
-        <h3>Total Votes: {option_d_count}</h3>
+
+        <div>{option_d}: {Math.round((option_d_count / total) * 100)}%</div>
         <ProgressBar animated variant="danger" now={(option_d_count / total) * 100} />
-        <hr />
+
       </div>
     </div>
 

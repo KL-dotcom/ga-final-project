@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EventCard({ categories, name, id, talk_images, location, date_time , price }) {
+function EventCardSimilar({ categories, name, id, talk_images, location, date_time , price }) {
 
   const picture = () => {
     if (talk_images.length === 0) {
@@ -13,30 +13,29 @@ function EventCard({ categories, name, id, talk_images, location, date_time , pr
 
   return (
     <Link className="link" to={`/events/${id}`}>
-      <div className="event-card">
-        <div className="card-left">
-          <div className="crop">
-            {picture()}
-          </div>
-
+      <div className="similar-event-card">
+        <div className="crop">
+          {picture()}
         </div>
-        <div className="card-right">
-          <div className="title">
-            <div className="name">{name}</div>
-            <div className="price">{price > 0 ? `£${price}` : 'Free'}</div>
-          </div>
+        <div className="title">
+
+          <div className="name">{name}</div>
+          <div className="price">{price > 0 ? `£${price}` : 'Free'}</div>
+
           <div className="location">{location}</div>
-          <div className="date-time">{date_time.replace('T', ' at ').replace(':00Z', '')}</div>
-          <div className="tags">
+          {/* <div className="date-time">{date_time.replace('T', ' at ').replace(':00Z', '')}</div> */}
+          {/* <div className="tags">
             <strong>Tags:</strong><br></br>
             {categories.map(category => (
               <div key={category.id} className="tag">{category.name}</div>
             ))}
-          </div>
+          </div> */}
+
+
         </div>
       </div>
     </Link>
   )
 }
 
-export default EventCard
+export default EventCardSimilar

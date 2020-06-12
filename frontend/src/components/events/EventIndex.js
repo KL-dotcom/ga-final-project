@@ -60,7 +60,6 @@ function EventIndex() {
       setCategoryFilter(search)
       setFilteredEvents(filtered)
     }
-
   }
 
 
@@ -143,49 +142,109 @@ function EventIndex() {
                 key={category.id}>
                 {category.label}
               </button>)}
-
-          </div>
-          <div className="filter-item">Price
-            {priceOptions.map(price =>
             <button
-              onClick={filterPrice}
-              className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option'} value={price.value}
-              key={price.label}>
-              {price.label}
-            </button>)}
-
-          </div>
-
-          {/* <div className="filter-item">Host</div> */}
-        </div>
-      </div>
-
-      {loading ?
-        <Spinner />
-        :
-        <div className="container-index">
-
-          <div
-            style={emptyFilter() ?
-              { display: 'flex' } :
-              { display: 'none' }}
-          >Ooops, looks like you ran out of talks...
-            <button
-              onClick={handleReset}
               className="reset-button"
-            >Reset</button>
+              onClick={handleReset}>
+              Reset filters
+          </button>
+            <div className="filter-item">
+
+              <div className="filter-title">
+                Search:
+            </div>
+              <div className="text-input">
+                <input
+                  value={searchInput}
+                  className="input"
+                  type="text"
+                  onChange={handleSearch}
+                  placeholder="Search..." />
+              </div>
+            </div>
+            <div className="filter-item">
+              <div className="filter-title">
+                Location:
+            </div>
+              <div className="filter-options">
+
+                {locationOptions.map(location =>
+                  <button
+                    onClick={filterLocations}
+                    className={location.label === locationFilter ? 'filter-option-selected' : 'filter-option'}
+                    value={location.label}
+                    key={location.label}>
+                    {location.label}
+                  </button>)}
+              </div>
+            </div>
+            <div className="filter-item">
+              <div className="filter-title">
+                Category:
+            </div>
+              <div className="filter-options">
+
+                {categoryOptions.map(category =>
+                  <button
+                    onClick={filterCategories}
+                    className={category.id === parseInt(categoryFilter) ? 'filter-option-selected' : 'filter-option'}
+                    value={category.id}
+                    key={category.id}>
+                    {category.label}
+                  </button>)}
+
+              </div>
+            </div>
+            <div className="filter-item">
+              <div className="filter-title">
+                Price:
+            </div>
+              <div className="filter-options">
+                {priceOptions.map(price =>
+                  <button
+                    onClick={filterPrice}
+                    className={parseInt(price) === priceFilter ? 'filter-option-selected' : 'filter-option'} value={price.value}
+                    key={price.label}>
+                    {price.label}
+                  </button>)}
+
+              </div>
+            </div>
+
+            {/* <div className="filter-item">Host</div> */}
           </div>
-          {filteredEvents ?
-            filteredEvents.map(event => (
-              <EventCard key={event.id} {...event} />
-            )) :
-            events.map(event => (
-              <EventCard key={event.id} {...event} />
-            ))
-          }
         </div>
-      }
-    </div>
+
+        {loading ?
+          <Spinner />
+          :
+          <div className="container-index">
+
+            <div
+              style={emptyFilter() ?
+                { display: 'flex' } :
+                { display: 'none' }}>
+              <div className="reset-box">
+                <div className="text">
+                  Ooops, looks like you ran out of talks...
+              </div>
+                <button
+                  onClick={handleReset}
+                  className="reset-button">
+                  Reset
+              </button>
+              </div>
+            </div>
+            {filteredEvents ?
+              filteredEvents.map(event => (
+                <EventCard key={event.id} {...event} />
+              )) :
+              events.map(event => (
+                <EventCard key={event.id} {...event} />
+              ))
+            }
+          </div>
+        }
+      </div>
   )
 }
 
