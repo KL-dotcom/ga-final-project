@@ -17,7 +17,6 @@ function TicketIndex() {
   }
 
   if(!profile) return null
-console.log(profile.ticket)
   return (
     <div className="body">
       <div className="ticket-body">
@@ -27,7 +26,7 @@ console.log(profile.ticket)
   key={tick.id}
   value={tick.id}
   onClick={handleTicketSelect}
-  >{tick.talk.name} - {tick.id} </button>)}
+  >{tick.talk.name} </button>)}
       </div>
       <button onClick={handleBackButton}>Back</button>
 
