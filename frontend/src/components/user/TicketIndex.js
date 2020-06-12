@@ -16,17 +16,18 @@ function TicketIndex() {
     history.push(`/tickets/${e.target.value}`)
   }
 
-  if(!profile) return null
+  if (!profile) return null
+
   return (
     <div className="body">
       <div className="ticket-body">
-    <h1>Your Tickets</h1>
+        <h1>Your Tickets</h1>
 
-      {profile.ticket.map(tick => <button className="ticket"
-  key={tick.id}
-  value={tick.id}
-  onClick={handleTicketSelect}
-  >{tick.talk.name} </button>)}
+        {profile.ticket.map(tick => <button className="ticket"
+          key={tick.id}
+          value={tick.id}
+          onClick={handleTicketSelect}
+        >{tick.talk.name} - ref: 00{tick.id} </button>)}
       </div>
       <button onClick={handleBackButton}>Back</button>
 

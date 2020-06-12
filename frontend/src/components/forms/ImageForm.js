@@ -10,11 +10,11 @@ function ImageForm() {
   const onSubmitSuccess = () => {
 
   }
-  const { data, handleChange, formErrors, handleSubmit } = useForm({
+
+  const { data, handleChange, setData, formErrors, setFormErrors, handleSubmit } = useForm({
     image: '',
     talk: eventId
   }, createImage, null, onSubmitSuccess)
-
 
 
 
@@ -31,7 +31,9 @@ function ImageForm() {
             error={formErrors}
           />
         </div>
+
         <button>Submit your Image</button>
+        {formErrors && <small>{formErrors.image}</small>}
       </form>
     </div>
   )

@@ -2,9 +2,9 @@ import React from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
 import { getSingleEvent, getAllEvents, deleteEvent, userBasket, updateBasket, updatePoll, createComment } from '../../lib/api'
 import useFetch from '../../utils/useFetch'
-import EventCard from './EventCard'
+import EventCardSimilar from './EventCardSimilar'
 import Spinner from '../common/Spinner'
-import { isOwner } from '../../lib/auth'
+import { isOwner, getPayload } from '../../lib/auth'
 import EventPoll from './EventPoll'
 import EventComment from './EventComment'
 
@@ -27,9 +27,6 @@ function EventShow() {
     const text = e.target.value
     setPending(text)
   }
-
-
-  console.log('array length', event?.talk_images.length)
 
   const handleClick = async () => {
 
@@ -127,11 +124,13 @@ function EventShow() {
   }
 
 
+
+
   const picture = () => {
     if (event.talk_images.length === 0) {
-      return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="150" height="150" />
+      return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" className="image" />
     } else {
-      return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" width="150" height="150" />
+      return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" className="image" />
     }
   }
 
@@ -147,17 +146,16 @@ function EventShow() {
 
 
   const addToBasket = async () => {
+    if (!isAuthenticated()) popupToasty('Please log in or register an account first')
     const res = await userBasket()
     const basket = res.data
     console.log(basket)
 
     popupToasty('Added to Basket!')
     await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
-
   }
 
-  console.log(event.host.id)
-  console.log(isOwner(event.host.id))
+
 
   return (
     <div className="body">
@@ -187,7 +185,7 @@ function EventShow() {
             </div>
             <div className="interest-buttons">
               {/* <button onClick={addToWishlist} value="Wishlist" >Add to wish list</button> */}
-              {!isAttending() && <button onClick={addToBasket} value="Basket" >Add to basket</button>}
+              {!isAttending() && <button onClick={addToBasket} value="Basket">Add to basket</button>}
             </div>
             <div className="description">
               <div className="title-wording">
@@ -196,15 +194,22 @@ function EventShow() {
               </div>
             </div>
             <div className="tags">
-              <strong>Tags:</strong><br></br>
-              {event.categories.map(category => (
-                <h1 key={category.id}>{category.name}</h1>
-              ))}
+              <div className="title">
+                <strong >Tags:</strong><br></br>
+              </div>
+              <div className="tags-container">
+                {event.categories.map(category => (
+                  <div key={category.id} className="tag">{category.name}</div>
+                ))}
+              </div>
             </div>
 
-            {isAttending() ?
+            {isOwner(event.host.id) || isAttending() ?
               <div className="paricipation-container">
                 <div className="poll-container">
+                  <div className="title">
+                    <strong >Polls:</strong><br></br>
+                  </div>
                   {event.polls ?
                     event.polls.map(poll => (
                       <EventPoll
@@ -218,7 +223,11 @@ function EventShow() {
                     : ''}
                 </div>
                 <div>
-                  <div>
+                  <div className="comments">
+                    <div className="comments-title">
+                      <strong >Comments:</strong><br></br>
+                    </div>
+
                     {event.comments ?
                       event.comments.map(poll => (
                         <EventComment
@@ -234,6 +243,8 @@ function EventShow() {
                     <textarea
                       onChange={handleChange}
                       value={pending}
+                      placeholder='Write a comment...'
+                      className="text-input"
                       name="text"
                     ></textarea>
                     <button onClick={handleClick}>Submit</button>
@@ -241,23 +252,14 @@ function EventShow() {
                 </div>
               </div>
               :
-
-
-
-
-
               <div className="similar-events">
-                <strong>Other events you may like:</strong><br></br>
+                <strong>Other events you may like:</strong>
                 <div className="similar-events-cards">
-
                   {filterOrigin()?.map(event =>
-                    <EventCard key={event.id} className="card" {...event} />
+                    <EventCardSimilar key={event.id} className="event-card" {...event} />
                   )}
-                  {/* {filterOrigin()} */}
-
                 </div>
               </div>
-
             }
 
 

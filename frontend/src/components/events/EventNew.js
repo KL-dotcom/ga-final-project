@@ -28,8 +28,13 @@ function EventNew() {
   const { formData, handleChange, formErrors, handleSubmit } = useForm({
     name: '',
     categories: [],
-    date_time: ''
+    date_time: '',
+    price: '',
+    about: ''
+
   }, createEvent, null, onSubmitSuccess)
+
+  console.log('errors', formErrors)
 
 
   const categoryPush = (event) => {
@@ -45,8 +50,9 @@ function EventNew() {
 
   return (
     <div className="body">
+      <div className="event-form">
       <h1>Create new event</h1>
-      <div className="form">
+
         {/* <ImageForm />
         <PollForm /> */}
         <EventForm

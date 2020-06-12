@@ -4,9 +4,9 @@ import { locationOptions } from '../../lib/IndexSearchOptions'
 function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
   console.log(locationOptions)
   return (
-    <div className="event-form">
+    <div className="form">
       <form onSubmit={handleSubmit}>
-        <div className="form-item">
+        <div className="event-form-item">
           <input
             name="name"
             label="Name"
@@ -16,9 +16,9 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.name}
           />
         </div>
+        {errors && <small>{errors.name}</small>}
 
-
-        <div className="form-item">
+        <div className="event-form-item">
           <select
             name="location"
             label="location"
@@ -34,8 +34,9 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             })}
           </select>
         </div>
+        {errors && <small>{errors.location}</small>}
         {/* 
-        <div className="form-item">
+        <div className="event-form-item">
           <input
             name="location"
             label="Location"
@@ -46,8 +47,9 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
           />
         </div> */}
 
-        <div className="form-item">
+        <div className="event-form-item">
           <input
+
             name="price"
             label="Price"
             placeholder="Price"
@@ -56,8 +58,8 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.price}
           />
         </div>
-
-        <div className="form-item">
+        {errors && <small>{errors.price}</small>}
+        <div className="event-form-item">
           <input
             type="datetime-local"
             name="date_time"
@@ -68,8 +70,8 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.date_time}
           />
         </div>
-
-        <div className="form-item">
+        {errors && <small>{errors.date_time}</small>}
+        <div className="event-form-item">
           <textarea
             name="about"
             label="About"
@@ -79,8 +81,8 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
             error={errors.about}
           />
         </div>
-
-        {/* <div className="form-item">
+        {errors && <small>{errors.about}</small>}
+        {/* <div className="event-form-item">
           <input
             name="talk_images"
             label="talk_images"
@@ -96,7 +98,7 @@ function EventForm({ data, handleChange, handleSubmit, errors, submitText }) {
 
 
 
-        <button buttontext={submitText}>{submitText}</button>
+        <button className="make-event-button" buttontext={submitText}>{submitText}</button>
       </form>
     </div>
   )

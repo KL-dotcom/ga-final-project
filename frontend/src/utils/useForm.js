@@ -12,7 +12,7 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
     setFormData(updatedFormData)
     setFormErrors(updatedErrors)
   }
-
+  console.log(formErrors)
   const handleSubmit = async event => {
     event.preventDefault()
 
@@ -22,7 +22,7 @@ function useForm(intialFormState = {}, submitFn, submitParams = null, onSubmitSu
       onSubmitSuccess(response)
     } catch (err) {
       console.log(err.response)
-      // setFormErrors(err.response.data.errors)
+      setFormErrors(err.response.data)
     }
   }
 

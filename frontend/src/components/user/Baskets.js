@@ -25,7 +25,7 @@ function Basket() {
     }
 
     updateBasket({ 'talk': [], 'total_price': 0.00 }, basketId)
-    history.push('/profile/')
+    history.push('/tickets/')
 
   }
 

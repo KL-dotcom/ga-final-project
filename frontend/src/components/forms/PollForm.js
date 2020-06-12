@@ -11,7 +11,11 @@ function PollForm() {
 
   }
   const { data, handleChange, formErrors, handleSubmit } = useForm({
-    image: '',
+    question: '',
+    option_a: '',
+    option_b: '',
+    option_c: '',
+    option_d: '',
     talk: eventId
   }, createPoll, null, onSubmitSuccess)
 
@@ -31,6 +35,7 @@ function PollForm() {
             error={formErrors}
           />
         </div>
+        {formErrors && <small>{formErrors.question}</small>}
         <div className="form-item">
           <input
             name="option_a"
@@ -41,6 +46,7 @@ function PollForm() {
             error={formErrors}
           />
         </div>
+        {formErrors && <small>{formErrors.option_a}</small>}
         <div className="form-item">
           <input
             name="option_b"
@@ -51,6 +57,7 @@ function PollForm() {
             error={formErrors}
           />
         </div>
+        {formErrors && <small>{formErrors.option_b}</small>}
         <div className="form-item">
           <input
             name="option_c"
@@ -61,6 +68,7 @@ function PollForm() {
             error={formErrors}
           />
         </div>
+        {formErrors && <small>{formErrors.option_c}</small>}
         <div className="form-item">
           <input
             name="option_d"
@@ -71,7 +79,9 @@ function PollForm() {
             error={formErrors}
           />
         </div>
+
         <button>Submit your Poll</button>
+        {formErrors && <small>{formErrors.option_d}</small>}
       </form>
     </div>
   )
