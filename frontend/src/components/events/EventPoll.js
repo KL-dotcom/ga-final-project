@@ -8,6 +8,12 @@ function EventPoll({ id, question, option_a, option_b, option_c, option_d, style
 
   const total = option_a_count + option_b_count + option_c_count + option_d_count
 
+  const makeNum = value => {
+    if (value === 0) return 0
+    return Math.round((value / total) * 100)
+  }
+
+
   return (
     <div className="poll" style={style}>
       <div className="question">
@@ -27,16 +33,16 @@ function EventPoll({ id, question, option_a, option_b, option_c, option_d, style
 
 
 
-        <div>{option_a}: {Math.round((option_a_count / total) * 100)}%</div>
+        <div>{option_a}: {makeNum(option_a_count)}%</div>
         <ProgressBar animated variant="info" now={(option_a_count / total) * 100} />
 
-        <div>{option_b}: {Math.round((option_b_count / total) * 100)}%</div>
+        <div>{option_b}: {makeNum(option_b_count)}%</div>
         <ProgressBar animated now={(option_b_count / total) * 100} />
 
-        <div>{option_c}: {Math.round((option_c_count / total) * 100)}%</div>
+        <div>{option_c}: {makeNum(option_c_count)}%</div>
         <ProgressBar animated variant="warning" now={(option_c_count / total) * 100} />
 
-        <div>{option_d}: {Math.round((option_d_count / total) * 100)}%</div>
+        <div>{option_d}: {makeNum(option_d_count)}%</div>
         <ProgressBar animated variant="danger" now={(option_d_count / total) * 100} />
 
       </div>
