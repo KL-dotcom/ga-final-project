@@ -66,7 +66,7 @@ function Basket() {
           </div>))
         }
 
-        <p>Total Price: <span style={{ fontWeight: 'bold' }}>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0)}</span></p>
+        <p>Total Price: <span style={{ fontWeight: 'bold' }}>£{basket?.talk.reduce((accumulator, item) => (accumulator + parseFloat(item.price)), 0).toFixed(2)}</span></p>
         <Button
           variant="success"
           className="checkout" onClick={makeTicket}>Check Out</Button>
