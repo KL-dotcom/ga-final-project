@@ -7,7 +7,7 @@ function EventCardSimilar({ categories, name, id, talk_images, location, date_ti
     if (talk_images.length === 0) {
       return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={name} loading="lazy" width="200"  className="image"/>
     } else {
-      return < img src={talk_images[talk_images.length - 1]?.image} alt={name} loading="lazy" width="200" className="image" />
+      return < img src={talk_images[0]?.image} alt={name} loading="lazy" width="200" className="image" />
     }
   }
 

@@ -129,8 +129,15 @@ function EventShow() {
   const picture = () => {
     if (event.talk_images.length === 0) {
       return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" className="image" />
+    } else if (event.talk_images.length === 2){
+      // console.log(event.talk_images[1].image)
+      return <iframe width="650" height="400" src={event.talk_images[1].image} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      
+      // < img src={event.talk_images[1].image} alt={event.name} loading="lazy" className="image" />
     } else {
-      return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" className="image" />
+      return < img src={event.talk_images[0]?.image} alt={event.name} loading="lazy" className="image" />
+      // return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" className="image" />
+      // return <iframe width="400" src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
     }
   }
 
