@@ -5,7 +5,7 @@ node_modules
 *.log
 
 # Byte-compiled / optimized / DLL files
-migrations/
+# migrations/
 __pycache__/
 *.py[cod]
 *$py.class
