@@ -14,7 +14,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+
 develop-eggs/
 dist/
 downloads/
@@ -31,6 +31,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -74,12 +76,7 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
-docs/_build/
 
-# PyBuilder
-.pybuilder/
-target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
