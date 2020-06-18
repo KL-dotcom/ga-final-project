@@ -126,23 +126,14 @@ function EventShow() {
     return filtered
   }
 
-
-
-
   const picture = () => {
-    if (event.talk_images.length === 0) {
-      return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" className="image" />
-    } else if (event.talk_images.length === 2){
-      // console.log(event.talk_images[1].image)
-      return <iframe width="650" height="400" src={event.talk_images[1].image} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-      
-      // < img src={event.talk_images[1].image} alt={event.name} loading="lazy" className="image" />
+    if (event.talk_images?.length === 0) {
+      return <img src='https://avatars.slack-edge.com/2020-05-09/1112549471909_7543dde099089941d3c3_512.png' alt={event.name} loading="lazy" width="200" className="image" />
     } else {
-      return < img src={event.talk_images[0]?.image} alt={event.name} loading="lazy" className="image" />
-      // return < img src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} loading="lazy" className="image" />
-      // return <iframe width="400" src={event?.talk_images[event?.talk_images.length - 1]?.image} alt={event.name} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      return <img src={event?.talk_images?.[0].image} alt={event.name} loading="lazy" width="200" className="image" />
     }
   }
+
 
   const whichUser = async () => {
     const res = await userBasket()
@@ -159,10 +150,9 @@ function EventShow() {
     if (!isAuthenticated()) popupToasty('Please log in or register an account first')
     const res = await userBasket()
     const basket = res.data
-    console.log(basket)
-
-    popupToasty('Added to Basket!')
     await updateBasket({ 'talk': [...basket.talk, eventId] }, basket.id)
+    popupToasty('Added to Basket!')
+
   }
 
 
@@ -181,11 +171,11 @@ function EventShow() {
               </div>
               <div className="title-wording">
                 <div className="title">{event.name}</div>
-                <div className="host">Hosted by: {event.host.username}</div>
+                <div className="host">Hosted by: {event.host?.username}</div>
                 <div className="location">Location: {event.location}</div>
                 <div className="price">Price: £{event.price}</div>
-                <div className="date-time">{event.date_time.replace('T', ' at ').replace(':00Z', '')}</div>
-                {isOwner(event.host.id) ?
+                <div className="date-time">{event.date_time?.replace('T', ' at ').replace(':00Z', '')}</div>
+                {isOwner(event.host?.id) ?
                   <div className="owner-buttons">
                     <Link to={`/events/${eventId}/edit`} className="link"><button>Edit</button></Link>
                     <button onClick={handleDelete}>Delete event</button>
@@ -208,20 +198,20 @@ function EventShow() {
                 <strong >Tags:</strong><br></br>
               </div>
               <div className="tags-container">
-                {event.categories.map(category => (
+                {event.categories?.map(category => (
                   <div key={category.id} className="tag">{category.name}</div>
                 ))}
               </div>
             </div>
 
-            {isOwner(event.host.id) || isAttending() ?
+            {isOwner(event.host?.id) || isAttending() ?
               <div className="paricipation-container">
                 <div className="poll-container">
                   <div className="title">
                     <strong >Polls:</strong><br></br>
                   </div>
                   {event.polls ?
-                    event.polls.map(poll => (
+                    event.polls?.map(poll => (
                       <EventPoll
                         pollVote={pollVote}
                         // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
@@ -239,7 +229,7 @@ function EventShow() {
                     </div>
 
                     {event.comments ?
-                      event.comments.map(poll => (
+                      event.comments?.map(poll => (
                         <EventComment
                           // style={poll.id === 2 ? { visibility: 'hidden' } : { visibility: 'display' }}
                           whichUser={whichUser}

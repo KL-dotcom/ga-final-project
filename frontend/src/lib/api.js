@@ -9,11 +9,11 @@ const withHeaders = () => {
 }
 
 export const getAllEvents = () => {
-  return axios.get(`${baseUrl}/talks`)
+  return axios.get(`${baseUrl}/talks/`)
 }
 
 export const getSingleEvent = id => {
-  return axios.get(`${baseUrl}/talks/${id}`)
+  return axios.get(`${baseUrl}/talks/${id}/`)
 }
 
 export const createEvent = data => {
@@ -54,7 +54,7 @@ export const updateBasket = (data, id) => {
 }
 
 export const userBasket = () => {
-  return axios.get(`${baseUrl}/basket/query`, withHeaders())
+  return axios.get(`${baseUrl}/basket/query/`, withHeaders())
 }
 
 export const createBasket = () => {
