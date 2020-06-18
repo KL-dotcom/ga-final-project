@@ -1,0 +1,11 @@
+[
+{
+  "model": "tickets.ticket",
+  "pk": 1,
+  "fields": {
+    "image": "http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100",
+    "user": 1,
+    "talk": 1
+  }
+}
+]

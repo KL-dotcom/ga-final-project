@@ -1,0 +1,16 @@
+[
+  {
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+      "name": "Tech"
+    }
+  },
+  {
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+      "name": "Art"
+    }
+  }
+]

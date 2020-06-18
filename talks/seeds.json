@@ -1,0 +1,14 @@
+[
+  {
+    "model": "talks.talk",
+    "pk": 1,
+    "fields": {
+      "name": "the talk",
+      "date_time": "2020-06-30T12:30:00Z",
+      "location": "London",
+      "about": "python and django",
+      "host": 1,
+      "price": 3.00
+    }
+  }
+]

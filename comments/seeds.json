@@ -1,0 +1,11 @@
+[
+{
+  "model": "comments.comment",
+  "pk": 1,
+  "fields": {
+    "text": "Great talk",
+    "user": 1,
+    "talk": 1
+  }
+}
+]

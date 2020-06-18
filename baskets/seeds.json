@@ -1,0 +1,12 @@
+[
+  {
+    "model": "baskets.basket",
+    "pk": 1,
+    "fields": {
+      "total_price": 1.00,
+      "summary": "1 ticket",
+      "user": 1,
+      "talk": 1
+    }
+  }
+]
