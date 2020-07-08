@@ -60,13 +60,13 @@ Once the user checks out, they can access their tickets for the events. The tick
 
 My biggest take away from Eventr is that having a group working seperately each owning our individual features can lead to knowledge silos. 
 
-We took this approach to completing the project as we did not have much time before the project was due in order to complete our MVP and additional features. This did create some issues as we could not help each other with challenges that we experienced during this project, and when features overlapped it was difficult to explain how things worked to each other. I would definitely take a different approach next time.
+We took this approach to completing the project as we did not have much time before the project was due in order to complete our MVP and additional features. This did create some issues as we could not help each other with challenges that we experienced during this project, and when features overlapped it was difficult to explain how things worked to each other. On my part this came about because I was so focused on getting the project ready for the due date, but next time I work on a group project I will definitely take a more cooperative and learning-focused approach. This would include more pair-coding and putting heads together to look at complex issues that arise during development so everyone shares the knowledge.
 
 ## Challenges and Wins
 
 The technologies (Python and React.js Hooks) we used on this project were new to us and it was difficult using them to implement what we wanted. While it was good learning experience, it did feel frustrating at the time as it was a challenge trying to translate what we were working on in our heads into functioning code.
 
-The website has lots of small details that turns it from a project to something that feels more real. Small features like the animation on the polls, default images for users and events, QR Code on the tickets all add up to create a better user experience on the site.
+A big win for me was that the website has lots of small details that turns it from a project to something that feels more real. It is really interesting to see how even just small features like the animation on the polls, default images for users and events, QR Code on the tickets all add up to create a better user experience on the site.
 
 ## Future Improvements
 
@@ -77,4 +77,4 @@ The website has lots of small details that turns it from a project to something 
 ## Deployment
 
 This project was deployed using Heroku:
-eventr-polls.herokuapp.com
+https://eventr-polls.herokuapp.com/
