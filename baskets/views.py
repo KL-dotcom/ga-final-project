@@ -9,7 +9,7 @@ from .models import Basket
 from .serializers import PopulatedBasketSerializer, BasketSerializer
 
 
-# this shows all baskets, but we only want to retireve vakster connected to the user. detail view. just had this one for testing purposes.
+# this shows all baskets, but we only want to retrieve the one connected to the user detail view. just had this one for testing purposes.
 class BasketListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 

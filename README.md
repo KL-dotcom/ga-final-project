@@ -41,6 +41,43 @@ Eventr is an event website, for people to share and find talks that they are int
 
 * I worked on the back end, making the models, routes and relationships and testing them using Insomnia. On the front end I worked on implementing the polls and comments features that would be on the events page as well as the functionality for the baskets and created the individual ticket page.
 
+A basket is created for the user at point of reigister, which means that even if the user logs out the contents of the basket is still saved:
+
+![basket register](assets/basket-register.png)
+![basket create function](assets/basket-create.png)
+
+In order to figure out which user's basket to add the talks to, I made a view that returns the basket that matches the user id. The purpose of this view was to receive just the relevant information needed, instead of receiving the users full profile information or looping through all the baskets:
+
+![get user basket](assets/user-basket.png)
+
+The user information is taken from the headers on the get request:
+
+![basket get request](assets/user-basket-call.png)
+
+This is then invoked when the user adds a talk to their basket:
+
+![add to basket function](assets/add-to-basket.png)
+
+In the basket, when the user wants to checkout, the function to create tickets maps through all the events in the basket and makes an API call for each with a QR code attached as an image. Then a put request is used to empty the basket. An example of the tickets can be found in the section below:
+![ticket create function](assets/ticket-creation.png)
+
+The polls model has a many-to-one relationship with the talks. They contain the question and answers the user wants to provide, as well as a value counter for each answer starting from 0. This was the most effective way to get an accurate number showing on the frontend that would also update quickly with each vote:
+
+![poll models](assets/poll-model.png)
+
+On the frontend when the user votes, this triggers an API call that updates the count for whichever option was picked, and then uses a setState Update Function to add the new value to the existing poll data in state:
+
+![poll voting](assets/poll-vote.png)
+![poll update function](assets/update-poll.png)
+
+The percentages are then calculated using the information in state to calculate the width of the poll bar, an example of this is shown in the section below:
+
+![bar count](assets/poll-bar.png)
+
+If there are no votes yet, the calculation used would then divide by 0 and return the percentage as  `NaN`. In order to avoid this I made the makeNum function so that if there are no votes, 0 is returned:
+
+![avoiding NaN](assets/avoid-NaN.png)
+
 ### Examples
 
 Home page showing our use of white space and textures for styling:
@@ -51,9 +88,6 @@ Our search page was inspired by Eventbrite's side panels showing different searc
 
 The event page showing the polls and the comments for ticker holders:
 ![event page](assets/event-page.png)
-
-A basket model is attached to every user, this saves the users tickets ready for checkout:
-![basket example image](assets/basket-example.png)
 
 Once the user checks out, they can access their tickets for the events. The tickets come with a working QR code:
 ![ticket example image](assets/ticket-example.png)
