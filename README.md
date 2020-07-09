@@ -6,7 +6,7 @@ Please be aware there may be a delay in the initial loading of the website, this
 
 ## Brief
 
-Eventr is an event website, for people to share and find talks that they are interested in. Once an audience member has bought a ticket, they can then start voting in polls and using the comments sections enabling audience participation before the event has event started.
+Eventr is an event website, for people to share and find talks that they are interested in. Once an audience member has bought a ticket, they can then start voting in polls and using the comments sections enabling audience participation before the event has even started.
 
 ## Technologies Used
 
@@ -23,23 +23,25 @@ Eventr is an event website, for people to share and find talks that they are int
 * GitHub
 * Heroku
 
-## Process
+## Approach
 
 * We initially planned to make a polling app, but wanted to add more layers of complexity to the project and have more practise using SQL relationships. Adding the events meant there was more both on the back end in terms of models and relationships as well as more features and designs to work on the front end.
 
-* Our inspiration for the design of the site was Eventbrite, we liked that there was a lot of white space and the search page has the filters running down the side. We didn't use a framework for the design, instead we worked on our own SCSS file to create the website.
-
 * Our project started by creating the backend models and mapping out the relationships between them. It was important in the organisation of our project to take the time to plan in advance, though the polls model did change part-way through the project in order to better track the results.
+
+>>>>An intial sketch of our models and relationships we used during the planning stage:
+
+![initial models image](assets/example-initial-models.png)
+
+* We kept on top of the project by having regular stand up sessions, which would happen first thing in the morning and last thing at night as well as after lunch. In these sessions we would discuss what we had completed and what we were going onto. If there were any issues we were having, or if we were unsure what to work on next this is where we would ask questions.
+
+## Process
 
 * I was in a group with the same people as my previous project Roadtrippers, as such we used the same way to assign tasks - we all took ownership of the parts of the project we were most interested in as well as made sure to divide up the general parts of the project e.g. making the React components for each page.
 
 * I worked on the back end, making the models, routes and relationships and testing them using Insomnia. On the front end I worked on implementing the polls and comments features that would be on the events page as well as the functionality for the baskets and created the individual ticket page.
 
-##### Examples
-
-An intial sketch of our models and relationships we used during the planning stage:
-
-![initial models image](assets/example-initial-models.png)
+### Examples
 
 Home page showing our use of white space and textures for styling:
 ![home page](assets/home-page.png)
@@ -60,13 +62,13 @@ Once the user checks out, they can access their tickets for the events. The tick
 
 My biggest take away from Eventr is that having a group working seperately each owning our individual features can lead to knowledge silos. 
 
-We took this approach to completing the project as we did not have much time before the project was due in order to complete our MVP and additional features. This did create some issues as we could not help each other with challenges that we experienced during this project, and when features overlapped it was difficult to explain how things worked to each other. I would definitely take a different approach next time.
+We took this approach to completing the project as we did not have much time before the project was due in order to complete our MVP and additional features. This did create some issues as we could not help each other with challenges that we experienced during this project, and when features overlapped it was difficult to explain how things worked to each other. On my part this came about because I was so focused on getting the project ready for the due date, but next time I work on a group project I will definitely take a more cooperative and learning-focused approach. This would include more pair-coding and putting heads together to look at complex issues that arise during development so everyone shares the knowledge.
 
 ## Challenges and Wins
 
 The technologies (Python and React.js Hooks) we used on this project were new to us and it was difficult using them to implement what we wanted. While it was good learning experience, it did feel frustrating at the time as it was a challenge trying to translate what we were working on in our heads into functioning code.
 
-The website has lots of small details that turns it from a project to something that feels more real. Small features like the animation on the polls, default images for users and events, QR Code on the tickets all add up to create a better user experience on the site.
+A big win for me was that the website has lots of small details that turns it from a project to something that feels more real. It is really interesting to see how even just small features like the animation on the polls, default images for users and events, QR Code on the tickets all add up to create a better user experience on the site.
 
 ## Future Improvements
 
@@ -77,4 +79,9 @@ The website has lots of small details that turns it from a project to something 
 ## Deployment
 
 This project was deployed using Heroku:
-eventr-polls.herokuapp.com
+https://eventr-polls.herokuapp.com/
+
+## Bugs
+
+* The styling of the project has left large margins on every page, which needs to be corrected.
+* The filter page, while fully functional during production, is now no longer working which may be due to changes made while deploying the application.
