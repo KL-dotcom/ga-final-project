@@ -39,7 +39,7 @@ Eventr is an event website, for people to share and find talks that they are int
 
 * I was in a group with the same people as my previous project Roadtrippers, as such we used the same way to assign tasks - we all took ownership of the parts of the project we were most interested in as well as made sure to divide up the general parts of the project e.g. making the React components for each page.
 
-* I worked on the back end, making the models, routes and relationships and testing them using Insomnia. On the front end I worked on implementing the polls and comments features that would be on the events page as well as the functionality for the baskets and created the individual ticket page.
+* I worked on the back end, making the models, routes and relationships and testing them using Insomnia. On the front end I worked on implementing the polls and comments features that would be on the events page as well as the functionality for the baskets and created the individual ticket page. My other teammates worked on the styling, profiles and ticket index as well as the search page.
 
 A basket is created for the user at point of reigister, which means that even if the user logs out the contents of the basket is still saved:
 
